@@ -1,0 +1,3 @@
+# MY WISHLIST - one thing per line. Lines starting with # are ignored.
+#   link (or a description) | price 650 | priority must
+# Leave out the price to use the shop's price. Priority is "must" or "nice" (default nice).

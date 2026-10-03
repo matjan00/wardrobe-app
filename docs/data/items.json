@@ -1,0 +1,188 @@
+{
+ "version": 1,
+ "items": [
+  {
+   "id": "1940s-usn-herringbone-deck-pants-navy",
+   "name": "1940s Herringbone Deck Pants, navy",
+   "brand": "Timecatcher",
+   "cat": "bottom",
+   "img": "img/1940s-usn-herringbone-deck-pants-navy.webp?v=23b1a7",
+   "url": "https://timecatcherco.com/collections/pants-trousers/products/1940s-usn-herringbone-deck-pants-navy",
+   "owned": true,
+   "size": "W30",
+   "sizes": {
+    "W28": {
+     "waist": 74.0,
+     "hip": 97.5,
+     "front rise": 31.5,
+     "back rise": 41.5,
+     "thigh": 67.0,
+     "inseam": 79.5,
+     "length": 109.0,
+     "leg opening": 48.5
+    },
+    "W30": {
+     "waist": 79.0,
+     "hip": 101.5,
+     "front rise": 32.5,
+     "back rise": 42.5,
+     "thigh": 69.0,
+     "inseam": 79.5,
+     "length": 110.0,
+     "leg opening": 49.5
+    },
+    "W32": {
+     "waist": 84.0,
+     "hip": 105.5,
+     "front rise": 33.5,
+     "back rise": 43.5,
+     "thigh": 71.0,
+     "inseam": 79.5,
+     "length": 111.0,
+     "leg opening": 50.5
+    },
+    "W34": {
+     "waist": 89.0,
+     "hip": 109.5,
+     "front rise": 34.5,
+     "back rise": 44.5,
+     "thigh": 73.0,
+     "inseam": 82.5,
+     "length": 114.0,
+     "leg opening": 51.5
+    },
+    "W36": {
+     "waist": 94.0,
+     "hip": 113.5,
+     "front rise": 35.5,
+     "back rise": 45.5,
+     "thigh": 75.0,
+     "inseam": 82.5,
+     "length": 115.0,
+     "leg opening": 52.5
+    },
+    "W38": {
+     "waist": 99.0,
+     "hip": 117.5,
+     "front rise": 36.5,
+     "back rise": 46.5,
+     "thigh": 77.0,
+     "inseam": 82.5,
+     "length": 116.0,
+     "leg opening": 53.5
+    }
+   },
+   "photo": {
+    "w": 374,
+    "h": 700,
+    "top": 0.0,
+    "hem": 0.9986,
+    "bottom": 0.9986
+   },
+   "estimated": false,
+   "placeholder": false
+  },
+  {
+   "id": "1930s-duck-canvas-cossack-jacket-washed-khaki",
+   "name": "1930s Duck Canvas Cossack Jacket, khaki",
+   "brand": "Timecatcher",
+   "cat": "jacket",
+   "img": "img/1930s-duck-canvas-cossack-jacket-washed-khaki.webp?v=a7df35",
+   "url": "https://timecatcherco.com/collections/new-arrivals/products/1930s-duck-canvas-cossack-jacket-washed-khaki",
+   "owned": true,
+   "size": "S",
+   "sizes": {
+    "S": {
+     "shoulder": 48.5,
+     "chest": 109.0,
+     "length": 60.0,
+     "sleeve": 61.5
+    },
+    "M": {
+     "shoulder": 50.0,
+     "chest": 114.0,
+     "length": 62.0,
+     "sleeve": 62.5
+    },
+    "L": {
+     "shoulder": 51.5,
+     "chest": 119.0,
+     "length": 64.0,
+     "sleeve": 63.5
+    },
+    "XL": {
+     "shoulder": 53.0,
+     "chest": 124.0,
+     "length": 66.0,
+     "sleeve": 64.5
+    },
+    "XXL": {
+     "shoulder": 54.5,
+     "chest": 129.0,
+     "length": 68.0,
+     "sleeve": 65.5
+    }
+   },
+   "photo": {
+    "w": 700,
+    "h": 664,
+    "top": 0.0,
+    "hem": 0.9021,
+    "bottom": 0.9985
+   },
+   "estimated": false,
+   "placeholder": false
+  },
+  {
+   "id": "easy-weejuns-larson-penny-loafer-black-leather",
+   "name": "Easy Weejuns Larson Penny Loafers, black",
+   "brand": "G.H.Bass",
+   "cat": "shoes",
+   "img": "img/easy-weejuns-larson-penny-loafer-black-leather.webp?v=ff928e",
+   "url": "https://www.ghbass-eu.com/en-eu/products/easy-weejuns-larson-penny-loafer-black-leather",
+   "owned": true,
+   "size": "41",
+   "sizes": {
+    "38": {
+     "length": 27.0
+    },
+    "39": {
+     "length": 27.7
+    },
+    "40": {
+     "length": 28.3
+    },
+    "41": {
+     "length": 29.0
+    },
+    "42": {
+     "length": 29.7
+    },
+    "43": {
+     "length": 30.3
+    },
+    "44": {
+     "length": 31.0
+    },
+    "45": {
+     "length": 31.7
+    },
+    "46": {
+     "length": 32.3
+    },
+    "47": {
+     "length": 33.0
+    }
+   },
+   "photo": {
+    "w": 643,
+    "h": 316,
+    "top": 0.0,
+    "hem": 0.9968,
+    "bottom": 0.9968
+   },
+   "estimated": false,
+   "placeholder": false
+  }
+ ]
+}

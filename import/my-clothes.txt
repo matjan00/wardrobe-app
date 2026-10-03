@@ -1,0 +1,20 @@
+# MY CLOTHES - one piece per line. Lines starting with # are notes and are ignored.
+#
+# WITH A LINK (best: photo, name and details come in automatically):
+#   link | size W30 | paid 450 | bought 2025-05 | from Vinted
+#
+# WITHOUT A LINK: write brand, type, colour. Add a photo if you have one.
+#   Levi's 501 jeans, dark indigo | size W31 L32 | paid 120 | bought 2024-11 | photo levis.jpg
+#
+# Everything after the first | is optional:
+#   size X       the size you own
+#   paid X       what you paid (just the number)
+#   bought X     when, like 2025-05 (year-month)
+#   from X       where you bought it
+#   photo X      a photo in the "photos" folder next to this file: lay the piece flat on a
+#                plain floor, shoot from above, whole piece in frame, daylight
+#
+# ---- your pieces below this line ----
+https://timecatcherco.com/collections/pants-trousers/products/1940s-usn-herringbone-deck-pants-navy | size W30
+https://timecatcherco.com/collections/new-arrivals/products/1930s-duck-canvas-cossack-jacket-washed-khaki | size S
+https://www.ghbass-eu.com/en-eu/products/easy-weejuns-larson-penny-loafer-black-leather | size 41
