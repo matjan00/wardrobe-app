@@ -52,7 +52,7 @@ def parse_line(line):
     head, fields = parts[0], {}
     meas = {}
     for p in parts[1:]:
-        m = re.match(r'(size|photo|cat|name|brand|paid|price|bought|from|store|colou?r|notes?|priority)\s*:?\s+(.+)$', p, re.I)
+        m = re.match(r'(size|photo|cat|name|brand|link|paid|price|bought|from|store|colou?r|notes?|priority)\s*:?\s+(.+)$', p, re.I)
         if m:
             fields[m.group(1).lower()] = m.group(2).strip()
             continue
@@ -279,7 +279,7 @@ def main(path, wishlist=False):
 
         rec = {'id': iid, 'name': title, 'brand': clean_brand(f.get('brand') or (info or {}).get('brand')),
                'cat': cat, 'img': 'img/%s.webp?v=%s' % (iid, hashlib.md5(rgba.tobytes()).hexdigest()[:6]),
-               'url': (info or {}).get('url', ''), 'size': size, 'sizes': sizes, 'color': f.get('colour') or f.get('color') or '',
+               'url': (info or {}).get('url') or f.get('link', ''), 'size': size, 'sizes': sizes, 'color': f.get('colour') or f.get('color') or '',
                'notes': f.get('notes') or f.get('note') or '', 'placeholder': placeholder_used}
         if wishlist:
             rec.update(price=money(f.get('price')) or (info or {}).get('shop_price'),

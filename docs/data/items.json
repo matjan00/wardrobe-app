@@ -183,6 +183,62 @@
    },
    "estimated": false,
    "placeholder": false
+  },
+  {
+   "id": "zara-suede-penny-loafers-dark-brown",
+   "name": "Zara suede penny loafers, dark brown",
+   "brand": "Zara",
+   "cat": "shoes",
+   "img": "img/zara-suede-penny-loafers-dark-brown.webp?v=4f5442",
+   "url": "https://www.zara.com/pl/en/leather-penny-loafers-p12678720.html",
+   "size": "40",
+   "sizes": {
+    "38": {
+     "length": 27.0
+    },
+    "39": {
+     "length": 27.7
+    },
+    "40": {
+     "length": 28.3
+    },
+    "41": {
+     "length": 29.0
+    },
+    "42": {
+     "length": 29.7
+    },
+    "43": {
+     "length": 30.3
+    },
+    "44": {
+     "length": 31.0
+    },
+    "45": {
+     "length": 31.7
+    },
+    "46": {
+     "length": 32.3
+    },
+    "47": {
+     "length": 33.0
+    }
+   },
+   "color": "",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": 250.0,
+   "bought": "",
+   "store": "",
+   "photo": {
+    "w": 502,
+    "h": 190,
+    "top": 0.0053,
+    "hem": 0.9947,
+    "bottom": 0.9947
+   },
+   "estimated": false
   }
  ]
 }
