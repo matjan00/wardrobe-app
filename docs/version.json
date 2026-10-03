@@ -1,6 +1,11 @@
 {
- "version": "1.0.2",
+ "version": "1.0.3",
  "notes": [
+  {
+   "version": "1.0.3",
+   "date": "2026-10-03",
+   "text": "Safer photo storage, back button closes panels, closet search, outfit tags and other fixes"
+  },
   {
    "version": "1.0.2",
    "date": "2026-10-03",

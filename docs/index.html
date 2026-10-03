@@ -45,6 +45,9 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
 .br{font-size:10.5px;color:var(--mute);margin-top:1px}
 .tagc{position:absolute;top:10px;left:10px;font-size:10px;font-weight:600;background:rgba(255,255,255,.92);padding:2px 6px;border-radius:99px}
 .none{font-size:26px;color:#bbb}
+.nopic{width:42%;height:42%;color:#C9C1B5}
+.nophoto{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--accent);font-size:13px;font-weight:500;cursor:pointer}
+.nophoto .nopic{width:64px;height:64px}
 .empty{color:var(--mute);font-size:14px;text-align:center;padding:36px 12px;grid-column:1/-1;line-height:1.5}
 
 .stage{position:relative;width:100%;aspect-ratio:3/4.4;background:var(--stage);border-radius:20px;overflow:hidden}
@@ -153,9 +156,15 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
 .photo-in .pic{width:84px;height:84px;flex:none}
 .photo-in label.up{font-size:13px;font-weight:500;color:var(--accent);cursor:pointer;text-decoration:underline}
 .pick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:99px;font-size:13px;opacity:0;transition:.25s;pointer-events:none;z-index:60;white-space:nowrap}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:18px;font-size:13px;opacity:0;transition:.25s;pointer-events:none;z-index:60;max-width:calc(100vw - 32px);width:max-content;text-align:center;line-height:1.4}
 .toast.on{opacity:1}
 .note{font-size:12px;color:var(--mute);line-height:1.45;margin:8px 2px}
+.search{position:relative;margin:0 0 10px}
+.search input{width:100%;height:40px;border-radius:99px;border:1px solid var(--line);background:var(--card);padding:0 36px 0 38px;font-size:14px}
+.search svg{position:absolute;left:13px;top:11px;width:18px;height:18px;color:var(--mute)}
+.search button{position:absolute;right:6px;top:6px;width:28px;height:28px;border-radius:50%;border:0;background:var(--soft);font-size:15px;cursor:pointer;display:none}
+.search.has button{display:block}
+.stats3 em{display:block;font-style:normal;font-size:10.5px;color:var(--mute);margin-top:1px}
 .banner{display:none;align-items:center;gap:10px;background:var(--accent);color:#fff;border-radius:14px;padding:10px 12px;margin:0 0 12px;font-size:13px;cursor:pointer}
 .banner.on{display:flex}
 .banner b{font-weight:600}.banner span{flex:1}
@@ -189,9 +198,11 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
   <div class="banner" id="updBanner" data-act="settings"><span><b>Update available.</b> <span id="updText"></span></span><button data-act="doUpdate">Update</button></div>
   <div class="banner install" id="instBanner"><span>Install Wardrobe on your home screen</span><button data-act="install">Install</button></div>
   <div class="top"><div><h1>Closet</h1><p class="sub" id="closetSub"></p></div>
-   <div style="display:flex;gap:8px"><button class="gear" data-act="settings" aria-label="Settings and updates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg><span class="dot" id="gearDot"></span></button>
+   <div style="display:flex;gap:8px"><button class="gear" data-act="settings" aria-label="Settings and updates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.3c.4-1.8 3-1.8 3.4 0a1.7 1.7 0 0 0 2.6 1.1c1.5-.9 3.3.8 2.4 2.4a1.7 1.7 0 0 0 1 2.5c1.8.4 1.8 3 0 3.4a1.7 1.7 0 0 0-1 2.6c.9 1.5-.9 3.3-2.4 2.4a1.7 1.7 0 0 0-2.6 1c-.4 1.8-3 1.8-3.4 0a1.7 1.7 0 0 0-2.5-1c-1.6.9-3.3-.9-2.4-2.4a1.7 1.7 0 0 0-1.1-2.6c-1.8-.4-1.8-3 0-3.4a1.7 1.7 0 0 0 1.1-2.5c-.9-1.6.8-3.3 2.4-2.4 1 .6 2.3.1 2.5-1.1z"/><circle cx="12" cy="12" r="3"/></svg><span class="dot" id="gearDot"></span></button>
    <button class="add" data-act="addItem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add</button></div></div>
   <div class="kpis" id="kpis"></div>
+  <div class="search" id="searchBox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+   <input id="q" type="search" placeholder="Search name, brand, colour" aria-label="Search your closet" autocomplete="off"><button id="qClear" aria-label="Clear search">×</button></div>
   <div class="bar"><div class="chips" id="catChips"></div>
    <select class="sort" id="sort" aria-label="Sort">
     <option value="recent">Newest</option><option value="worn">Most worn</option><option value="least">Least worn</option>
@@ -202,6 +213,7 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
  <section class="view" id="v-outfits">
   <div class="top"><div><h1>Outfits</h1><p class="sub" id="outfitSub"></p></div>
    <button class="add" data-act="newOutfit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>New</button></div>
+  <div class="bar"><div class="chips" id="tagChips"></div></div>
   <div class="looks" id="looks"></div>
  </section>
 
@@ -258,7 +270,7 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION='1.0.2';
+const APP_VERSION='1.0.3';
 /* ===== storage ===== */
 const KEY='wardrobe-db-v2';
 const $=id=>document.getElementById(id);
@@ -269,6 +281,20 @@ let db={items:[],outfits:[],plan:{},wishlist:[],settings:{currency:'zł'},seen:[
 function load(){try{const v=JSON.parse(localStorage.getItem(KEY));if(v&&Array.isArray(v.items))db={...db,...v}}catch(e){}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(db));return true}catch(e){toast('Phone storage is full. Export a backup in Insights, Settings.');return false}}
 
+/* ===== photo storage =====
+   Your own photos live in IndexedDB (far more room than the closet data store); the item keeps
+   only 'idb:<key>'. If IndexedDB isn't available the photo stays inline as before. */
+const PH={};let idb=null;
+function idbOpen(){return new Promise(res=>{try{const r=indexedDB.open('wardrobe-photos',1);r.onupgradeneeded=()=>r.result.createObjectStore('p');
+  r.onsuccess=()=>res(r.result);r.onerror=()=>res(null)}catch(e){res(null)}})}
+function idbReq(mode,fn){return new Promise((res,rej)=>{const tx=idb.transaction('p',mode),q=fn(tx.objectStore('p'));tx.oncomplete=()=>res(q&&q.result);tx.onerror=tx.onabort=()=>rej(tx.error)})}
+async function idbAll(){const out={};await new Promise(res=>{const tx=idb.transaction('p','readonly');const c=tx.objectStore('p').openCursor();
+  c.onsuccess=()=>{const cur=c.result;if(cur){out[cur.key]=cur.value;cur.continue()}};tx.oncomplete=res;tx.onerror=res});return out}
+async function storePhoto(blob){if(!idb)return await blobToData(blob);const key='ph-'+uid();await idbReq('readwrite',st=>st.put(blob,key));PH[key]=URL.createObjectURL(blob);return 'idb:'+key}
+async function dropPhoto(src){if(idb&&src&&src.startsWith('idb:')){const k=src.slice(4);try{await idbReq('readwrite',st=>st.delete(k))}catch(e){}if(PH[k])URL.revokeObjectURL(PH[k]);delete PH[k]}}
+const blobToData=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result);f.readAsDataURL(b)});
+const srcOf=src=>src&&src.startsWith('idb:')?(PH[src.slice(4)]||''):src;
+
 /* ===== helpers ===== */
 const SLOTS=['top','jacket','bottom','shoes','acc'];
 const CATS={top:'Tops',bottom:'Bottoms',jacket:'Outerwear',shoes:'Shoes',acc:'Accessories'};
@@ -276,8 +302,8 @@ const CAT1={top:'Top',bottom:'Bottom',jacket:'Outerwear',shoes:'Shoes',acc:'Acce
 function money(n){if(n==null||n===''||isNaN(n))return '–';const c=db.settings.currency||'zł',v=Math.round(+n*100)/100;
   const s=v.toLocaleString('pl-PL',{minimumFractionDigits:v%1?2:0,maximumFractionDigits:2});return c==='zł'||c==='kr'||c==='CHF'?s+' '+c:c+s}
 function fmtDate(iso){if(!iso)return '–';const d=new Date((iso.length===7?iso+'-01':iso)+'T12:00');if(isNaN(d))return iso;
-  return d.toLocaleDateString(undefined,iso.length===7?{month:'short',year:'numeric'}:{day:'numeric',month:'short',year:'numeric'})}
-const isPhoto=src=>/^data:/.test(src||'');
+  return d.toLocaleDateString('en-GB',iso.length===7?{month:'short',year:'numeric'}:{day:'numeric',month:'short',year:'numeric'})}
+const isPhoto=src=>/^(data:|idb:|blob:)/.test(src||'');
 const itemById=id=>db.items.find(i=>i.id===id);
 function wearsOf(id){let n=0,last=null;
   for(const [d,e] of Object.entries(db.plan))if(e.worn&&(e.items||[]).includes(id)){n++;if(!last||d>last)last=d}
@@ -287,20 +313,23 @@ function cpw(it){if(it.price==null||it.price==='')return null;return +it.price/M
 const outfitItems=o=>SLOTS.map(k=>o.items[k]).filter(Boolean).map(itemById).filter(Boolean);
 const outfitWears=o=>Object.values(db.plan).filter(e=>e.worn&&e.outfit===o.id).length;
 function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),1900)}
-function picHTML(src){return src?`<div class="pic ${isPhoto(src)?'photo':''}"><img src="${esc(src)}" alt="" loading="lazy"></div>`:`<div class="pic"><span class="none">?</span></div>`}
+const NOPIC='<svg class="nopic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 7a2 2 0 1 1 2-2M12 7v1.5L3 16h18l-9-7.5"/></svg>';
+function picHTML(src){const u=srcOf(src);return u?`<div class="pic ${isPhoto(src)?'photo':''}"><img src="${esc(u)}" alt="" loading="lazy"></div>`:`<div class="pic">${NOPIC}</div>`}
 
 /* ===== outfit picture: product photos stacked, no figure ===== */
 function stageHTML(items,o={}){
   const g=k=>items[k]&&itemById(items[k]);let h='';
   for(const k of ['bottom','top','jacket','shoes','acc']){const it=g(k);if(!it)continue;
-    h+=`<div class="layer L-${k} ${isPhoto(it.img)?'photo':''}" ${isPhoto(it.img)?'style="aspect-ratio:1"':''}><img src="${esc(it.img)}" alt="${esc(it.name)}"></div>`}
+    const u=srcOf(it.img);if(!u)continue;h+=`<div class="layer L-${k} ${isPhoto(it.img)?'photo':''}" ${isPhoto(it.img)?'style="aspect-ratio:1"':''}><img src="${esc(u)}" alt="${esc(it.name)}"></div>`}
   return `<div class="stage ${o.flat?'flat':'stand'} ${o.tuck?'tuck':''} ${g('jacket')?'':'nojacket'}" ${o.id?`id="${o.id}"`:''}>${h}</div>`;
 }
 
 /* ===== closet ===== */
 let cCat='all',cSort='recent';
+let query='';
 function renderCloset(){
   const items=db.items,W=i=>wearsOf(i.id).n;
+  if(cCat!=='all'&&!items.some(i=>i.cat===cCat))cCat='all';
   const spent=items.reduce((s,i)=>s+(+i.price||0),0),wears=items.reduce((s,i)=>s+W(i),0);
   const priced=items.filter(i=>i.price!=null&&i.price!=='');
   const avg=priced.length?priced.reduce((s,i)=>s+cpw(i),0)/priced.length:null;
@@ -310,19 +339,30 @@ function renderCloset(){
     return (k==='all'||n)?`<button class="chip ${k===cCat?'on':''}" data-cat="${k}">${k==='all'?'All':CATS[k]} · ${n}</button>`:''}).join('');
   const S={recent:(a,b)=>(b.added||'').localeCompare(a.added||''),worn:(a,b)=>W(b)-W(a),least:(a,b)=>W(a)-W(b),
     cpw:(a,b)=>(cpw(b)??-1)-(cpw(a)??-1),price:(a,b)=>(+b.price||0)-(+a.price||0)};
-  const list=items.filter(i=>cCat==='all'||i.cat===cCat).sort(S[cSort]);
+  const q=query.trim().toLowerCase();
+  const list=items.filter(i=>(cCat==='all'||i.cat===cCat)&&(!q||[i.name,i.brand,i.color,i.notes,i.store,i.size].join(' ').toLowerCase().includes(q))).sort(S[cSort]);
+  $('searchBox').style.display=items.length>5?'':'none';$('searchBox').classList.toggle('has',!!q);
   $('closetGrid').innerHTML=list.length?list.map(i=>{const c=cpw(i),w=W(i);
     const tag=cSort==='cpw'?(c!=null?money(c)+'/wear':''):cSort==='price'?(i.price!=null?money(i.price):''):(cSort==='worn'||cSort==='least')?w+'×':'';
     return `<button class="it" data-item="${i.id}">${tag?`<span class="tagc">${tag}</span>`:''}${picHTML(i.img)}<div class="nm">${esc(i.name)}</div><div class="br">${esc(i.brand||CAT1[i.cat])}${i.size?' · '+esc(i.size):''}</div></button>`}).join('')
-    :`<div class="empty">${cCat==='all'?'Your closet is empty. Tap Add to put in your first piece.':'No '+CATS[cCat].toLowerCase()+' yet.'}</div>`;
+    :`<div class="empty">${q?'Nothing matches “'+esc(query.trim())+'”.':cCat==='all'?'Your closet is empty. Tap Add to put in your first piece.':'No '+CATS[cCat].toLowerCase()+' yet.'}</div>`;
 }
+$('q').oninput=e=>{query=e.target.value;renderCloset()};
+$('qClear').onclick=()=>{query='';$('q').value='';renderCloset();$('q').focus()};
 $('catChips').onclick=e=>{const b=e.target.closest('[data-cat]');if(b){cCat=b.dataset.cat;renderCloset()}};
 $('sort').onchange=e=>{cSort=e.target.value;renderCloset()};
 $('closetGrid').onclick=e=>{const b=e.target.closest('[data-item]');if(b)itemSheet(b.dataset.item)};
 
 /* ===== sheets ===== */
-function openSheet(html){$('sheet').innerHTML='<div class="grab"></div><button class="close" aria-label="Close" data-act="close">×</button>'+html;$('sheetBg').classList.add('on');$('sheet').scrollTop=0}
-function closeSheet(){$('sheetBg').classList.remove('on')}
+let sheetOpen=false,curView='closet',ignorePop=0,pendingPush=[];
+function push(state){if(ignorePop)pendingPush.push(state);else history.pushState(state,'')}
+function openSheet(html){$('sheet').innerHTML='<div class="grab"></div><button class="close" aria-label="Close" data-act="close">×</button>'+html;$('sheetBg').classList.add('on');$('sheet').scrollTop=0;
+  if(!sheetOpen){sheetOpen=true;push({v:curView,s:1})}}
+function closeSheet(fromPop){$('sheetBg').classList.remove('on');if(sheetOpen){sheetOpen=false;if(fromPop!==true){ignorePop++;history.back()}}}
+window.addEventListener('popstate',e=>{
+  if(ignorePop){ignorePop--;if(!ignorePop){const q=pendingPush;pendingPush=[];q.forEach(st=>history.pushState(st,''))}return}
+  if(sheetOpen){closeSheet(true);return}
+  show((e.state&&e.state.v)||'closet',true)});
 $('sheetBg').addEventListener('click',e=>{if(e.target.id==='sheetBg')closeSheet()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
 $('sheet').addEventListener('click',e=>{const r=e.target.closest('.row[data-item]');if(r)itemSheet(r.dataset.item)});
@@ -333,11 +373,11 @@ function itemSheet(id){
   const inO=db.outfits.filter(o=>Object.values(o.items).includes(id));
   const ms=it.sizes&&it.size&&it.sizes[it.size];
   openSheet(`<h2>${esc(it.name)}</h2><div class="meta">${esc([it.brand,CAT1[it.cat],it.color].filter(Boolean).join(' · '))}</div>
-   <div class="hero ${isPhoto(it.img)?'photo':''}">${it.img?`<img src="${esc(it.img)}" alt="">`:'<span class="none">?</span>'}</div>
-   <div class="stats3"><div><small>Paid</small><b>${money(it.price)}</b></div><div><small>Worn</small><b>${w.n}×</b></div><div><small>Cost per wear</small><b>${c==null?'–':money(c)}</b></div></div>
+   <div class="hero ${isPhoto(it.img)?'photo':''}">${srcOf(it.img)?`<img src="${esc(srcOf(it.img))}" alt="">`:`<button class="nophoto" data-act="editItem" data-id="${id}">${NOPIC}<span>Add a photo</span></button>`}</div>
+   <div class="stats3"><div><small>Paid</small><b>${money(it.price)}</b></div><div><small>Worn</small><b>${w.n}×</b></div><div><small>Cost per wear</small><b>${c==null?'–':money(c)}</b>${c!=null&&!w.n?'<em>until first wear</em>':''}</div></div>
    <div class="btns"><button class="btn" data-act="wearItem" data-id="${id}">Wore it today</button><button class="btn sec" data-act="editItem" data-id="${id}">Edit</button></div>
    <table class="facts">
-    <tr><td>Size</td><td>${esc(it.size||'–')}</td></tr>
+    <tr><td>Size</td><td>${esc(it.size&&it.size!=='yours'?it.size:'–')}</td></tr>
     <tr><td>Bought</td><td>${fmtDate(it.bought)}${it.store?' · '+esc(it.store):''}</td></tr>
     <tr><td>Last worn</td><td>${w.last?fmtDate(w.last):'Not yet'}</td></tr>
     ${it.condition?`<tr><td>Condition</td><td>${esc(it.condition)}</td></tr>`:''}
@@ -349,12 +389,20 @@ function itemSheet(id){
    </table>`);
 }
 
-function readPhoto(file,max=640){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{
+function readPhoto(file,max=900){return new Promise((res,rej)=>{const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{
   const s=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);
-  c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.82))};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
-let formPhoto='';
-function bindPhoto(inputId,errId){$(inputId).onchange=async e=>{const f=e.target.files[0];if(!f)return;
-  try{formPhoto=await readPhoto(f);document.querySelector('.photo-in .pic').outerHTML=picHTML(formPhoto)}catch(err){$(errId).textContent="That photo couldn't be read. Try another."}}}
+  c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>b?res(b):rej(new Error('photo')),'image/jpeg',.84)};
+  im.onerror=()=>{URL.revokeObjectURL(u);rej(new Error('photo'))};im.src=u})}
+let formPhoto='',newPhoto=null,photoJob=null; // newPhoto: a Blob picked in the open form, saved only when the form is saved
+function bindPhoto(inputId,errId){newPhoto=null;photoJob=null;$(inputId).onchange=e=>{const f=e.target.files[0];if(!f)return;
+  $(errId).textContent='';document.querySelector('.photo-in .note')?.replaceChildren('Preparing photo…');
+  photoJob=readPhoto(f).then(b=>{newPhoto=b;const u=URL.createObjectURL(b);document.querySelector('.photo-in .pic').outerHTML=`<div class="pic photo"><img src="${u}" alt=""></div>`;
+    document.querySelector('.photo-in .note')?.replaceChildren('Photo ready')})
+    .catch(()=>{$(errId).textContent="That photo couldn't be read. Try another.";document.querySelector('.photo-in .note')?.replaceChildren('')})}}
+async function commitPhoto(prevSrc){ // returns the src to store for the form being saved
+  if(photoJob)await photoJob.catch(()=>{}); // Save tapped while the photo was still being prepared
+  if(!newPhoto)return formPhoto;const src=await storePhoto(newPhoto);newPhoto=null;
+  if(prevSrc&&prevSrc!==src&&!db.items.some(i=>i.img===prevSrc)&&!db.wishlist.some(w=>w.img===prevSrc))await dropPhoto(prevSrc);return src}
 
 let wishToBuy=null;
 function itemForm(id,prefill){
@@ -367,7 +415,7 @@ function itemForm(id,prefill){
     <div class="two"><div class="f"><label for="fBrand">Brand</label><input id="fBrand" value="${esc(it.brand)}" placeholder="Timecatcher"></div>
      <div class="f"><label for="fCat">Category</label><select id="fCat">${Object.keys(CAT1).map(k=>`<option value="${k}" ${k===it.cat?'selected':''}>${CAT1[k]}</option>`).join('')}</select></div></div>
     <div class="two"><div class="f"><label for="fColor">Colour</label><input id="fColor" value="${esc(it.color)}" placeholder="Navy"></div>
-     <div class="f"><label for="fSize">Size</label><input id="fSize" value="${esc(it.size)}" placeholder="M / W30 / 42"></div></div>
+     <div class="f"><label for="fSize">Size</label><input id="fSize" value="${esc(it.size==='yours'?'':it.size)}" placeholder="M / W30 / 42"></div></div>
     <div class="two"><div class="f"><label for="fPrice">Price paid (${esc(db.settings.currency)})</label><input id="fPrice" type="number" inputmode="decimal" min="0" step="0.01" value="${esc(it.price)}"></div>
      <div class="f"><label for="fBought">Bought</label><input id="fBought" type="month" value="${esc((it.bought||'').slice(0,7))}"></div></div>
     <div class="two"><div class="f"><label for="fStore">Where</label><input id="fStore" value="${esc(it.store)}" placeholder="Vinted, shop…"></div>
@@ -392,7 +440,7 @@ function itemForm(id,prefill){
 }
 function readMeasures(){const out={};for(const r of document.querySelectorAll('#mList .mrow')){const [k,v]=r.querySelectorAll('input');
   const name=k.value.trim().toLowerCase(),num=v.value.trim();if(!name&&!num)continue;if(!name||num===''||isNaN(+num))return null;out[name]=+num}return out}
-function saveItem(id){
+async function saveItem(id){
   const v=k=>$(k).value.trim(),err=m=>{$('fErr').textContent=m};
   if(!v('fName')){err('Give it a name.');$('fName').focus();return}
   const price=v('fPrice');if(price&&(isNaN(+price)||+price<0)){err('Price should be a number.');return}
@@ -402,23 +450,30 @@ function saveItem(id){
   const prev=id?itemById(id):null,sizeKey=v('fSize')||'yours',sizes={...((prev&&prev.sizes)||{})};
   const changedM=!!prev&&(JSON.stringify(meas)!==JSON.stringify((prev.sizes&&prev.sizes[prev.size])||{})||prev.size!==v('fSize'));
   if(Object.keys(meas).length)sizes[sizeKey]=meas;
-  const data={sizes,sizesEdited:!!(prev&&(prev.sizesEdited||changedM)),imgEdited:!!(prev&&(prev.imgEdited||formPhoto!==prev.img)),name:v('fName'),brand:v('fBrand'),cat:v('fCat'),color:v('fColor'),size:v('fSize'),price:price===''?null:+price,bought:v('fBought'),
-    store:v('fStore'),condition:v('fCond'),season:v('fSeason'),extraWears:+wears||0,url:v('fUrl'),notes:v('fNotes'),img:formPhoto};
+  let img;try{img=await commitPhoto(prev&&prev.img)}catch(e){err("The photo couldn't be saved. Try a smaller one.");return}
+  const data={sizes,sizesEdited:!!(prev&&(prev.sizesEdited||changedM)),imgEdited:!!(prev&&(prev.imgEdited||img!==prev.img)),name:v('fName'),brand:v('fBrand'),cat:v('fCat'),color:v('fColor'),size:v('fSize'),price:price===''?null:+price,bought:v('fBought'),
+    store:v('fStore'),condition:v('fCond'),season:v('fSeason'),extraWears:+wears||0,url:v('fUrl'),notes:v('fNotes'),img};
   if(!data.size&&Object.keys(meas).length)data.size='yours';
   if(id)Object.assign(itemById(id),data);
   else{const it={id:'u-'+uid(),added:new Date().toISOString(),...data};db.items.push(it);id=it.id;
-    if(wishToBuy){db.wishlist=db.wishlist.filter(w=>w.id!==wishToBuy);wishToBuy=null}}
+    if(wishToBuy){db.wishlist=db.wishlist.filter(w=>w.id!==wishToBuy);db.seen=[...new Set([...(db.seen||[]),wishToBuy])];wishToBuy=null}}
   if(!save())return;renderAll();toast('Saved');itemSheet(id);
 }
 
 /* ===== outfits ===== */
+let oTag='all';
+const tagsOf=o=>(o.tags||'').split(',').map(t=>t.trim().toLowerCase()).filter(Boolean);
 function renderOutfits(){
   $('outfitSub').textContent=db.outfits.length?`${db.outfits.length} saved`:'Build looks from your pieces.';
-  $('looks').innerHTML=db.outfits.length?db.outfits.map(o=>{const its=outfitItems(o),cost=its.reduce((s,i)=>s+(+i.price||0),0),w=outfitWears(o);
+  const tags=[...new Set(db.outfits.flatMap(tagsOf))].sort();if(oTag!=='all'&&!tags.includes(oTag))oTag='all';
+  $('tagChips').innerHTML=tags.length?['all',...tags].map(t=>`<button class="chip ${t===oTag?'on':''}" data-tag="${esc(t)}">${t==='all'?'All':esc(t[0].toUpperCase()+t.slice(1))}</button>`).join(''):'';
+  const shown=db.outfits.filter(o=>oTag==='all'||tagsOf(o).includes(oTag));
+  $('looks').innerHTML=db.outfits.length?shown.map(o=>{const its=outfitItems(o),cost=its.reduce((s,i)=>s+(+i.price||0),0),w=outfitWears(o);
     return `<div class="look" data-outfit="${o.id}">${stageHTML(o.items,{tuck:o.tuck})}<div class="ln">${esc(o.name)}</div><div class="lm">${w?`Worn ${w}×`:'Not worn yet'}${cost?' · '+money(cost):''}</div></div>`}).join('')
     :`<div class="empty">No outfits yet.<br>Tap New to put one together from your closet.</div>`;
 }
 $('looks').onclick=e=>{const b=e.target.closest('[data-outfit]');if(b)outfitSheet(b.dataset.outfit)};
+$('tagChips').onclick=e=>{const b=e.target.closest('[data-tag]');if(b){oTag=b.dataset.tag;renderOutfits()}};
 function outfitSheet(oid){
   const o=db.outfits.find(x=>x.id===oid);if(!o)return;
   const its=outfitItems(o),cost=its.reduce((s,i)=>s+(+i.price||0),0),w=outfitWears(o);
@@ -461,7 +516,9 @@ $('bSave').onclick=()=>{
   const data={items,tuck:B.tuck,name:$('bName').value.trim()||autoName(items),tags:$('bTags').value.trim()};
   let oid=B.id;
   if(oid)Object.assign(db.outfits.find(o=>o.id===oid),data);else{oid='o-'+uid();db.outfits.unshift({id:oid,created:new Date().toISOString(),...data})}
-  if(!save())return;show('outfits');renderAll();toast('Outfit saved');outfitSheet(oid);
+  if(!save())return;
+  if(history.state&&history.state.v==='builder')history.replaceState({v:'outfits'},'');show('outfits',true);
+  renderAll();toast('Outfit saved');outfitSheet(oid);
 };
 function autoName(items){return ['jacket','top','bottom'].map(k=>items[k]&&itemById(items[k])).filter(Boolean).slice(0,2)
   .map(i=>i.name.replace(/^\d{4}s /,'').split(',')[0]).join(' + ')||'Outfit'}
@@ -471,7 +528,7 @@ let calY,calM;{const d=new Date();calY=d.getFullYear();calM=d.getMonth()}
 const isoOf=(y,m,d)=>y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
 function renderPlan(){
   const first=new Date(calY,calM,1),startDow=(first.getDay()+6)%7,days=new Date(calY,calM+1,0).getDate(),prevDays=new Date(calY,calM,0).getDate();
-  $('calTitle').textContent=first.toLocaleDateString(undefined,{month:'long',year:'numeric'});
+  $('calTitle').textContent=first.toLocaleDateString('en-GB',{month:'long',year:'numeric'});
   const cells=[];
   for(let i=startDow-1;i>=0;i--){const d=new Date(calY,calM,-i);cells.push([d.getFullYear(),d.getMonth(),d.getDate(),true])}
   for(let d=1;d<=days;d++)cells.push([calY,calM,d,false]);
@@ -480,7 +537,7 @@ function renderPlan(){
   $('cal').innerHTML=['M','T','W','T','F','S','S'].map(d=>`<div class="dow">${d}</div>`).join('')+cells.map(([y,m,d,out])=>{
     const k=isoOf(y,m,d),e=db.plan[k],its=e?(e.items||[]).map(itemById).filter(Boolean):[];
     const wi=its.filter(i=>i.img),f=wi.find(i=>i.cat==='jacket')||wi.find(i=>i.cat==='top')||wi[0];
-    return `<div class="day ${out?'out':''} ${k===t?'today':''} ${e?'planned':''} ${e&&e.worn?'worn':''}" data-day="${k}"><span class="dn">${d}</span><div class="mini">${f&&f.img?`<img src="${esc(f.img)}" alt="">`:''}</div>${e?'<span class="wd"></span>':''}</div>`}).join('');
+    return `<div class="day ${out?'out':''} ${k===t?'today':''} ${e?'planned':''} ${e&&e.worn?'worn':''}" data-day="${k}"><span class="dn">${d}</span><div class="mini">${f&&srcOf(f.img)?`<img src="${esc(srcOf(f.img))}" alt="">`:''}</div>${e?'<span class="wd"></span>':''}</div>`}).join('');
   const up=Object.entries(db.plan).filter(([d,e])=>d>=t&&!e.worn).sort((a,b)=>a[0].localeCompare(b[0])).slice(0,5);
   $('upcoming').innerHTML=up.length?`<div class="sect"><span>Coming up</span></div>`+up.map(([d,e])=>{const o=db.outfits.find(x=>x.id===e.outfit),f=(e.items||[]).map(itemById).filter(i=>i&&i.img).sort((a,b)=>(a.cat==='jacket'?0:1)-(b.cat==='jacket'?0:1))[0];
     return `<div class="row" data-day="${d}">${picHTML(f&&f.img)}<div><b>${esc(o?o.name:'Outfit')}</b><small>${fmtDate(d)}</small></div></div>`}).join(''):'';
@@ -502,11 +559,11 @@ function daySheet(day,choose){
     return;
   }
   if(!db.outfits.length){openSheet(`<h2>${fmtDate(day)}</h2><div class="empty">Save an outfit first, then plan it here.</div><div class="btns"><button class="btn" data-act="newOutfit">Create an outfit</button></div>`);return}
-  openSheet(`<h2>${fmtDate(day)}</h2><div class="meta">${past?'Which outfit did you wear?':'Pick an outfit for this day.'}</div>
+  openSheet(`<h2>${fmtDate(day)}</h2><div class="meta">${day<todayISO()?'Which outfit did you wear? It counts as worn.':day===todayISO()?"Pick today's outfit. Mark it as worn once you've worn it.":'Pick an outfit for this day.'}</div>
    <div class="pick">${db.outfits.map(x=>`<div class="look" data-act="setDay" data-day="${day}" data-id="${x.id}">${stageHTML(x.items,{tuck:x.tuck})}<div class="ln">${esc(x.name)}</div></div>`).join('')}</div>`);
 }
 function setDay(day,oid,worn){const o=db.outfits.find(x=>x.id===oid);if(!o)return;
-  db.plan[day]={outfit:oid,items:Object.values(o.items).filter(id=>itemById(id)),worn:worn??(day<=todayISO())};save()}
+  db.plan[day]={outfit:oid,items:Object.values(o.items).filter(id=>itemById(id)),worn:worn??(day<todayISO())};save()}
 
 /* ===== wishlist ===== */
 let wFilter='all';
@@ -526,7 +583,7 @@ $('wishGrid').onclick=e=>{const b=e.target.closest('[data-wish]');if(b)wishSheet
 function wishSheet(id){const w=db.wishlist.find(x=>x.id===id);if(!w)return;
   const own=db.items.filter(i=>i.cat===w.cat).length;
   openSheet(`<h2>${esc(w.name)}</h2><div class="meta">${esc([w.brand,CAT1[w.cat],w.size&&('size '+w.size)].filter(Boolean).join(' · '))}</div>
-   <div class="hero ${isPhoto(w.img)?'photo':''}">${w.img?`<img src="${esc(w.img)}" alt="">`:'<span class="none">?</span>'}</div>
+   <div class="hero ${isPhoto(w.img)?'photo':''}">${srcOf(w.img)?`<img src="${esc(srcOf(w.img))}" alt="">`:`<button class="nophoto" data-act="editWish" data-id="${id}">${NOPIC}<span>Add a photo</span></button>`}</div>
    <div class="stats3"><div><small>Price</small><b>${money(w.price)}</b></div><div><small>Priority</small><b style="font-size:13px">${w.priority==='must'?'Must have':'Nice to have'}</b></div><div><small>You own</small><b style="font-size:13px">${own} ${CATS[w.cat].toLowerCase()}</b></div></div>
    ${w.url?`<div class="btns"><a class="btn sec" style="text-align:center;text-decoration:none" href="${esc(w.url)}" target="_blank" rel="noopener">Open shop page</a></div>`:''}
    ${w.notes?`<p class="note" style="font-size:13px;color:var(--ink)">${esc(w.notes)}</p>`:''}
@@ -550,11 +607,13 @@ function wishForm(id){
    <div class="btns"><button class="btn" data-act="saveWish" data-id="${id||''}">Save</button></div>`);
   bindPhoto('wPhoto','wErr');
 }
-function saveWish(id){const v=k=>$(k).value.trim(),err=m=>{$('wErr').textContent=m};
+async function saveWish(id){const v=k=>$(k).value.trim(),err=m=>{$('wErr').textContent=m};
   if(!v('wName')){err('Give it a name.');return}
   if(v('wPrice')&&(isNaN(+v('wPrice'))||+v('wPrice')<0)){err('Price should be a number.');return}
   if(v('wUrl')&&!/^https?:\/\//i.test(v('wUrl'))){err('The link should start with https://');return}
-  const data={name:v('wName'),url:v('wUrl'),brand:v('wBrand'),cat:v('wCat'),price:v('wPrice')===''?null:+v('wPrice'),size:v('wSize'),priority:v('wPrio'),notes:v('wNotes'),img:formPhoto};
+  const prevW=id?db.wishlist.find(x=>x.id===id):null;
+  let img;try{img=await commitPhoto(prevW&&prevW.img)}catch(e){err("The photo couldn't be saved. Try a smaller one.");return}
+  const data={name:v('wName'),url:v('wUrl'),brand:v('wBrand'),cat:v('wCat'),price:v('wPrice')===''?null:+v('wPrice'),size:v('wSize'),priority:v('wPrio'),notes:v('wNotes'),img};
   if(id)Object.assign(db.wishlist.find(x=>x.id===id),data);else{id='w-'+uid();db.wishlist.push({id,added:new Date().toISOString(),...data})}
   if(!save())return;renderAll();toast('Saved to wishlist');wishSheet(id)}
 
@@ -569,7 +628,7 @@ function renderStats(){
   const maxCat=Math.max(1,...byCat.map(x=>x[1]));
   const most=[...it].filter(i=>W(i)>0).sort((a,b)=>W(b)-W(a)).slice(0,5);
   const best=priced.filter(i=>W(i)>0).sort((a,b)=>cpw(a)-cpw(b)).slice(0,5);
-  const worst=[...priced].sort((a,b)=>cpw(b)-cpw(a)).slice(0,5);
+  const worst=priced.filter(i=>W(i)>0).sort((a,b)=>cpw(b)-cpw(a)).slice(0,5);
   const never=it.filter(i=>W(i)===0);
   const row=(i,r)=>`<div class="row" data-item="${i.id}">${picHTML(i.img)}<div><b>${esc(i.name)}</b><small>${CAT1[i.cat]} · worn ${W(i)}×</small></div><div class="right">${r}</div></div>`;
   const wishTotal=db.wishlist.reduce((s,w)=>s+(+w.price||0),0);
@@ -596,8 +655,24 @@ function settingsSheet(){
    <div class="btns"><button class="btn sec" data-act="export">Export backup</button><label class="btn sec" style="text-align:center">Restore backup<input type="file" accept="application/json,.json" id="restore" hidden></label></div>
    <p class="err" id="sNote"></p>`);
   $('sCur').onchange=e=>{db.settings.currency=e.target.value;save();renderAll()};
-  $('restore').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const v=JSON.parse(r.result);if(!v.items||!Array.isArray(v.items))throw 0;
-    if(!confirm('Replace everything on this phone with the backup?'))return;db={...db,...v};save();closeSheet();renderAll();toast('Backup restored')}catch(err){$('sNote').textContent="That file isn't a wardrobe backup."}};r.readAsText(f)};
+  $('restore').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{let v;
+    try{v=JSON.parse(r.result);if(!v.items||!Array.isArray(v.items))throw 0}catch(err){$('sNote').textContent="That file isn't a wardrobe backup.";return}
+    if(!confirm('Replace everything on this phone with the backup?'))return;
+    const photos=v.photos||{};delete v.photos;db={...db,...v};
+    for(const [k,data] of Object.entries(photos)){try{const b=await (await fetch(data)).blob();if(idb){await idbReq('readwrite',st=>st.put(b,k));PH[k]=URL.createObjectURL(b)}
+      else for(const x of [...db.items,...db.wishlist])if(x.img==='idb:'+k)x.img=data}catch(err){}}
+    save();closeSheet();renderAll();toast('Backup restored')};r.readAsText(f)};
+}
+
+async function exportBackup(){
+  toast('Preparing backup…');
+  const photos={};
+  if(idb){const all=await idbAll();for(const x of [...db.items,...db.wishlist])if(x.img&&x.img.startsWith('idb:')){const k=x.img.slice(4);if(all[k]&&!photos[k])photos[k]=await blobToData(all[k])}}
+  const name='wardrobe-backup-'+todayISO()+'.json',blob=new Blob([JSON.stringify({...db,photos})],{type:'application/json'});
+  const file=new File([blob],name,{type:'application/json'});
+  if(navigator.canShare&&navigator.canShare({files:[file]})){try{await navigator.share({files:[file],title:'Wardrobe backup'});return}catch(e){if(e&&e.name==='AbortError')return}}
+  const u=URL.createObjectURL(blob),l=document.createElement('a');l.href=u;l.download=name;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),3000);
+  toast('Backup saved to Downloads');
 }
 
 /* ===== actions ===== */
@@ -608,18 +683,19 @@ document.addEventListener('click',e=>{
     case 'close':closeSheet();break;
     case 'addItem':wishToBuy=null;itemForm(null);break;
     case 'editItem':itemForm(id);break;
-    case 'saveItem':saveItem(id||null);break;
+    case 'saveItem':if(a.disabled)return;a.disabled=true;saveItem(id||null).finally(()=>{a.disabled=false});break;
     case 'delItem':{const it=itemById(id),used=db.outfits.filter(o=>Object.values(o.items).includes(id)).length;
       if(!confirm(`Delete "${it.name}"?${used?` It's in ${used} outfit${used>1?'s':''}, which will lose this piece.`:''}`))return;
       db.items=db.items.filter(i=>i.id!==id);db.outfits.forEach(o=>{for(const k in o.items)if(o.items[k]===id)delete o.items[k]});
+      if(it.img&&!db.items.some(i=>i.img===it.img)&&!db.wishlist.some(w=>w.img===it.img))dropPhoto(it.img);
       db.seen=[...new Set([...(db.seen||[]),id])];save();closeSheet();renderAll();toast('Deleted');break}
     case 'wearItem':{const it=itemById(id);it.extraWears=(it.extraWears||0)+1;it.extraLast=t;save();renderAll();itemSheet(id);toast('Logged a wear');break}
     case 'newOutfit':closeSheet();if(db.items.length<2){toast('Add at least two pieces first');return}openBuilder(null);break;
-    case 'cancelBuilder':show('outfits');break;
+    case 'cancelBuilder':history.length>1&&history.state&&history.state.v==='builder'?history.back():show('outfits');break;
     case 'editOutfit':closeSheet();openBuilder(id);break;
     case 'delOutfit':if(!confirm('Delete this outfit? Days you already logged stay counted.'))return;
       db.outfits=db.outfits.filter(o=>o.id!==id);for(const [d,e2] of Object.entries(db.plan))if(e2.outfit===id&&!e2.worn)delete db.plan[d];save();closeSheet();renderAll();break;
-    case 'wearOutfit':if(db.plan[t]&&db.plan[t].worn&&db.plan[t].outfit!==id&&!confirm('You already logged an outfit today. Replace it?'))return;
+    case 'wearOutfit':if(db.plan[t]&&db.plan[t].outfit!==id&&!confirm(`Today already has ${db.plan[t].worn?'a logged':'a planned'} outfit. Replace it with this one?`))return;
       setDay(t,id,true);renderAll();outfitSheet(id);toast('Logged for today');break;
     case 'planOutfit':{const o=db.outfits.find(x=>x.id===id);
       openSheet(`<h2>Plan "${esc(o.name)}"</h2><div class="form"><div class="f"><label for="pDate">Day</label><input id="pDate" type="date" value="${t}"></div><div class="err" id="pErr"></div></div>
@@ -628,14 +704,14 @@ document.addEventListener('click',e=>{
       if(db.plan[d]&&db.plan[d].outfit!==id&&!confirm(fmtDate(d)+' already has an outfit. Replace it?'))return;
       setDay(d,id,d<t);renderAll();outfitSheet(id);toast((d<t?'Logged for ':'Planned for ')+fmtDate(d));break}
     case 'today':daySheet(t);break;
-    case 'setDay':setDay(day,id);renderAll();daySheet(day);toast(day<=t?'Logged':'Planned');break;
+    case 'setDay':setDay(day,id);renderAll();daySheet(day);toast(day<t?'Logged':'Planned');break;
     case 'markWorn':db.plan[day].worn=true;save();renderAll();daySheet(day);toast('Marked as worn');break;
     case 'unmarkWorn':db.plan[day].worn=false;save();renderAll();daySheet(day);break;
     case 'changeDay':daySheet(day,true);break;
     case 'clearDay':delete db.plan[day];save();closeSheet();renderAll();break;
     case 'addWish':wishForm(null);break;
     case 'editWish':wishForm(id);break;
-    case 'saveWish':saveWish(id||null);break;
+    case 'saveWish':if(a.disabled)return;a.disabled=true;saveWish(id||null).finally(()=>{a.disabled=false});break;
     case 'delWish':if(!confirm('Remove from wishlist?'))return;db.wishlist=db.wishlist.filter(w=>w.id!==id);db.seen=[...new Set([...(db.seen||[]),id])];save();closeSheet();renderAll();break;
     case 'boughtWish':{const w=db.wishlist.find(x=>x.id===id);wishToBuy=id;
       itemForm(null,{name:w.name,brand:w.brand,cat:w.cat,size:w.size,price:w.price,url:w.url,img:w.img,notes:w.notes,bought:t.slice(0,7)});break}
@@ -644,13 +720,12 @@ document.addEventListener('click',e=>{
     case 'checkUpd':checkUpdate(true).then(()=>{if($('sheetBg').classList.contains('on'))settingsSheet()});break;
     case 'install':doInstall();break;
     case 'laterInstall':try{localStorage.setItem('wardrobe-welcomed','1')}catch(err){}closeSheet();break;
-    case 'export':{const b=new Blob([JSON.stringify(db)],{type:'application/json'}),u=URL.createObjectURL(b),l=document.createElement('a');
-      l.href=u;l.download='wardrobe-backup-'+t+'.json';document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);break}
+    case 'export':exportBackup();break;
   }
 });
 
 /* ===== navigation ===== */
-function show(v){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));
+function show(v,fromPop){if(!fromPop&&v!==curView)push({v});curView=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));
   const n=v==='builder'?'outfits':v;document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===n));window.scrollTo(0,0)}
 document.querySelector('.nav').onclick=e=>{const b=e.target.closest('button');if(b){closeSheet();show(b.dataset.v)}};
 function renderAll(){renderCloset();renderOutfits();renderPlan();renderWish();renderStats()}
@@ -709,7 +784,9 @@ async function applyUpdate(){
   }
   location.reload();
 }
-if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!reloading){reloading=true;location.reload()}});
+// reload only when a new version takes over, not when offline mode switches on for the first time
+const hadController='serviceWorker' in navigator&&!!navigator.serviceWorker.controller;
+if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('controllerchange',()=>{if(hadController&&!reloading){reloading=true;location.reload()}});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});
 
 /* ===== boot =====
@@ -717,6 +794,13 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdat
    phone keep your own edits (price, notes, wears); only the photo and size chart refresh. */
 async function boot(){
   load();
+  history.replaceState({v:'closet'},'');
+  idb=await idbOpen();
+  if(idb){try{const all=await idbAll();for(const [k,b] of Object.entries(all))PH[k]=URL.createObjectURL(b);
+    // older versions kept your photos inline; move them to the photo store
+    for(const x of [...db.items,...db.wishlist])if(x.img&&x.img.startsWith('data:')){const b=await (await fetch(x.img)).blob();x.img=await storePhoto(b)}}catch(e){}}
+  // ask the browser not to clear the closet when the phone runs low on space
+  try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}
   const get=async p=>{try{const r=await fetch(p,{cache:'no-cache'});return r.ok?await r.json():null}catch(e){return null}};
   const [items,wish]=await Promise.all([get('data/items.json'),get('data/wishlist.json')]);
   const seen=new Set(db.seen||[]);
