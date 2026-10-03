@@ -239,6 +239,92 @@
     "bottom": 0.9947
    },
    "estimated": false
+  },
+  {
+   "id": "timecatcher-1966-selvedge-denim-jeans",
+   "name": "1966 Selvedge Denim Jeans",
+   "brand": "Timecatcher",
+   "cat": "bottom",
+   "img": "img/timecatcher-1966-selvedge-denim-jeans.webp?v=29fb70",
+   "url": "https://timecatcherco.com/products/1966-model-selvedge-denim-jeans",
+   "size": "W30",
+   "sizes": {
+    "W28": {
+     "waist": 73.0,
+     "hip": 100.0,
+     "front rise": 28.0,
+     "back rise": 38.0,
+     "thigh": 61.0,
+     "inseam": 80.0,
+     "length": 109.0,
+     "leg opening": 40.0
+    },
+    "W30": {
+     "waist": 77.0,
+     "hip": 104.0,
+     "front rise": 29.0,
+     "back rise": 39.0,
+     "thigh": 63.0,
+     "inseam": 80.0,
+     "length": 110.0,
+     "leg opening": 41.0
+    },
+    "W32": {
+     "waist": 84.0,
+     "hip": 108.0,
+     "front rise": 30.0,
+     "back rise": 40.0,
+     "thigh": 65.0,
+     "inseam": 80.0,
+     "length": 111.0,
+     "leg opening": 42.0
+    },
+    "W34": {
+     "waist": 89.0,
+     "hip": 112.0,
+     "front rise": 31.0,
+     "back rise": 41.0,
+     "thigh": 67.0,
+     "inseam": 83.0,
+     "length": 115.0,
+     "leg opening": 43.0
+    },
+    "W36": {
+     "waist": 94.0,
+     "hip": 116.0,
+     "front rise": 32.0,
+     "back rise": 42.0,
+     "thigh": 69.0,
+     "inseam": 83.0,
+     "length": 116.0,
+     "leg opening": 44.0
+    },
+    "W38": {
+     "waist": 97.0,
+     "hip": 120.0,
+     "front rise": 33.0,
+     "back rise": 43.0,
+     "thigh": 71.0,
+     "inseam": 83.0,
+     "length": 117.0,
+     "leg opening": 45.0
+    }
+   },
+   "color": "",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": 180.0,
+   "bought": "",
+   "store": "",
+   "photo": {
+    "w": 379,
+    "h": 700,
+    "top": 0.0,
+    "hem": 0.9986,
+    "bottom": 0.9986
+   },
+   "estimated": false
   }
  ]
 }
