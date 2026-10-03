@@ -258,7 +258,7 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
 <div class="toast" id="toast"></div>
 
 <script>
-const APP_VERSION='1.0.1';
+const APP_VERSION='1.0.2';
 /* ===== storage ===== */
 const KEY='wardrobe-db-v2';
 const $=id=>document.getElementById(id);
@@ -696,10 +696,17 @@ async function checkUpdate(manual){
 async function applyUpdate(){
   toast('Updating…');
   const reg='serviceWorker' in navigator&&await navigator.serviceWorker.getRegistration();
-  if(reg){await reg.update().catch(()=>{});
-    const w=reg.waiting||await new Promise(res=>{const t=setTimeout(()=>res(reg.waiting),10000);
-      reg.addEventListener('updatefound',()=>{const n=reg.installing;if(n)n.addEventListener('statechange',()=>{if(n.state==='installed'){clearTimeout(t);res(n)}})})});
-    if(w){w.postMessage('skipWaiting');setTimeout(()=>{if(!reloading)location.reload()},3000);return}}
+  // a version that's already downloaded switches over at once; otherwise download it first
+  // (with time limits, so a slow network can't leave the button doing nothing)
+  const go=w=>{w.postMessage('skipWaiting');setTimeout(()=>{if(!reloading)location.reload()},2500)};
+  if(reg&&reg.waiting)return go(reg.waiting);
+  if(reg){
+    const w=await new Promise(res=>{const t=setTimeout(()=>res(reg.waiting||reg.installing),12000);
+      const watch=n=>n&&n.addEventListener('statechange',()=>{if(n.state==='installed'){clearTimeout(t);res(n)}});
+      watch(reg.installing);reg.addEventListener('updatefound',()=>watch(reg.installing));
+      Promise.race([reg.update(),new Promise(r=>setTimeout(r,8000))]).catch(()=>{}).then(()=>{if(reg.waiting){clearTimeout(t);res(reg.waiting)}})});
+    if(w)return go(w);
+  }
   location.reload();
 }
 if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!reloading){reloading=true;location.reload()}});

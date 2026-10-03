@@ -1,6 +1,6 @@
 // Offline copy of the app. tools/release.cjs bumps VERSION and refreshes FILES on every release,
 // which is what makes phones notice a new version.
-const VERSION = 'wardrobe-v1.0.1';
+const VERSION = 'wardrobe-v1.0.2';
 // FILES-START
 const FILES = ["./","data/items.json","data/wishlist.json","icon-192.png","icon-512.png","index.html","manifest.webmanifest"];
 // FILES-END
