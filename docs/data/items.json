@@ -325,6 +325,286 @@
     "bottom": 0.9986
    },
    "estimated": false
+  },
+  {
+   "id": "timecatcher-regular-fit-heavyweight-tubular-jersey-t-shirt-black",
+   "name": "Regular Fit Heavyweight Tubular Jersey T-Shirt, black",
+   "brand": "Timecatcher",
+   "cat": "top",
+   "img": "img/timecatcher-regular-fit-heavyweight-tubular-jersey-t-shirt-black.webp?v=6231c8",
+   "url": "https://timecatcherco.com/products/regular-fit-heavyweight-tubular-jersey-t-shirt-vintage-black",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "shoulder": 45.0,
+     "chest": 104.0,
+     "length": 67.0,
+     "sleeve": 20.0
+    },
+    "M": {
+     "shoulder": 47.0,
+     "chest": 109.0,
+     "length": 68.0,
+     "sleeve": 21.0
+    },
+    "L": {
+     "shoulder": 49.0,
+     "chest": 114.0,
+     "length": 69.0,
+     "sleeve": 22.0
+    },
+    "XL": {
+     "shoulder": 51.0,
+     "chest": 119.0,
+     "length": 70.0,
+     "sleeve": 23.0
+    },
+    "XXL": {
+     "shoulder": 53.0,
+     "chest": 124.0,
+     "length": 71.0,
+     "sleeve": 24.0
+    }
+   },
+   "color": "",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": null,
+   "bought": "2026-07",
+   "store": "Timecatcher (order TC9338)",
+   "photo": {
+    "w": 700,
+    "h": 670,
+    "top": 0.0,
+    "hem": 0.994,
+    "bottom": 0.9985
+   },
+   "estimated": false
+  },
+  {
+   "id": "timecatcher-regular-fit-heavyweight-tubular-jersey-t-shirt-white",
+   "name": "Regular Fit Heavyweight Tubular Jersey T-Shirt, white",
+   "brand": "Timecatcher",
+   "cat": "top",
+   "img": "img/timecatcher-regular-fit-heavyweight-tubular-jersey-t-shirt-white.webp?v=1480d7",
+   "url": "https://timecatcherco.com/products/regular-fit-heavyweight-tubular-jersey-t-shirt-white",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "shoulder": 45.0,
+     "chest": 104.0,
+     "length": 67.0,
+     "sleeve": 20.0
+    },
+    "M": {
+     "shoulder": 47.0,
+     "chest": 109.0,
+     "length": 68.0,
+     "sleeve": 21.0
+    },
+    "L": {
+     "shoulder": 49.0,
+     "chest": 114.0,
+     "length": 69.0,
+     "sleeve": 22.0
+    },
+    "XL": {
+     "shoulder": 51.0,
+     "chest": 119.0,
+     "length": 70.0,
+     "sleeve": 23.0
+    },
+    "XXL": {
+     "shoulder": 53.0,
+     "chest": 124.0,
+     "length": 71.0,
+     "sleeve": 24.0
+    }
+   },
+   "color": "",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": null,
+   "bought": "2026-07",
+   "store": "Timecatcher (order TC9338)",
+   "photo": {
+    "w": 700,
+    "h": 671,
+    "top": 0.0,
+    "hem": 0.9866,
+    "bottom": 0.9985
+   },
+   "estimated": false
+  },
+  {
+   "id": "timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-black",
+   "name": "1990s Heavyweight Cotton Jersey Boxy T-Shirt, black",
+   "brand": "Timecatcher",
+   "cat": "top",
+   "img": "img/timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-black.webp?v=046d7d",
+   "url": "https://timecatcherco.com/products/1990s-heavyweight-cotton-jersey-boxy-t-shirt-vintage-black",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "shoulder": 47.0,
+     "chest": 109.0,
+     "length": 61.5,
+     "sleeve": 20.5
+    },
+    "M": {
+     "shoulder": 49.0,
+     "chest": 114.0,
+     "length": 63.5,
+     "sleeve": 22.0
+    },
+    "L": {
+     "shoulder": 51.5,
+     "chest": 120.5,
+     "length": 66.0,
+     "sleeve": 23.5
+    },
+    "XL": {
+     "shoulder": 54.0,
+     "chest": 127.0,
+     "length": 68.5,
+     "sleeve": 25.0
+    },
+    "XXL": {
+     "shoulder": 56.5,
+     "chest": 133.5,
+     "length": 71.0,
+     "sleeve": 26.5
+    }
+   },
+   "color": "",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": null,
+   "bought": "2026-07",
+   "store": "Timecatcher (order TC9338)",
+   "photo": {
+    "w": 700,
+    "h": 577,
+    "top": 0.0,
+    "hem": 0.9965,
+    "bottom": 0.9983
+   },
+   "estimated": false
+  },
+  {
+   "id": "timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-white",
+   "name": "1990s Heavyweight Cotton Jersey Boxy T-Shirt, white",
+   "brand": "Timecatcher",
+   "cat": "top",
+   "img": "img/timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-white.webp?v=079cf4",
+   "url": "https://timecatcherco.com/products/1990s-heavyweight-cotton-jersey-boxy-t-shirt-white",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "shoulder": 47.0,
+     "chest": 109.0,
+     "length": 61.5,
+     "sleeve": 20.5
+    },
+    "M": {
+     "shoulder": 49.0,
+     "chest": 114.0,
+     "length": 63.5,
+     "sleeve": 22.0
+    },
+    "L": {
+     "shoulder": 51.5,
+     "chest": 120.5,
+     "length": 66.0,
+     "sleeve": 23.5
+    },
+    "XL": {
+     "shoulder": 54.0,
+     "chest": 127.0,
+     "length": 68.5,
+     "sleeve": 25.0
+    },
+    "XXL": {
+     "shoulder": 56.5,
+     "chest": 133.5,
+     "length": 71.0,
+     "sleeve": 26.5
+    }
+   },
+   "color": "",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": null,
+   "bought": "2026-07",
+   "store": "Timecatcher (order TC9338)",
+   "photo": {
+    "w": 700,
+    "h": 578,
+    "top": 0.0,
+    "hem": 0.9965,
+    "bottom": 0.9983
+   },
+   "estimated": false
+  },
+  {
+   "id": "timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-olive",
+   "name": "1990s Heavyweight Cotton Jersey Boxy T-Shirt, olive",
+   "brand": "Timecatcher",
+   "cat": "top",
+   "img": "img/timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-olive.webp?v=58097f",
+   "url": "https://timecatcherco.com/products/1990s-heavyweight-cotton-jersey-boxy-t-shirt-olive",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "shoulder": 47.0,
+     "chest": 109.0,
+     "length": 61.5,
+     "sleeve": 20.5
+    },
+    "M": {
+     "shoulder": 49.0,
+     "chest": 114.0,
+     "length": 63.5,
+     "sleeve": 22.0
+    },
+    "L": {
+     "shoulder": 51.5,
+     "chest": 120.5,
+     "length": 66.0,
+     "sleeve": 23.5
+    },
+    "XL": {
+     "shoulder": 54.0,
+     "chest": 127.0,
+     "length": 68.5,
+     "sleeve": 25.0
+    },
+    "XXL": {
+     "shoulder": 56.5,
+     "chest": 133.5,
+     "length": 71.0,
+     "sleeve": 26.5
+    }
+   },
+   "color": "",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": null,
+   "bought": "2026-07",
+   "store": "Timecatcher (order TC9338)",
+   "photo": {
+    "w": 700,
+    "h": 574,
+    "top": 0.0,
+    "hem": 0.9983,
+    "bottom": 0.9983
+   },
+   "estimated": false
   }
  ]
 }

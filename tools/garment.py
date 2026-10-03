@@ -58,7 +58,7 @@ def category(*texts):
     return 'top'
 
 
-def cutout(img_bytes, tol=14, white_tol=4, max_side=700):
+def cutout(img_bytes, tol=14, white_tol=2, max_side=700):
     """Remove a plain studio background by flood-filling from the image edges.
     Returns (RGBA image, share of the image that was background)."""
     im = Image.open(io.BytesIO(img_bytes)).convert('RGB')
