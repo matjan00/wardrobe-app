@@ -3,54 +3,65 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#F3EFE8">
+<meta name="theme-color" content="#F3EFE8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171513" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Wardrobe</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#F3EFE8;--card:#FFFFFF;--ink:#1E1C1A;--mute:#77716A;--line:#E4DED4;--accent:#2E3A55;--stage:#ECE6DC;--soft:#F7F4EF;--good:#3F6B4A;--warn:#9A5B1E;--bad:#A3412D}
+:root{--bg:#F3EFE8;--card:#FFFFFF;--ink:#1E1C1A;--on-ink:#FFFFFF;--mute:#68625B;--line:#E4DED4;--accent:#2E3A55;--on-accent:#FFFFFF;--stage:#ECE6DC;--soft:#F7F4EF;--good:#3F6B4A;--warn:#9A5B1E;--bad:#A3412D;--faint:#B7AE9F;--scrim:rgba(20,18,16,.38);--badge:rgba(255,255,255,.92);--pic:#F7F4EF;--stg:#ECE6DC;--hero:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#171513;--card:#221F1C;--ink:#EEE9E1;--on-ink:#171513;--mute:#A39B90;--line:#34302B;--accent:#A9B8D9;--on-accent:#171513;--stage:#3A3631;--soft:#2D2A26;--good:#7FB08A;--warn:#D9A066;--bad:#E08A75;--faint:#6E675E;--scrim:rgba(0,0,0,.6);--badge:rgba(34,31,28,.92);--pic:#D3CCBF;--stg:#C9C1B3;--hero:#D3CCBF;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#171513;--card:#221F1C;--ink:#EEE9E1;--on-ink:#171513;--mute:#A39B90;--line:#34302B;--accent:#A9B8D9;--on-accent:#171513;--stage:#3A3631;--soft:#2D2A26;--good:#7FB08A;--warn:#D9A066;--bad:#E08A75;--faint:#6E675E;--scrim:rgba(0,0,0,.6);--badge:rgba(34,31,28,.92);--pic:#D3CCBF;--stg:#C9C1B3;--hero:#D3CCBF;color-scheme:dark}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif}
-body{display:flex;justify-content:center}
+body{display:flex;justify-content:center;accent-color:var(--accent);caret-color:var(--accent)}
+::selection{background:var(--accent);color:var(--on-accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 button,input,select,textarea{font:inherit;color:inherit}
+b,.kpi b,.stats3 b,.right,.bars{font-variant-numeric:tabular-nums}
 .app{width:100%;max-width:460px;min-height:100vh;padding:14px 16px 100px}
 .top{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:2px 0 12px}
 h1{font-family:Fraunces,serif;font-weight:500;font-size:27px;margin:0}
 .sub{color:var(--mute);font-size:13px;margin:2px 0 0}
-.add{flex:none;height:38px;padding:0 14px;border-radius:99px;border:0;background:var(--ink);color:#fff;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px}
+.add{flex:none;height:44px;padding:0 16px;border-radius:99px;border:0;background:var(--ink);color:var(--on-ink);font-size:13.5px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
 .add svg{width:16px;height:16px}
-.ghost{flex:none;height:38px;padding:0 12px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:13px;font-weight:500;cursor:pointer}
+.ghost{flex:none;height:44px;padding:0 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:13.5px;font-weight:500;cursor:pointer}
 
 .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
 .kpi{background:var(--card);border-radius:14px;padding:10px 12px}
-.kpi small{display:block;font-size:11px;color:var(--mute)}
+.kpi small{display:block;font-size:12px;color:var(--mute)}
 .kpi b{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.kpi em{display:block;font-style:normal;font-size:12px;color:var(--mute);margin-top:1px}
 
 .bar{display:flex;align-items:center;gap:6px;margin:0 0 10px}
 .chips{display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chip{flex:none;font-size:13px;padding:7px 13px;border-radius:99px;border:1px solid var(--line);background:var(--card);cursor:pointer;white-space:nowrap}
-.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:12.5px;padding:0 10px}
+.chip{flex:none;font-size:13px;min-height:40px;padding:0 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.chip .ck{width:14px;height:14px;margin-left:5px;vertical-align:-2px}
+.find{display:flex;gap:8px;margin:0 0 10px}
+.find .search{flex:1;margin:0}
+select.sort{flex:none;height:44px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:13px;padding:0 12px}
 
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .it{background:var(--card);border:2px solid transparent;border-radius:14px;padding:6px;cursor:pointer;position:relative;text-align:left}
 .it.on{border-color:var(--accent)}
-.pic{width:100%;aspect-ratio:1;border-radius:10px;background:var(--soft);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pic{width:100%;aspect-ratio:1;border-radius:10px;background:var(--pic);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .pic img{max-width:88%;max-height:88%;object-fit:contain}
 .pic.photo img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:cover}
-.nm{font-size:11.5px;margin-top:5px;line-height:1.25;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.br{font-size:10.5px;color:var(--mute);margin-top:1px}
-.tagc{position:absolute;top:10px;left:10px;font-size:10px;font-weight:600;background:rgba(255,255,255,.92);padding:2px 6px;border-radius:99px}
-.none{font-size:26px;color:#bbb}
-.nopic{width:42%;height:42%;color:#C9C1B5}
+.nm{font-size:12.5px;margin-top:5px;line-height:1.3;min-height:2.6em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.br{font-size:12px;color:var(--mute);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tagc{position:absolute;top:10px;left:10px;font-size:12px;font-weight:600;background:var(--badge);padding:2px 7px;border-radius:99px}
+.none{width:40%;height:40%;color:var(--faint)}
+.nopic{width:42%;height:42%;color:var(--faint)}
 .nophoto{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--accent);font-size:13px;font-weight:500;cursor:pointer}
 .nophoto .nopic{width:64px;height:64px}
 .empty{color:var(--mute);font-size:14px;text-align:center;padding:36px 12px;grid-column:1/-1;line-height:1.5}
 
-.stage{position:relative;width:100%;aspect-ratio:3/4.4;background:var(--stage);border-radius:20px;overflow:hidden}
+.stage{position:relative;width:100%;aspect-ratio:3/4.4;background:var(--stg);border-radius:20px;overflow:hidden}
 .layer{position:absolute;left:50%;transform:translateX(-50%);transition:all .3s ease;pointer-events:none}
 .layer img{height:100%;width:auto;display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.13))}
 .stand .L-jacket{top:3%;height:40%;z-index:4}
@@ -70,71 +81,115 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
 .layer.photo img{border-radius:10px;filter:none;width:100%;object-fit:cover}
 
 .tools{display:flex;gap:8px;margin-top:10px}
-.tool{flex:1;height:40px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:12.5px;font-weight:500;cursor:pointer}
-.tool.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tool{flex:1;height:44px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:13px;font-weight:500;cursor:pointer}
+.tool.on{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.tool:disabled{opacity:.4;cursor:default}
+.seg{flex:1.6;display:flex;border:1px solid var(--line);border-radius:99px;background:var(--card);padding:3px;gap:2px}
+.seg button{flex:1;border:0;border-radius:99px;background:none;font-size:13px;font-weight:500;cursor:pointer;color:var(--mute)}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--on-ink)}
 
 .looks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.look,.row,.day,.wcard,.tmini{font:inherit;color:inherit;text-align:left;border:0;width:100%;display:block}
 .look{background:var(--card);border-radius:18px;padding:6px;cursor:pointer}
 .look .stage{border-radius:14px}
-.look .ln{font-size:12.5px;font-weight:500;margin:6px 4px 0}
-.look .lm{font-size:11px;color:var(--mute);margin:1px 4px 4px}
+.look .ln{font-size:13px;font-weight:500;margin:6px 4px 0}
+.look .lm{font-size:12px;color:var(--mute);margin:1px 4px 4px}
 
 .row{display:flex;gap:12px;align-items:center;background:var(--card);border-radius:14px;padding:8px;margin-bottom:8px;cursor:pointer}
 .row .pic{width:62px;height:62px;flex:none}
 .row b{font-weight:500;font-size:14px;display:block}
-.row small{color:var(--mute);font-size:12px;display:block;margin-top:1px}
+.row small{color:var(--mute);font-size:12.5px;display:block;margin-top:1px}
 .row .right{margin-left:auto;text-align:right;flex:none;font-size:13px;font-weight:600}
-.sect{font-size:11.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin:18px 2px 8px;display:flex;justify-content:space-between}
+.sect{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin:18px 2px 8px;display:flex;justify-content:space-between}
 
 .cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .cal-head b{font-size:15px;font-weight:600}
-.cal-head button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:16px}
+.cal-head button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:18px}
 .cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
-.cal .dow{font-size:10.5px;color:var(--mute);text-align:center;padding:2px 0}
+.cal .dow{font-size:12px;color:var(--mute);text-align:center;padding:2px 0}
 .day{aspect-ratio:.72;background:var(--card);border-radius:10px;padding:3px;cursor:pointer;position:relative;border:1.5px solid transparent;display:flex;flex-direction:column;overflow:hidden}
-.day.out{opacity:.35}
+.day.out{opacity:.4}
 .day.today{border-color:var(--ink)}
-.day .dn{font-size:10.5px;font-weight:600}
+.day .dn{font-size:12px;font-weight:600;line-height:1.2}
 .day .mini{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
-.day .mini img{max-width:100%;max-height:100%;object-fit:contain}
-.day .wd{position:absolute;bottom:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--good)}
-.day.planned:not(.worn) .wd{background:#C2B9AB}
+.day .mini .stage{height:100%;width:auto;background:none;border-radius:0}
+.day .mini .layer img{filter:none}
+.wd{position:absolute;bottom:3px;right:3px;width:9px;height:9px;border-radius:50%;background:var(--good);border:1.5px solid var(--good)}
+.day.planned:not(.worn) .wd,.wd.plan{background:var(--card);border-color:var(--mute)}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--mute);margin:10px 2px 4px}
+.legend span{display:flex;align-items:center;gap:6px}.legend .wd{position:static}
 
 .wish{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .wcard{background:var(--card);border-radius:16px;padding:8px;cursor:pointer;position:relative}
-.wcard .wn{font-size:12.5px;font-weight:500;margin:6px 2px 0;line-height:1.3}
-.wcard .wp{font-size:12px;color:var(--mute);margin:2px 2px;display:flex;justify-content:space-between;gap:6px}
-.prio{position:absolute;top:14px;left:14px;font-size:10px;font-weight:600;padding:2px 7px;border-radius:99px;background:var(--ink);color:#fff}
-.prio.nice{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.wcard .wn{font-size:13px;font-weight:500;margin:6px 2px 0;line-height:1.3}
+.wcard .wp{font-size:12.5px;color:var(--mute);margin:2px 2px;display:flex;justify-content:space-between;gap:6px}
+.prio{position:absolute;top:14px;left:14px;font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--ink);color:var(--on-ink)}
+.prio.nice{background:var(--card);color:var(--ink);border:1px solid var(--line)}
 
-.bars .b{display:flex;align-items:center;gap:8px;font-size:12.5px;margin:6px 0}
-.bars .b span:first-child{width:78px;color:var(--mute)}
+.bars .b{display:flex;align-items:center;gap:8px;font-size:13px;margin:6px 0}
+.bars .b span:first-child{width:84px;color:var(--mute)}
 .bars .track{flex:1;height:10px;background:var(--soft);border-radius:99px;overflow:hidden}
 .bars .fill{height:100%;background:var(--accent);border-radius:99px}
-.bars .b span:last-child{width:72px;text-align:right;font-weight:500}
+.bars .b span:last-child{width:76px;text-align:right;font-weight:500}
 .card{background:var(--card);border-radius:16px;padding:12px 14px;margin-bottom:10px}
-.card h3{font-size:13px;font-weight:600;margin:0 0 6px}
+.card h2{font-size:13px;font-weight:600;margin:0 0 6px}
+
+/* today: the morning front door on the Closet tab */
+.tday{background:var(--card);border-radius:18px;padding:12px;margin:0 0 14px}
+.today-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:0 2px 10px}
+.today-h h2{font-family:Fraunces,serif;font-weight:500;font-size:19px;margin:0}
+.today-h small{font-size:12.5px;color:var(--mute)}
+.today-main{display:flex;gap:12px;align-items:center}
+.today-main .stage{width:96px;flex:none;border-radius:12px}
+.today-main.worn .stage{width:64px}
+.today-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.today-txt small{font-size:12.5px;color:var(--mute)}
+.today-txt b{font-size:15px;font-weight:600;line-height:1.3}
+.today-txt .acts{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.today-hint{font-size:13px;color:var(--mute);margin:0 2px 8px}
+.strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -12px;padding:0 12px 2px;scroll-snap-type:x proximity}
+.strip::-webkit-scrollbar{display:none}
+.tmini{flex:none;width:92px;background:var(--soft);border-radius:14px;padding:4px;cursor:pointer;scroll-snap-align:start}
+.tmini .stage{border-radius:10px}
+.tmini span{display:block;font-size:12px;line-height:1.3;margin:5px 3px 2px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:2.6em}
+.strip-lbl{font-size:12.5px;color:var(--mute);margin:12px 2px 8px}
 
 .nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;background:var(--card);border-top:1px solid var(--line);z-index:20;padding-bottom:env(safe-area-inset-bottom)}
-.nav div{max-width:460px;width:100%;display:flex;justify-content:space-around;padding:7px 0 9px}
-.nav button{background:none;border:0;font-size:10.5px;color:var(--mute);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:58px}
+.nav div{max-width:460px;width:100%;display:flex;justify-content:space-around;padding:4px 0 6px}
+.nav button{background:none;border:0;font-size:12px;color:var(--mute);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:62px;min-height:52px}
 .nav button.on{color:var(--ink);font-weight:600}
 .nav svg{width:22px;height:22px}
 .view{display:none}.view.on{display:block}
+body.building .nav{display:none}
 
-.sheet-bg{position:fixed;inset:0;background:rgba(20,18,16,.38);z-index:40;display:none;align-items:flex-end;justify-content:center}
+/* builder: picture and pieces fit one screen, save sits under the thumb */
+#v-builder{padding-bottom:84px}
+#v-builder .stage{width:auto;height:clamp(220px,40vh,420px);margin:0 auto}
+.rail{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 4px}
+.rail::-webkit-scrollbar{display:none}
+.rail .it{flex:none;width:96px}
+.rail .empty{padding:16px 4px;text-align:left}
+.savebar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:none;justify-content:center;background:var(--card);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+body.building .savebar{display:flex}
+.savebar div{width:100%;max-width:428px;display:flex;gap:8px}
+.savebar .btn{margin:0}
+
+.sheet-bg{position:fixed;inset:0;background:var(--scrim);z-index:40;display:none;align-items:flex-end;justify-content:center}
 .sheet-bg.on{display:flex}
 .sheet{position:relative;background:var(--bg);width:100%;max-width:460px;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:10px 18px calc(24px + env(safe-area-inset-bottom))}
-.grab{width:40px;height:4px;border-radius:9px;background:#CFC8BD;margin:0 auto 12px}
-.close{position:absolute;top:10px;right:12px;width:32px;height:32px;border-radius:50%;border:0;background:var(--card);font-size:18px;cursor:pointer}
-.sheet h2{font-family:Fraunces,serif;font-weight:500;font-size:21px;margin:0 36px 2px 0;line-height:1.2}
+.sheet:focus{outline:none}
+.grab{width:40px;height:4px;border-radius:9px;background:var(--faint);margin:0 auto 12px}
+.close{position:absolute;top:6px;right:8px;width:44px;height:44px;border-radius:50%;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.close::before{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--card)}
+.close svg{position:relative;width:16px;height:16px}
+.sheet h2{font-family:Fraunces,serif;font-weight:500;font-size:21px;margin:0 40px 2px 0;line-height:1.2}
 .sheet .meta{font-size:12.5px;color:var(--mute);margin-bottom:12px}
-.hero{background:var(--card);border-radius:16px;height:210px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero{background:var(--hero);border-radius:16px;height:210px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .hero img{max-height:190px;max-width:90%}
 .hero.photo img{max-height:100%;max-width:100%;width:100%;height:100%;object-fit:cover}
 .stats3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
 .stats3 div{background:var(--card);border-radius:12px;padding:9px 10px}
-.stats3 small{display:block;font-size:11px;color:var(--mute)}
+.stats3 small{display:block;font-size:12px;color:var(--mute)}
 .stats3 b{font-size:16px;font-weight:600}
 .facts{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;font-size:13px;margin-top:10px}
 .facts td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}
@@ -143,9 +198,15 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
 .facts a{color:var(--accent)}
 .lbl{font-size:12px;font-weight:600;margin:14px 0 6px}
 .btns{display:flex;gap:8px;margin-top:12px}
-.btn{flex:1;font-size:14px;font-weight:500;padding:12px;border-radius:12px;border:0;background:var(--ink);color:#fff;cursor:pointer;display:block}
+.btn{flex:1;font-size:14px;font-weight:500;min-height:46px;padding:12px;border-radius:12px;border:0;background:var(--ink);color:var(--on-ink);cursor:pointer;display:block}
 .btn.sec{background:var(--card);color:var(--ink);border:1px solid var(--line)}
 .btn.danger{background:var(--card);color:var(--bad);border:1px solid var(--line)}
+.btn:disabled{opacity:.55;cursor:default}
+.btns.apart{margin-top:28px;padding-top:16px;border-top:1px solid var(--line)}
+details.more{margin:4px 0 10px}
+details.more summary{font-size:13.5px;font-weight:500;color:var(--accent);cursor:pointer;padding:10px 0;list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+ "}details.more[open] summary::before{content:"− "}
 .form .f{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
 .form label{font-size:12px;font-weight:600}
 .form input,.form select,.form textarea{width:100%;font-size:15px;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:var(--card)}
@@ -156,39 +217,51 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
 .photo-in .pic{width:84px;height:84px;flex:none}
 .photo-in label.up{font-size:13px;font-weight:500;color:var(--accent);cursor:pointer;text-decoration:underline}
 .pick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 16px;border-radius:18px;font-size:13px;opacity:0;transition:.25s;pointer-events:none;z-index:60;max-width:calc(100vw - 32px);width:max-content;text-align:center;line-height:1.4}
-.toast.on{opacity:1}
-.note{font-size:12px;color:var(--mute);line-height:1.45;margin:8px 2px}
+.toast{position:fixed;bottom:calc(76px + env(safe-area-inset-bottom));left:50%;transform:translate(-50%,8px);background:var(--ink);color:var(--on-ink);padding:6px 6px 6px 16px;min-height:44px;border-radius:22px;font-size:13.5px;opacity:0;transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1);pointer-events:none;z-index:60;max-width:calc(100vw - 32px);width:max-content;display:flex;align-items:center;gap:6px;line-height:1.4}
+.toast:not(.undo){padding-right:16px}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast.on.undo{pointer-events:auto}
+.toast button{display:none;border:0;background:none;color:var(--on-ink);font-weight:600;text-decoration:underline;text-underline-offset:3px;min-height:36px;padding:0 10px;cursor:pointer}
+.toast.undo button{display:block}
+body.building .toast{bottom:calc(80px + env(safe-area-inset-bottom))}
+.note{font-size:12.5px;color:var(--mute);line-height:1.45;margin:8px 2px}
 .search{position:relative;margin:0 0 10px}
-.search input{width:100%;height:40px;border-radius:99px;border:1px solid var(--line);background:var(--card);padding:0 36px 0 38px;font-size:14px}
-.search svg{position:absolute;left:13px;top:11px;width:18px;height:18px;color:var(--mute)}
-.search button{position:absolute;right:6px;top:6px;width:28px;height:28px;border-radius:50%;border:0;background:var(--soft);font-size:15px;cursor:pointer;display:none}
-.search.has button{display:block}
-.stats3 em{display:block;font-style:normal;font-size:10.5px;color:var(--mute);margin-top:1px}
-.banner{display:none;align-items:center;gap:10px;background:var(--accent);color:#fff;border-radius:14px;padding:10px 12px;margin:0 0 12px;font-size:13px;cursor:pointer}
+.search input{width:100%;height:44px;border-radius:99px;border:1px solid var(--line);background:var(--card);padding:0 40px 0 38px;font-size:14px}
+.search svg{position:absolute;left:13px;top:13px;width:18px;height:18px;color:var(--mute)}
+.search button{position:absolute;right:2px;top:2px;width:40px;height:40px;border-radius:50%;border:0;background:none;cursor:pointer;display:none;align-items:center;justify-content:center}
+.search button svg{position:static;width:16px;height:16px;color:var(--ink)}
+.search.has button{display:flex}
+.stats3 em{display:block;font-style:normal;font-size:12px;color:var(--mute);margin-top:1px}
+.banner{display:none;align-items:center;gap:10px;background:var(--accent);color:var(--on-accent);border-radius:14px;padding:8px 8px 8px 12px;margin:0 0 12px;font-size:13px;cursor:pointer}
 .banner.on{display:flex}
 .banner b{font-weight:600}.banner span{flex:1}
-.banner button{flex:none;border:0;border-radius:99px;background:#fff;color:var(--accent);font-size:12.5px;font-weight:600;padding:7px 12px;cursor:pointer}
+.banner button{flex:none;border:0;border-radius:99px;background:var(--on-accent);color:var(--accent);font-size:13px;font-weight:600;min-height:40px;padding:0 14px;cursor:pointer}
 .banner.install{background:var(--card);color:var(--ink);border:1px solid var(--line)}
-.banner.install button{background:var(--ink);color:#fff}
-.gear{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center}
+.banner.install button{background:var(--ink);color:var(--on-ink)}
+.banner.install button.x{background:none;color:var(--mute);width:40px;padding:0;display:flex;align-items:center;justify-content:center}
+.banner .x svg{width:16px;height:16px}
+.gear{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center}
 .gear svg{width:18px;height:18px}
 .dot{position:absolute;top:2px;right:2px;width:10px;height:10px;border-radius:50%;background:var(--bad);border:2px solid var(--bg);display:none}
 .dot.on{display:block}
-.nav button{position:relative}.nav .dot{top:2px;right:16px}
+.nav button{position:relative}.nav .dot{top:4px;right:16px;border-color:var(--card)}
 .welcome{text-align:center;padding:10px 4px 6px}
 .welcome img{width:84px;height:84px;border-radius:22px}
 .welcome h2{margin:14px 0 6px!important}
 .welcome p{font-size:14px;color:var(--mute);line-height:1.5;margin:0 0 16px}
+.welcome ul{text-align:left;font-size:14px;line-height:1.5;margin:0 0 16px;padding:12px 14px 12px 32px;background:var(--card);border-radius:14px}
 .steps{text-align:left;background:var(--card);border-radius:14px;padding:12px 14px;font-size:13.5px;line-height:1.6;margin-top:12px}
-.mrow{display:grid;grid-template-columns:1fr 92px 36px;gap:6px;margin-bottom:6px}
-.mrow button{border:1px solid var(--line);background:var(--card);border-radius:10px;cursor:pointer;font-size:16px}
-.linkbtn{border:0;background:none;color:var(--accent);font-size:13px;font-weight:500;text-decoration:underline;cursor:pointer;padding:4px 0;align-self:flex-start}
+.mrow{display:grid;grid-template-columns:1fr 92px 44px;gap:6px;margin-bottom:6px}
+.mrow button{border:1px solid var(--line);background:var(--card);border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mrow button svg{width:16px;height:16px}
+.linkbtn{border:0;background:none;color:var(--accent);font-size:13.5px;font-weight:500;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:10px 0;align-self:flex-start}
 .ver{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--card);border-radius:12px;padding:11px 12px;font-size:13.5px}
-.ver small{color:var(--mute);display:block;font-size:12px}
+.ver small{color:var(--mute);display:block;font-size:12.5px}
 .changes{background:var(--card);border-radius:12px;padding:4px 12px;font-size:13px}
 .changes div{padding:8px 0;border-top:1px solid var(--line)}.changes div:first-child{border-top:0}
 .changes small{color:var(--mute);display:block}
+.facts a,.facts td{overflow-wrap:anywhere}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
@@ -196,17 +269,17 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
 
  <section class="view on" id="v-closet">
   <div class="banner" id="updBanner" data-act="settings"><span><b>Update available.</b> <span id="updText"></span></span><button data-act="doUpdate">Update</button></div>
-  <div class="banner install" id="instBanner"><span>Install Wardrobe on your home screen</span><button data-act="install">Install</button></div>
+  <div class="banner install" id="instBanner"><span>Install Wardrobe on your home screen</span><button data-act="install">Install</button><button class="x" data-act="hideInstall" aria-label="Hide this"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="top"><div><h1>Closet</h1><p class="sub" id="closetSub"></p></div>
    <div style="display:flex;gap:8px"><button class="gear" data-act="settings" aria-label="Settings and updates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 4.3c.4-1.8 3-1.8 3.4 0a1.7 1.7 0 0 0 2.6 1.1c1.5-.9 3.3.8 2.4 2.4a1.7 1.7 0 0 0 1 2.5c1.8.4 1.8 3 0 3.4a1.7 1.7 0 0 0-1 2.6c.9 1.5-.9 3.3-2.4 2.4a1.7 1.7 0 0 0-2.6 1c-.4 1.8-3 1.8-3.4 0a1.7 1.7 0 0 0-2.5-1c-1.6.9-3.3-.9-2.4-2.4a1.7 1.7 0 0 0-1.1-2.6c-1.8-.4-1.8-3 0-3.4a1.7 1.7 0 0 0 1.1-2.5c-.9-1.6.8-3.3 2.4-2.4 1 .6 2.3.1 2.5-1.1z"/><circle cx="12" cy="12" r="3"/></svg><span class="dot" id="gearDot"></span></button>
    <button class="add" data-act="addItem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add</button></div></div>
-  <div class="kpis" id="kpis"></div>
-  <div class="search" id="searchBox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-   <input id="q" type="search" placeholder="Search name, brand, colour" aria-label="Search your closet" autocomplete="off"><button id="qClear" aria-label="Clear search">×</button></div>
-  <div class="bar"><div class="chips" id="catChips"></div>
+  <section class="tday" id="today" aria-labelledby="todayH" hidden></section>
+  <div class="find"><div class="search" id="searchBox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+   <input id="q" type="search" placeholder="Search" aria-label="Search your closet" autocomplete="off"><button id="qClear" aria-label="Clear search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
    <select class="sort" id="sort" aria-label="Sort">
     <option value="recent">Newest</option><option value="worn">Most worn</option><option value="least">Least worn</option>
     <option value="cpw">Cost per wear</option><option value="price">Price</option></select></div>
+  <div class="bar"><div class="chips" id="catChips"></div></div>
   <div class="grid" id="closetGrid"></div>
  </section>
 
@@ -218,30 +291,29 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
  </section>
 
  <section class="view" id="v-builder">
-  <div class="top"><div><h1 id="bTitle">New outfit</h1><p class="sub">Tap pieces to put them on.</p></div>
-   <button class="ghost" data-act="cancelBuilder">Cancel</button></div>
+  <div class="top"><div><h1 id="bTitle">New outfit</h1><p class="sub">Tap pieces to put them on.</p></div></div>
   <div class="stage stand" id="bStage"></div>
   <div class="tools">
-   <button class="tool" id="bMode">Flat lay</button>
-   <button class="tool" id="bTuck">Tuck in</button>
+   <div class="seg" role="group" aria-label="Picture style"><button id="bStand" aria-pressed="true">Stacked</button><button id="bFlat" aria-pressed="false">Flat lay</button></div>
+   <button class="tool" id="bTuck" aria-pressed="false">Tuck in</button>
    <button class="tool" id="bRnd">Random</button>
   </div>
-  <div class="bar" style="margin-top:14px"><div class="chips" id="bCats"></div></div>
-  <div class="grid" id="bGrid"></div>
+  <div class="bar" style="margin-top:12px"><div class="chips" id="bCats"></div></div>
+  <div class="rail" id="bGrid"></div>
   <div class="form" style="margin-top:14px">
-   <div class="f"><label for="bName">Name</label><input id="bName" placeholder="Workwear Friday"></div>
+   <div class="f"><label for="bName">Name <span style="font-weight:400;color:var(--mute)">(optional)</span></label><input id="bName"></div>
    <div class="f"><label for="bTags">Occasion or tags</label><input id="bTags" placeholder="work, weekend, date"></div>
-   <div class="err" id="bErr"></div>
+   <div class="err" id="bErr" role="alert"></div>
   </div>
-  <div class="btns"><button class="btn" id="bSave">Save outfit</button></div>
  </section>
 
  <section class="view" id="v-plan">
   <div class="top"><div><h1>Plan</h1><p class="sub">Plan outfits and log what you wore.</p></div>
-   <button class="add" data-act="today">Today</button></div>
-  <div class="cal-head"><button id="calPrev" aria-label="Previous month">‹</button><b id="calTitle"></b><button id="calNext" aria-label="Next month">›</button></div>
+   <button class="ghost" data-act="today">Today</button></div>
+  <div class="cal-head"><button id="calPrev" aria-label="Previous month"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><b id="calTitle" aria-live="polite"></b><button id="calNext" aria-label="Next month"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></div>
   <div class="cal" id="cal"></div>
-  <p class="note">Green dot: worn. Grey dot: planned. Logging an outfit as worn adds a wear to every piece in it, which lowers its cost per wear.</p>
+  <div class="legend" aria-hidden="true"><span><i class="wd"></i>Worn</span><span><i class="wd plan"></i>Planned</span></div>
+  <p class="note">Logging an outfit as worn adds a wear to every piece in it.</p>
   <div id="upcoming"></div>
  </section>
 
@@ -253,24 +325,24 @@ select.sort{flex:none;height:34px;border-radius:99px;border:1px solid var(--line
  </section>
 
  <section class="view" id="v-stats">
-  <div class="top"><div><h1>Insights</h1><p class="sub">Where your money goes and what you wear.</p></div>
-   <button class="ghost" data-act="settings">Settings</button></div>
+  <div class="top"><div><h1>Insights</h1><p class="sub">Where your money goes and what you wear.</p></div></div>
   <div id="stats"></div>
  </section>
 </div>
 
-<nav class="nav"><div>
- <button data-v="closet" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 6a2 2 0 1 1 2-2M12 6v2L3 15h18l-9-7"/></svg>Closet</button>
- <button data-v="outfits"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Outfits</button>
- <button data-v="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Plan</button>
- <button data-v="wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>Wishlist</button>
- <button data-v="stats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Insights<span class="dot" id="navDot"></span></button>
+<nav class="nav" aria-label="Main"><div>
+ <button data-v="closet" class="on" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 6a2 2 0 1 1 2-2M12 6v2L3 15h18l-9-7"/></svg>Closet<span class="dot" id="navDot"></span></button>
+ <button data-v="outfits"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L4 6.5l1.6 4L8 9.6V20h8V9.6l2.4.9 1.6-4L15 4c-.4 1.3-1.6 2.1-3 2.1S9.4 5.3 9 4z"/></svg>Outfits</button>
+ <button data-v="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Plan</button>
+ <button data-v="wish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>Wishlist</button>
+ <button data-v="stats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Insights</button>
 </div></nav>
-<div class="sheet-bg" id="sheetBg"><div class="sheet" id="sheet"></div></div>
-<div class="toast" id="toast"></div>
+<div class="savebar" id="saveBar"><div><button class="btn sec" data-act="cancelBuilder">Cancel</button><button class="btn" id="bSave" style="flex:2">Save outfit</button></div></div>
+<div class="sheet-bg" id="sheetBg"><div class="sheet" id="sheet" role="dialog" aria-modal="true" tabindex="-1"></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button id="toastUndo">Undo</button></div>
 
 <script>
-const APP_VERSION='1.0.5';
+const APP_VERSION='1.0.6';
 /* ===== storage ===== */
 const KEY='wardrobe-db-v2';
 const $=id=>document.getElementById(id);
@@ -312,7 +384,13 @@ function wearsOf(id){let n=0,last=null;
 function cpw(it){if(it.price==null||it.price==='')return null;return +it.price/Math.max(1,wearsOf(it.id).n)}
 const outfitItems=o=>SLOTS.map(k=>o.items[k]).filter(Boolean).map(itemById).filter(Boolean);
 const outfitWears=o=>Object.values(db.plan).filter(e=>e.worn&&e.outfit===o.id).length;
-function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),1900)}
+let undoFn=null;
+function toast(m,undo){const t=$('toast');$('toastMsg').textContent=m;undoFn=undo||null;t.classList.toggle('undo',!!undo);t.classList.add('on');
+  clearTimeout(t._t);t._t=setTimeout(()=>{t.classList.remove('on');undoFn=null},undo?5500:1900)}
+$('toastUndo').onclick=()=>{const f=undoFn;undoFn=null;$('toast').classList.remove('on');if(f)f()};
+// snapshot of the closet before a change; calling the result puts it back (then reopens what was on screen)
+function snapshot(reopen){const s=JSON.stringify(db);return ()=>{db=JSON.parse(s);save();renderAll();if(reopen)reopen();else closeSheet();toast('Undone')}}
+const XICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 const NOPIC='<svg class="nopic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 7a2 2 0 1 1 2-2M12 7v1.5L3 16h18l-9-7.5"/></svg>';
 function picHTML(src){const u=srcOf(src);return u?`<div class="pic ${isPhoto(src)?'photo':''}"><img src="${esc(u)}" alt="" loading="lazy"></div>`:`<div class="pic">${NOPIC}</div>`}
 
@@ -330,18 +408,14 @@ let query='';
 function renderCloset(){
   const items=db.items,W=i=>wearsOf(i.id).n;
   if(cCat!=='all'&&!items.some(i=>i.cat===cCat))cCat='all';
-  const spent=items.reduce((s,i)=>s+(+i.price||0),0),wears=items.reduce((s,i)=>s+W(i),0);
-  const priced=items.filter(i=>i.price!=null&&i.price!=='');
-  const avg=priced.length?priced.reduce((s,i)=>s+cpw(i),0)/priced.length:null;
   $('closetSub').textContent=`${items.length} piece${items.length===1?'':'s'}`;
-  $('kpis').innerHTML=`<div class="kpi"><small>Spent</small><b>${money(spent)}</b></div><div class="kpi"><small>Wears logged</small><b>${wears}</b></div><div class="kpi"><small>Avg cost/wear</small><b>${avg==null?'–':money(avg)}</b></div>`;
   $('catChips').innerHTML=['all',...Object.keys(CATS)].map(k=>{const n=k==='all'?items.length:items.filter(i=>i.cat===k).length;
     return (k==='all'||n)?`<button class="chip ${k===cCat?'on':''}" data-cat="${k}">${k==='all'?'All':CATS[k]} · ${n}</button>`:''}).join('');
   const S={recent:(a,b)=>(b.added||'').localeCompare(a.added||''),worn:(a,b)=>W(b)-W(a),least:(a,b)=>W(a)-W(b),
     cpw:(a,b)=>(cpw(b)??-1)-(cpw(a)??-1),price:(a,b)=>(+b.price||0)-(+a.price||0)};
   const q=query.trim().toLowerCase();
   const list=items.filter(i=>(cCat==='all'||i.cat===cCat)&&(!q||[i.name,i.brand,i.color,i.notes,i.store,i.size].join(' ').toLowerCase().includes(q))).sort(S[cSort]);
-  $('searchBox').style.display=items.length>5?'':'none';$('searchBox').classList.toggle('has',!!q);
+  $('searchBox').style.display=items.length>5?'':'none';$('searchBox').classList.toggle('has',!!q);$('sort').style.marginLeft=items.length>5?'':'auto';
   $('closetGrid').innerHTML=list.length?list.map(i=>{const c=cpw(i),w=W(i);
     const tag=cSort==='cpw'?(c!=null?money(c)+'/wear':''):cSort==='price'?(i.price!=null?money(i.price):''):(cSort==='worn'||cSort==='least')?w+'×':'';
     return `<button class="it" data-item="${i.id}">${tag?`<span class="tagc">${tag}</span>`:''}${picHTML(i.img)}<div class="nm">${esc(i.name)}</div><div class="br">${esc(i.brand||CAT1[i.cat])}${i.size?' · '+esc(i.size):''}</div></button>`}).join('')
@@ -353,15 +427,37 @@ $('catChips').onclick=e=>{const b=e.target.closest('[data-cat]');if(b){cCat=b.da
 $('sort').onchange=e=>{cSort=e.target.value;renderCloset()};
 $('closetGrid').onclick=e=>{const b=e.target.closest('[data-item]');if(b)itemSheet(b.dataset.item)};
 
+/* ===== today: one tap to log what you're wearing ===== */
+let todayPick=false;
+function lastWornOf(oid){let l='';for(const [d,e] of Object.entries(db.plan))if(e.worn&&e.outfit===oid&&d>l)l=d;return l}
+const piecesOf=e=>Object.fromEntries((e.items||[]).map(itemById).filter(Boolean).map(i=>[i.cat,i.id]));
+function renderToday(){
+  const el=$('today'),t=todayISO(),e=db.plan[t],o=e&&db.outfits.find(x=>x.id===e.outfit);
+  if(db.items.length<2){el.hidden=true;return}
+  el.hidden=false;
+  const head=`<div class="today-h"><h2 id="todayH">Today</h2><small>${new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})}</small></div>`;
+  if(!db.outfits.length){el.innerHTML=head+`<p class="today-hint">Put an outfit together once, then log what you wear here in one tap.</p><button class="add" data-act="newOutfit">Make an outfit</button>`;return}
+  const name=esc(o?o.name:'Outfit'),pic=e?stageHTML(piecesOf(e),{tuck:o&&o.tuck,flat:o&&o.flat}):'';
+  const others=db.outfits.filter(x=>!e||x.id!==e.outfit).sort((a,b)=>lastWornOf(b.id).localeCompare(lastWornOf(a.id))||(b.created||'').localeCompare(a.created||''));
+  const strip=others.length?`<div class="strip">${others.map(x=>`<button class="tmini" data-act="wearToday" data-id="${x.id}" aria-label="Wearing ${esc(x.name)} today">${stageHTML(x.items,{tuck:x.tuck,flat:x.flat})}<span>${esc(x.name)}</span></button>`).join('')}</div>`:'';
+  if(e&&e.worn&&!todayPick){el.innerHTML=head+`<div class="today-main worn">${pic}<div class="today-txt"><small>Logged as worn</small><b>${name}</b><div class="acts"><button class="ghost" data-act="todayChange">Change</button></div></div></div>`;return}
+  if(e&&!e.worn){el.innerHTML=head+`<div class="today-main">${pic}<div class="today-txt"><small>Planned for today</small><b>${name}</b><div class="acts"><button class="add" data-act="wearPlanned">Wearing this</button></div></div></div>`+(strip&&`<div class="strip-lbl">Wearing something else? Tap it.</div>`+strip);return}
+  el.innerHTML=head+`<p class="today-hint">${e?'Tap what you\'re wearing instead.':'What are you wearing? Tap it to log it.'}</p>`+strip+(e?`<button class="linkbtn" data-act="todayKeep">Keep ${name}</button>`:'');
+}
+
 /* ===== sheets ===== */
-let sheetOpen=false,curView='closet',ignorePop=0,pendingPush=[];
+let sheetOpen=false,curView='closet',ignorePop=0,pendingPush=[],lastFocus=null;
 function push(state){if(ignorePop)pendingPush.push(state);else history.pushState(state,'')}
-function openSheet(html){$('sheet').innerHTML='<div class="grab"></div><button class="close" aria-label="Close" data-act="close">×</button>'+html;$('sheetBg').classList.add('on');$('sheet').scrollTop=0;
-  if(!sheetOpen){sheetOpen=true;push({v:curView,s:1})}}
-function closeSheet(fromPop){$('sheetBg').classList.remove('on');if(sheetOpen){sheetOpen=false;if(fromPop!==true){ignorePop++;history.back()}}}
+function openSheet(html){const s=$('sheet');s.innerHTML='<div class="grab"></div><button class="close" aria-label="Close" data-act="close">'+XICON+'</button>'+html;
+  const h=s.querySelector('h2');if(h){h.id='sheetTitle';s.setAttribute('aria-labelledby','sheetTitle')}else s.removeAttribute('aria-labelledby');
+  $('sheetBg').classList.add('on');s.scrollTop=0;
+  if(!sheetOpen){sheetOpen=true;lastFocus=document.activeElement;push({v:curView,s:1})}
+  s.focus({preventScroll:true})}
+function closeSheet(fromPop){$('sheetBg').classList.remove('on');if(sheetOpen){sheetOpen=false;if(lastFocus&&lastFocus.isConnected)lastFocus.focus({preventScroll:true});lastFocus=null;if(fromPop!==true){ignorePop++;history.back()}}}
 window.addEventListener('popstate',e=>{
   if(ignorePop){ignorePop--;if(!ignorePop){const q=pendingPush;pendingPush=[];q.forEach(st=>history.pushState(st,''))}return}
   if(sheetOpen){closeSheet(true);return}
+  if(curView==='builder'&&B&&B.dirty&&!confirm('Discard this outfit?')){history.pushState({v:'builder'},'');return}
   show((e.state&&e.state.v)||'closet',true)});
 $('sheetBg').addEventListener('click',e=>{if(e.target.id==='sheetBg')closeSheet()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
@@ -371,11 +467,12 @@ function itemSheet(id){
   const it=itemById(id);if(!it)return;
   const w=wearsOf(id),c=cpw(it);
   const inO=db.outfits.filter(o=>Object.values(o.items).includes(id));
-  const ms=it.sizes&&it.size&&it.sizes[it.size];
+  const ms=it.sizes&&it.size&&it.sizes[it.size],t=todayISO();
+  const wornToday=it.extraLast===t||!!(db.plan[t]&&db.plan[t].worn&&(db.plan[t].items||[]).includes(id));
   openSheet(`<h2>${esc(it.name)}</h2><div class="meta">${esc([it.brand,CAT1[it.cat],it.color].filter(Boolean).join(' · '))}</div>
    <div class="hero ${isPhoto(it.img)?'photo':''}">${srcOf(it.img)?`<img src="${esc(srcOf(it.img))}" alt="">`:`<button class="nophoto" data-act="editItem" data-id="${id}">${NOPIC}<span>Add a photo</span></button>`}</div>
    <div class="stats3"><div><small>Paid</small><b>${money(it.price)}</b></div><div><small>Worn</small><b>${w.n}×</b></div><div><small>Cost per wear</small><b>${c==null?'–':money(c)}</b>${c!=null&&!w.n?'<em>until first wear</em>':''}</div></div>
-   <div class="btns"><button class="btn" data-act="wearItem" data-id="${id}">Wore it today</button><button class="btn sec" data-act="editItem" data-id="${id}">Edit</button></div>
+   <div class="btns">${wornToday?'<button class="btn" disabled>Worn today</button>':`<button class="btn" data-act="wearItem" data-id="${id}">Wore it today</button>`}<button class="btn sec" data-act="editItem" data-id="${id}">Edit</button></div>
    <table class="facts">
     <tr><td>Size</td><td>${esc(it.size&&it.size!=='yours'?it.size:'–')}</td></tr>
     <tr><td>Bought</td><td>${fmtDate(it.bought)}${it.store?' · '+esc(it.store):''}</td></tr>
@@ -418,21 +515,23 @@ function itemForm(id,prefill){
      <div class="f"><label for="fSize">Size</label><input id="fSize" value="${esc(it.size==='yours'?'':it.size)}" placeholder="M / W30 / 42"></div></div>
     <div class="two"><div class="f"><label for="fPrice">Price paid (${esc(db.settings.currency)})</label><input id="fPrice" type="number" inputmode="decimal" min="0" step="0.01" value="${esc(it.price)}"></div>
      <div class="f"><label for="fBought">Bought</label><input id="fBought" type="month" value="${esc((it.bought||'').slice(0,7))}"></div></div>
+    <div class="f"><label>Measurements in cm (as the shop lists them)</label><div id="mList"></div><button type="button" class="linkbtn" id="mAdd">+ Add measurement</button></div>
+    <details class="more" ${it.store||it.condition||it.season||it.extraWears||it.url||it.notes?'open':''}><summary>More details</summary>
     <div class="two"><div class="f"><label for="fStore">Where</label><input id="fStore" value="${esc(it.store)}" placeholder="Vinted, shop…"></div>
      <div class="f"><label for="fCond">Condition</label><select id="fCond">${['','New','Like new','Good','Worn in'].map(c=>`<option ${c===(it.condition||'')?'selected':''}>${c}</option>`).join('')}</select></div></div>
     <div class="two"><div class="f"><label for="fSeason">Season</label><select id="fSeason">${['','All year','Spring/summer','Autumn/winter'].map(c=>`<option ${c===(it.season||'')?'selected':''}>${c}</option>`).join('')}</select></div>
-     <div class="f"><label for="fWears">Worn before (times)</label><input id="fWears" type="number" inputmode="numeric" min="0" step="1" value="${esc(it.extraWears||0)}"></div></div>
-    <div class="f"><label>Measurements in cm (as the shop lists them)</label><div id="mList"></div><button type="button" class="linkbtn" id="mAdd">+ Add measurement</button></div>
+     <div class="f"><label for="fWears">Times worn before adding it</label><input id="fWears" type="number" inputmode="numeric" min="0" step="1" value="${esc(it.extraWears||0)}"></div></div>
     <div class="f"><label for="fUrl">Link</label><input id="fUrl" type="url" value="${esc(it.url)}" placeholder="https://"></div>
     <div class="f"><label for="fNotes">Notes</label><textarea id="fNotes" placeholder="Fit, care, what it goes with">${esc(it.notes)}</textarea></div>
-    <div class="err" id="fErr"></div>
+    </details>
+    <div class="err" id="fErr" role="alert"></div>
    </div>
    <div class="btns"><button class="btn" data-act="saveItem" data-id="${id||''}">Save</button></div>
-   ${id?`<div class="btns"><button class="btn danger" data-act="delItem" data-id="${id}">Delete piece</button></div>`:''}`);
+   ${id?`<div class="btns apart"><button class="btn danger" data-act="delItem" data-id="${id}">Delete piece</button></div>`:''}`);
   bindPhoto('fPhoto','fErr');
   const ms=(it.sizes&&it.sizes[it.size])||{};
   const addRow=(k='',v='')=>{const d=document.createElement('div');d.className='mrow';
-    d.innerHTML=`<input placeholder="Length" value="${esc(k?k[0].toUpperCase()+k.slice(1):'')}" aria-label="Measurement name"><input type="number" inputmode="decimal" step="0.1" min="0" placeholder="cm" value="${esc(v)}" aria-label="Centimetres"><button type="button" aria-label="Remove">×</button>`;
+    d.innerHTML=`<input placeholder="Length" value="${esc(k?k[0].toUpperCase()+k.slice(1):'')}" aria-label="Measurement name"><input type="number" inputmode="decimal" step="0.1" min="0" placeholder="cm" value="${esc(v)}" aria-label="Centimetres"><button type="button" aria-label="Remove measurement">${XICON}</button>`;
     d.querySelector('button').onclick=()=>d.remove();$('mList').appendChild(d)};
   Object.entries(ms).forEach(([k,v])=>addRow(k,v));
   if(!Object.keys(ms).length)addRow();
@@ -441,11 +540,11 @@ function itemForm(id,prefill){
 function readMeasures(){const out={};for(const r of document.querySelectorAll('#mList .mrow')){const [k,v]=r.querySelectorAll('input');
   const name=k.value.trim().toLowerCase(),num=v.value.trim();if(!name&&!num)continue;if(!name||num===''||isNaN(+num))return null;out[name]=+num}return out}
 async function saveItem(id){
-  const v=k=>$(k).value.trim(),err=m=>{$('fErr').textContent=m};
-  if(!v('fName')){err('Give it a name.');$('fName').focus();return}
-  const price=v('fPrice');if(price&&(isNaN(+price)||+price<0)){err('Price should be a number.');return}
-  const wears=v('fWears');if(wears&&!/^\d+$/.test(wears)){err('"Worn before" should be a whole number.');return}
-  if(v('fUrl')&&!/^https?:\/\//i.test(v('fUrl'))){err('The link should start with https://');return}
+  const v=k=>$(k).value.trim(),err=(m,f)=>{$('fErr').textContent=m;if(f){const d=$(f).closest('details');if(d)d.open=true;$(f).focus()}};
+  if(!v('fName')){err('Give it a name.','fName');return}
+  const price=v('fPrice');if(price&&(isNaN(+price)||+price<0)){err('Price should be a number.','fPrice');return}
+  const wears=v('fWears');if(wears&&!/^\d+$/.test(wears)){err('"Times worn before" should be a whole number.','fWears');return}
+  if(v('fUrl')&&!/^https?:\/\//i.test(v('fUrl'))){err('The link should start with https://','fUrl');return}
   const meas=readMeasures();if(!meas){err('Each measurement needs a name and a number.');return}
   const prev=id?itemById(id):null,sizeKey=v('fSize')||'yours',sizes={...((prev&&prev.sizes)||{})};
   const changedM=!!prev&&(JSON.stringify(meas)!==JSON.stringify((prev.sizes&&prev.sizes[prev.size])||{})||prev.size!==v('fSize'));
@@ -469,27 +568,29 @@ function renderOutfits(){
   $('tagChips').innerHTML=tags.length?['all',...tags].map(t=>`<button class="chip ${t===oTag?'on':''}" data-tag="${esc(t)}">${t==='all'?'All':esc(t[0].toUpperCase()+t.slice(1))}</button>`).join(''):'';
   const shown=db.outfits.filter(o=>oTag==='all'||tagsOf(o).includes(oTag));
   $('looks').innerHTML=db.outfits.length?shown.map(o=>{const its=outfitItems(o),cost=its.reduce((s,i)=>s+(+i.price||0),0),w=outfitWears(o);
-    return `<div class="look" data-outfit="${o.id}">${stageHTML(o.items,{tuck:o.tuck})}<div class="ln">${esc(o.name)}</div><div class="lm">${w?`Worn ${w}×`:'Not worn yet'}${cost?' · '+money(cost):''}</div></div>`}).join('')
+    return `<button class="look" data-outfit="${o.id}">${stageHTML(o.items,{tuck:o.tuck,flat:o.flat})}<div class="ln">${esc(o.name)}</div><div class="lm">${w?`Worn ${w}×`:'Not worn yet'}${cost?' · '+money(cost):''}</div></button>`}).join('')
     :`<div class="empty">No outfits yet.<br>Tap New to put one together from your closet.</div>`;
 }
 $('looks').onclick=e=>{const b=e.target.closest('[data-outfit]');if(b)outfitSheet(b.dataset.outfit)};
 $('tagChips').onclick=e=>{const b=e.target.closest('[data-tag]');if(b){oTag=b.dataset.tag;renderOutfits()}};
 function outfitSheet(oid){
   const o=db.outfits.find(x=>x.id===oid);if(!o)return;
-  const its=outfitItems(o),cost=its.reduce((s,i)=>s+(+i.price||0),0),w=outfitWears(o);
-  const next=Object.entries(db.plan).filter(([d,e])=>e.outfit===oid&&!e.worn&&d>=todayISO()).map(([d])=>d).sort()[0];
+  const its=outfitItems(o),cost=its.reduce((s,i)=>s+(+i.price||0),0),w=outfitWears(o),nP=its.filter(i=>i.price!=null&&i.price!=='').length;
+  const t=todayISO(),wornToday=!!(db.plan[t]&&db.plan[t].worn&&db.plan[t].outfit===oid);
+  const next=Object.entries(db.plan).filter(([d,e])=>e.outfit===oid&&!e.worn&&d>=t).map(([d])=>d).sort()[0];
   openSheet(`<h2>${esc(o.name)}</h2><div class="meta">${o.tags?esc(o.tags)+' · ':''}${its.length} pieces</div>
-   ${stageHTML(o.items,{tuck:o.tuck})}
-   <div class="stats3"><div><small>Pieces cost</small><b>${money(cost)}</b></div><div><small>Worn</small><b>${w}×</b></div><div><small>Next planned</small><b style="font-size:13px">${next?fmtDate(next):'–'}</b></div></div>
-   <div class="btns"><button class="btn" data-act="wearOutfit" data-id="${oid}">Wore it today</button><button class="btn sec" data-act="planOutfit" data-id="${oid}">Plan a day</button></div>
-   <div class="lbl">Pieces</div>${its.map(i=>`<div class="row" data-item="${i.id}">${picHTML(i.img)}<div><b>${esc(i.name)}</b><small>${CAT1[i.cat]} · ${money(i.price)} · worn ${wearsOf(i.id).n}×</small></div></div>`).join('')}
-   <div class="btns"><button class="btn sec" data-act="editOutfit" data-id="${oid}">Edit</button><button class="btn danger" data-act="delOutfit" data-id="${oid}">Delete</button></div>`);
+   ${stageHTML(o.items,{tuck:o.tuck,flat:o.flat})}
+   <div class="stats3"><div><small>Pieces cost</small><b>${nP?money(cost):'–'}</b>${nP&&nP<its.length?`<em>${nP} of ${its.length} priced</em>`:''}</div><div><small>Worn</small><b>${w}×</b></div><div><small>Next planned</small><b style="font-size:13px">${next?fmtDate(next):'–'}</b></div></div>
+   <div class="btns">${wornToday?'<button class="btn" disabled>Worn today</button>':`<button class="btn" data-act="wearOutfit" data-id="${oid}">Wore it today</button>`}<button class="btn sec" data-act="planOutfit" data-id="${oid}">Plan a day</button></div>
+   <div class="lbl">Pieces</div>${its.map(i=>`<button class="row" data-item="${i.id}">${picHTML(i.img)}<div><b>${esc(i.name)}</b><small>${CAT1[i.cat]} · ${money(i.price)} · worn ${wearsOf(i.id).n}×</small></div></button>`).join('')}
+   <div class="btns"><button class="btn sec" data-act="editOutfit" data-id="${oid}">Edit outfit</button></div>
+   <div class="btns apart"><button class="btn danger" data-act="delOutfit" data-id="${oid}">Delete outfit</button></div>`);
 }
 
 let B=null,bCat='top';
 function openBuilder(oid){
   const o=oid&&db.outfits.find(x=>x.id===oid);
-  B=o?{id:o.id,items:{...o.items},tuck:!!o.tuck,flat:false}:{id:null,items:{},tuck:false,flat:false};
+  B=o?{id:o.id,items:{...o.items},tuck:!!o.tuck,flat:!!o.flat}:{id:null,items:{},tuck:false,flat:false};B.dirty=false;
   if(!o)for(const k of ['top','bottom','shoes']){const l=db.items.filter(i=>i.cat===k);if(l.length)B.items[k]=l[0].id}
   $('bTitle').textContent=o?'Edit outfit':'New outfit';$('bName').value=o?o.name:'';$('bTags').value=o?o.tags||'':'';$('bErr').textContent='';
   bCat=SLOTS.find(k=>db.items.some(i=>i.cat===k))||'top';
@@ -497,26 +598,31 @@ function openBuilder(oid){
 }
 function renderBuilder(){
   $('bStage').outerHTML=stageHTML(B.items,{tuck:B.tuck,flat:B.flat,id:'bStage'});
-  $('bMode').textContent=B.flat?'Stacked':'Flat lay';$('bTuck').classList.toggle('on',B.tuck);$('bTuck').style.display=B.flat?'none':'';
-  $('bCats').innerHTML=SLOTS.map(k=>`<button class="chip ${k===bCat?'on':''}" data-bcat="${k}">${CATS[k]}${B.items[k]?' ✓':''}</button>`).join('');
+  $('bStand').setAttribute('aria-pressed',!B.flat);$('bFlat').setAttribute('aria-pressed',B.flat);
+  $('bTuck').classList.toggle('on',B.tuck&&!B.flat);$('bTuck').setAttribute('aria-pressed',B.tuck&&!B.flat);$('bTuck').disabled=B.flat;
+  $('bName').placeholder=autoName(B.items);
+  $('bCats').innerHTML=SLOTS.map(k=>{const p=B.items[k]&&itemById(B.items[k]);return `<button class="chip ${k===bCat?'on':''}" data-bcat="${k}" aria-pressed="${k===bCat}" aria-label="${CATS[k]}${p?', picked':''}">${CATS[k]}${p?'<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>':''}</button>`}).join('');
   const list=db.items.filter(i=>i.cat===bCat);
-  $('bGrid').innerHTML=`<button class="it ${!B.items[bCat]?'on':''}" data-pick=""><div class="pic"><span class="none">∅</span></div><div class="nm">None</div></button>`+
-    list.map(i=>`<button class="it ${B.items[bCat]===i.id?'on':''}" data-pick="${i.id}">${picHTML(i.img)}<div class="nm">${esc(i.name)}</div></button>`).join('')+
-    (list.length?'':`<div class="empty" style="grid-column:2/-1;padding:16px">No ${CATS[bCat].toLowerCase()} in your closet yet.</div>`);
+  $('bGrid').innerHTML=`<button class="it ${!B.items[bCat]?'on':''}" data-pick="" aria-pressed="${!B.items[bCat]}"><div class="pic"><svg class="none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M6.5 17.5l11-11"/></svg></div><div class="nm">None</div></button>`+
+    list.map(i=>`<button class="it ${B.items[bCat]===i.id?'on':''}" data-pick="${i.id}" aria-pressed="${B.items[bCat]===i.id}">${picHTML(i.img)}<div class="nm">${esc(i.name)}</div></button>`).join('')+
+    (list.length?'':`<div class="empty">No ${CATS[bCat].toLowerCase()} in your closet yet.</div>`);
 }
-$('bCats').onclick=e=>{const b=e.target.closest('[data-bcat]');if(b){bCat=b.dataset.bcat;renderBuilder()}};
-$('bGrid').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;const id=b.dataset.pick;if(id)B.items[bCat]=id;else delete B.items[bCat];$('bErr').textContent='';renderBuilder()};
-$('bMode').onclick=()=>{B.flat=!B.flat;renderBuilder()};
-$('bTuck').onclick=()=>{B.tuck=!B.tuck;renderBuilder()};
+const bChanged=()=>{B.dirty=true;$('bErr').textContent='';renderBuilder()};
+$('bCats').onclick=e=>{const b=e.target.closest('[data-bcat]');if(b){bCat=b.dataset.bcat;renderBuilder();$('bGrid').scrollLeft=0}};
+$('bGrid').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;const id=b.dataset.pick;if(id)B.items[bCat]=id;else delete B.items[bCat];bChanged()};
+$('bStand').onclick=()=>{if(B.flat){B.flat=false;bChanged()}};
+$('bFlat').onclick=()=>{if(!B.flat){B.flat=true;bChanged()}};
+$('bTuck').onclick=()=>{B.tuck=!B.tuck;bChanged()};
+$('bName').oninput=$('bTags').oninput=()=>{B.dirty=true};
 $('bRnd').onclick=()=>{for(const k of ['top','bottom','shoes','jacket']){const l=db.items.filter(i=>i.cat===k);if(!l.length)continue;
-  if(k==='jacket'&&Math.random()<.35){delete B.items.jacket;continue}B.items[k]=l[Math.floor(Math.random()*l.length)].id}renderBuilder()};
+  if(k==='jacket'&&Math.random()<.35){delete B.items.jacket;continue}B.items[k]=l[Math.floor(Math.random()*l.length)].id}bChanged()};
 $('bSave').onclick=()=>{
   const items=Object.fromEntries(Object.entries(B.items).filter(([k,v])=>v&&itemById(v)));
   if(Object.keys(items).length<2){$('bErr').textContent='Pick at least two pieces.';return}
-  const data={items,tuck:B.tuck,name:$('bName').value.trim()||autoName(items),tags:$('bTags').value.trim()};
+  const data={items,tuck:B.tuck,flat:B.flat,name:$('bName').value.trim()||autoName(items),tags:$('bTags').value.trim()};
   let oid=B.id;
   if(oid)Object.assign(db.outfits.find(o=>o.id===oid),data);else{oid='o-'+uid();db.outfits.unshift({id:oid,created:new Date().toISOString(),...data})}
-  if(!save())return;
+  if(!save())return;B.dirty=false;
   if(history.state&&history.state.v==='builder')history.replaceState({v:'outfits'},'');show('outfits',true);
   renderAll();toast('Outfit saved');outfitSheet(oid);
 };
@@ -534,13 +640,13 @@ function renderPlan(){
   for(let d=1;d<=days;d++)cells.push([calY,calM,d,false]);
   for(let n=1;cells.length%7;n++){const d=new Date(calY,calM+1,n);cells.push([d.getFullYear(),d.getMonth(),d.getDate(),true])}
   const t=todayISO();
-  $('cal').innerHTML=['M','T','W','T','F','S','S'].map(d=>`<div class="dow">${d}</div>`).join('')+cells.map(([y,m,d,out])=>{
-    const k=isoOf(y,m,d),e=db.plan[k],its=e?(e.items||[]).map(itemById).filter(Boolean):[];
-    const wi=its.filter(i=>i.img),f=wi.find(i=>i.cat==='jacket')||wi.find(i=>i.cat==='top')||wi[0];
-    return `<div class="day ${out?'out':''} ${k===t?'today':''} ${e?'planned':''} ${e&&e.worn?'worn':''}" data-day="${k}"><span class="dn">${d}</span><div class="mini">${f&&srcOf(f.img)?`<img src="${esc(srcOf(f.img))}" alt="">`:''}</div>${e?'<span class="wd"></span>':''}</div>`}).join('');
+  $('cal').innerHTML=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="dow" aria-hidden="true">${d[0]}</div>`).join('')+cells.map(([y,m,d,out])=>{
+    const k=isoOf(y,m,d),e=db.plan[k],o=e&&db.outfits.find(x=>x.id===e.outfit);
+    const lbl=fmtDate(k)+(k===t?', today':'')+(e?(e.worn?', worn: ':', planned: ')+(o?o.name:'outfit'):'');
+    return `<button class="day ${out?'out':''} ${k===t?'today':''} ${e?'planned':''} ${e&&e.worn?'worn':''}" data-day="${k}" aria-label="${esc(lbl)}"${k===t?' aria-current="date"':''}><span class="dn">${d}</span><div class="mini">${e?stageHTML(piecesOf(e),{tuck:o&&o.tuck,flat:o&&o.flat}):''}</div>${e?'<span class="wd"></span>':''}</button>`}).join('');
   const up=Object.entries(db.plan).filter(([d,e])=>d>=t&&!e.worn).sort((a,b)=>a[0].localeCompare(b[0])).slice(0,5);
   $('upcoming').innerHTML=up.length?`<div class="sect"><span>Coming up</span></div>`+up.map(([d,e])=>{const o=db.outfits.find(x=>x.id===e.outfit),f=(e.items||[]).map(itemById).filter(i=>i&&i.img).sort((a,b)=>(a.cat==='jacket'?0:1)-(b.cat==='jacket'?0:1))[0];
-    return `<div class="row" data-day="${d}">${picHTML(f&&f.img)}<div><b>${esc(o?o.name:'Outfit')}</b><small>${fmtDate(d)}</small></div></div>`}).join(''):'';
+    return `<button class="row" data-day="${d}">${picHTML(f&&f.img)}<div><b>${esc(o?o.name:'Outfit')}</b><small>${fmtDate(d)}</small></div></button>`}).join(''):'';
 }
 $('calPrev').onclick=()=>{calM--;if(calM<0){calM=11;calY--}renderPlan()};
 $('calNext').onclick=()=>{calM++;if(calM>11){calM=0;calY++}renderPlan()};
@@ -549,18 +655,17 @@ $('upcoming').onclick=e=>{const d=e.target.closest('[data-day]');if(d)daySheet(d
 function daySheet(day,choose){
   const e=db.plan[day],o=e&&db.outfits.find(x=>x.id===e.outfit),past=day<=todayISO();
   if(e&&!choose){
-    const items=Object.fromEntries((e.items||[]).map(itemById).filter(Boolean).map(i=>[i.cat,i.id]));
     openSheet(`<h2>${fmtDate(day)}</h2><div class="meta">${e.worn?'Worn':'Planned'}${o?' · '+esc(o.name):''}</div>
-     ${stageHTML(items,{tuck:o&&o.tuck})}
+     ${stageHTML(piecesOf(e),{tuck:o&&o.tuck,flat:o&&o.flat})}
      <div class="btns">${!e.worn&&past?`<button class="btn" data-act="markWorn" data-day="${day}">Mark as worn</button>`:''}
       ${e.worn?`<button class="btn sec" data-act="unmarkWorn" data-day="${day}">Not worn</button>`:''}
       <button class="btn sec" data-act="changeDay" data-day="${day}">Change outfit</button></div>
-     <div class="btns"><button class="btn danger" data-act="clearDay" data-day="${day}">Remove from this day</button></div>`);
+     <div class="btns apart"><button class="btn danger" data-act="clearDay" data-day="${day}">Remove from this day</button></div>`);
     return;
   }
   if(!db.outfits.length){openSheet(`<h2>${fmtDate(day)}</h2><div class="empty">Save an outfit first, then plan it here.</div><div class="btns"><button class="btn" data-act="newOutfit">Create an outfit</button></div>`);return}
   openSheet(`<h2>${fmtDate(day)}</h2><div class="meta">${day<todayISO()?'Which outfit did you wear? It counts as worn.':day===todayISO()?"Pick today's outfit. Mark it as worn once you've worn it.":'Pick an outfit for this day.'}</div>
-   <div class="pick">${db.outfits.map(x=>`<div class="look" data-act="setDay" data-day="${day}" data-id="${x.id}">${stageHTML(x.items,{tuck:x.tuck})}<div class="ln">${esc(x.name)}</div></div>`).join('')}</div>`);
+   <div class="pick">${db.outfits.map(x=>`<button class="look" data-act="setDay" data-day="${day}" data-id="${x.id}">${stageHTML(x.items,{tuck:x.tuck,flat:x.flat})}<div class="ln">${esc(x.name)}</div></button>`).join('')}</div>`);
 }
 function setDay(day,oid,worn){const o=db.outfits.find(x=>x.id===oid);if(!o)return;
   db.plan[day]={outfit:oid,items:Object.values(o.items).filter(id=>itemById(id)),worn:worn??(day<todayISO())};save()}
@@ -571,11 +676,11 @@ function renderWish(){
   const total=db.wishlist.reduce((s,w)=>s+(+w.price||0),0);
   $('wishSub').textContent=db.wishlist.length?`${db.wishlist.length} item${db.wishlist.length===1?'':'s'} · ${money(total)} in total`:'Things you want, with links and prices.';
   const used=new Set(db.wishlist.map(w=>w.cat));
-  $('wishChips').innerHTML=[['all','All'],['must','Must have'],['nice','Nice to have'],...Object.entries(CATS).filter(([k])=>used.has(k))].map(([k,n])=>`<button class="chip ${k===wFilter?'on':''}" data-w="${k}">${n}</button>`).join('');
+  $('wishChips').innerHTML=!db.wishlist.length?'':[['all','All'],['must','Must have'],['nice','Nice to have'],...Object.entries(CATS).filter(([k])=>used.has(k))].map(([k,n])=>`<button class="chip ${k===wFilter?'on':''}" data-w="${k}">${n}</button>`).join('');
   const list=db.wishlist.filter(w=>wFilter==='all'||w.priority===wFilter||w.cat===wFilter)
     .sort((a,b)=>(a.priority==='must'?0:1)-(b.priority==='must'?0:1)||(b.added||'').localeCompare(a.added||''));
-  $('wishGrid').innerHTML=list.length?list.map(w=>`<div class="wcard" data-wish="${w.id}">${w.priority?`<span class="prio ${w.priority==='nice'?'nice':''}">${w.priority==='must'?'Must':'Nice'}</span>`:''}${picHTML(w.img)}
-    <div class="wn">${esc(w.name)}</div><div class="wp"><span>${esc(w.brand||'')}</span><span>${money(w.price)}</span></div></div>`).join('')
+  $('wishGrid').innerHTML=list.length?list.map(w=>`<button class="wcard" data-wish="${w.id}">${w.priority?`<span class="prio ${w.priority==='nice'?'nice':''}">${w.priority==='must'?'Must':'Nice'}</span>`:''}${picHTML(w.img)}
+    <div class="wn">${esc(w.name)}</div><div class="wp"><span>${esc(w.brand||'')}</span><span>${money(w.price)}</span></div></button>`).join('')
     :`<div class="empty">${db.wishlist.length?'Nothing in this filter.':'Your wishlist is empty. Tap Add to save something you want.'}</div>`;
 }
 $('wishChips').onclick=e=>{const b=e.target.closest('[data-w]');if(b){wFilter=b.dataset.w;renderWish()}};
@@ -588,7 +693,7 @@ function wishSheet(id){const w=db.wishlist.find(x=>x.id===id);if(!w)return;
    ${w.url?`<div class="btns"><a class="btn sec" style="text-align:center;text-decoration:none" href="${esc(w.url)}" target="_blank" rel="noopener">Open shop page</a></div>`:''}
    ${w.notes?`<p class="note" style="font-size:13px;color:var(--ink)">${esc(w.notes)}</p>`:''}
    <div class="btns"><button class="btn" data-act="boughtWish" data-id="${id}">I bought it</button><button class="btn sec" data-act="editWish" data-id="${id}">Edit</button></div>
-   <div class="btns"><button class="btn danger" data-act="delWish" data-id="${id}">Remove</button></div>`)}
+   <div class="btns apart"><button class="btn danger" data-act="delWish" data-id="${id}">Remove from wishlist</button></div>`)}
 function wishForm(id){
   const w=id?db.wishlist.find(x=>x.id===id):{cat:'top',priority:'nice'};
   formPhoto=w.img||'';
@@ -624,21 +729,21 @@ function renderStats(){
   const W=i=>wearsOf(i.id).n;
   const spent=it.reduce((s,i)=>s+(+i.price||0),0),wears=it.reduce((s,i)=>s+W(i),0);
   const priced=it.filter(i=>i.price!=null&&i.price!=='');
-  const byCat=Object.keys(CATS).map(k=>{const l=it.filter(i=>i.cat===k);return [k,l.reduce((s,i)=>s+(+i.price||0),0),l.length]}).filter(x=>x[2]);
+  const byCat=Object.keys(CATS).map(k=>{const l=it.filter(i=>i.cat===k);return [k,l.reduce((s,i)=>s+(+i.price||0),0),l.length,priced.filter(i=>i.cat===k).length]}).filter(x=>x[2]);
   const maxCat=Math.max(1,...byCat.map(x=>x[1]));
   const most=[...it].filter(i=>W(i)>0).sort((a,b)=>W(b)-W(a)).slice(0,5);
   const best=priced.filter(i=>W(i)>0).sort((a,b)=>cpw(a)-cpw(b)).slice(0,5);
   const worst=priced.filter(i=>W(i)>0).sort((a,b)=>cpw(b)-cpw(a)).slice(0,5);
   const never=it.filter(i=>W(i)===0);
-  const row=(i,r)=>`<div class="row" data-item="${i.id}">${picHTML(i.img)}<div><b>${esc(i.name)}</b><small>${CAT1[i.cat]} · worn ${W(i)}×</small></div><div class="right">${r}</div></div>`;
+  const row=(i,r)=>`<button class="row" data-item="${i.id}">${picHTML(i.img)}<div><b>${esc(i.name)}</b><small>${CAT1[i.cat]} · worn ${W(i)}×</small></div><div class="right">${r}</div></button>`;
   const wishTotal=db.wishlist.reduce((s,w)=>s+(+w.price||0),0);
-  $('stats').innerHTML=`<div class="kpis"><div class="kpi"><small>Pieces</small><b>${it.length}</b></div><div class="kpi"><small>Spent</small><b>${money(spent)}</b></div><div class="kpi"><small>Wears</small><b>${wears}</b></div></div>
-   <div class="card"><h3>Spending by category</h3><div class="bars">${byCat.map(([k,s])=>`<div class="b"><span>${CATS[k]}</span><div class="track"><div class="fill" style="width:${s/maxCat*100}%"></div></div><span>${money(s)}</span></div>`).join('')}</div></div>
+  $('stats').innerHTML=`<div class="kpis"><div class="kpi"><small>Pieces</small><b>${it.length}</b></div><div class="kpi"><small>Spent</small><b>${priced.length?money(spent):'–'}</b>${priced.length<it.length?`<em>${priced.length} of ${it.length} priced</em>`:''}</div><div class="kpi"><small>Wears</small><b>${wears}</b></div></div>
+   <div class="card"><h2>Spending by category</h2><div class="bars">${byCat.map(([k,s,n,np])=>`<div class="b"><span>${CATS[k]}</span><div class="track"><div class="fill" style="width:${s/maxCat*100}%"></div></div><span>${np?money(s):'No prices'}</span></div>`).join('')}</div></div>
    ${most.length?`<div class="sect"><span>Most worn</span></div>${most.map(i=>row(i,W(i)+'×')).join('')}`:''}
    ${best.length?`<div class="sect"><span>Best value</span><span>cost per wear</span></div>${best.map(i=>row(i,money(cpw(i)))).join('')}`:''}
    ${worst.length?`<div class="sect"><span>Highest cost per wear</span></div>${worst.map(i=>row(i,money(cpw(i)))).join('')}`:''}
    ${never.length?`<div class="sect"><span>Not worn yet</span><span>${never.length}</span></div>${never.slice(0,8).map(i=>row(i,money(i.price))).join('')}`:''}
-   ${db.wishlist.length?`<div class="card" style="margin-top:14px"><h3>Wishlist</h3><div class="note" style="margin:0;font-size:13px;color:var(--ink)">${db.wishlist.length} items, ${money(wishTotal)} if you bought everything.</div></div>`:''}
+   ${db.wishlist.length?`<div class="card" style="margin-top:14px"><h2>Wishlist</h2><div class="note" style="margin:0;font-size:13px;color:var(--ink)">${db.wishlist.length} items, ${money(wishTotal)} if you bought everything.</div></div>`:''}
    ${priced.length<it.length?`<p class="note">${it.length-priced.length} piece${it.length-priced.length===1?' has':'s have'} no price yet. Add what you paid to see cost per wear.</p>`:''}`;
 }
 $('stats').onclick=e=>{const b=e.target.closest('[data-item]');if(b)itemSheet(b.dataset.item)};
@@ -651,10 +756,12 @@ function settingsSheet(){
    ${notes.length?`<div class="lbl">What's new</div><div class="changes">${notes.slice(0,6).map(n=>`<div>${esc(n.text)}<small>${esc(n.version)} · ${fmtDate(n.date)}${newer(n.version,APP_VERSION)?' · waiting to install':''}</small></div>`).join('')}</div>`:''}
    ${standalone()?'':`<div class="lbl">Install</div><div class="btns" style="margin-top:0"><button class="btn sec" data-act="install">Install on home screen</button></div>`}
    <div class="lbl">Closet</div>
-   <div class="form"><div class="f"><label for="sCur">Currency</label><select id="sCur">${['zł','€','$','£','CHF','kr'].map(c=>`<option ${c===db.settings.currency?'selected':''}>${c}</option>`).join('')}</select></div></div>
+   <div class="form"><div class="two"><div class="f"><label for="sCur">Currency</label><select id="sCur">${['zł','€','$','£','CHF','kr'].map(c=>`<option ${c===db.settings.currency?'selected':''}>${c}</option>`).join('')}</select></div>
+    <div class="f"><label for="sTheme">Appearance</label><select id="sTheme">${[['auto','Match phone'],['light','Light'],['dark','Dark']].map(([k,n])=>`<option value="${k}" ${k===(db.settings.theme||'auto')?'selected':''}>${n}</option>`).join('')}</select></div></div></div>
    <div class="btns"><button class="btn sec" data-act="export">Export backup</button><label class="btn sec" style="text-align:center">Restore backup<input type="file" accept="application/json,.json" id="restore" hidden></label></div>
-   <p class="err" id="sNote"></p>`);
+   <p class="err" id="sNote" role="alert"></p>`);
   $('sCur').onchange=e=>{db.settings.currency=e.target.value;save();renderAll()};
+  $('sTheme').onchange=e=>{db.settings.theme=e.target.value;save();applyTheme()};
   $('restore').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{let v;
     try{v=JSON.parse(r.result);if(!v.items||!Array.isArray(v.items))throw 0}catch(err){$('sNote').textContent="That file isn't a wardrobe backup.";return}
     if(!confirm('Replace everything on this phone with the backup?'))return;
@@ -686,17 +793,24 @@ document.addEventListener('click',e=>{
     case 'saveItem':if(a.disabled)return;a.disabled=true;saveItem(id||null).finally(()=>{a.disabled=false});break;
     case 'delItem':{const it=itemById(id),used=db.outfits.filter(o=>Object.values(o.items).includes(id)).length;
       if(!confirm(`Delete "${it.name}"?${used?` It's in ${used} outfit${used>1?'s':''}, which will lose this piece.`:''}`))return;
+      const undo=snapshot();
       db.items=db.items.filter(i=>i.id!==id);db.outfits.forEach(o=>{for(const k in o.items)if(o.items[k]===id)delete o.items[k]});
-      if(it.img&&!db.items.some(i=>i.img===it.img)&&!db.wishlist.some(w=>w.img===it.img))dropPhoto(it.img);
-      db.seen=[...new Set([...(db.seen||[]),id])];save();closeSheet();renderAll();toast('Deleted');break}
-    case 'wearItem':{const it=itemById(id);it.extraWears=(it.extraWears||0)+1;it.extraLast=t;save();renderAll();itemSheet(id);toast('Logged a wear');break}
+      // the photo is only thrown away once Undo is no longer offered
+      if(it.img)setTimeout(()=>{if(!db.items.some(i=>i.img===it.img)&&!db.wishlist.some(w=>w.img===it.img))dropPhoto(it.img)},7000);
+      db.seen=[...new Set([...(db.seen||[]),id])];save();closeSheet();renderAll();toast('Piece deleted',undo);break}
+    case 'wearItem':{const it=itemById(id),undo=snapshot(()=>itemSheet(id));it.extraWears=(it.extraWears||0)+1;it.extraLast=t;save();renderAll();itemSheet(id);toast('Logged a wear',undo);break}
     case 'newOutfit':closeSheet();if(db.items.length<2){toast('Add at least two pieces first');return}openBuilder(null);break;
-    case 'cancelBuilder':history.length>1&&history.state&&history.state.v==='builder'?history.back():show('outfits');break;
+    case 'cancelBuilder':if(B&&B.dirty&&!confirm('Discard this outfit?'))return;if(B)B.dirty=false;
+      history.length>1&&history.state&&history.state.v==='builder'?history.back():show('outfits');break;
     case 'editOutfit':closeSheet();openBuilder(id);break;
-    case 'delOutfit':if(!confirm('Delete this outfit? Days you already logged stay counted.'))return;
-      db.outfits=db.outfits.filter(o=>o.id!==id);for(const [d,e2] of Object.entries(db.plan))if(e2.outfit===id&&!e2.worn)delete db.plan[d];save();closeSheet();renderAll();break;
-    case 'wearOutfit':if(db.plan[t]&&db.plan[t].outfit!==id&&!confirm(`Today already has ${db.plan[t].worn?'a logged':'a planned'} outfit. Replace it with this one?`))return;
-      setDay(t,id,true);renderAll();outfitSheet(id);toast('Logged for today');break;
+    case 'delOutfit':{const undo=snapshot();
+      db.outfits=db.outfits.filter(o=>o.id!==id);for(const [d,e2] of Object.entries(db.plan))if(e2.outfit===id&&!e2.worn)delete db.plan[d];save();closeSheet();renderAll();toast('Outfit deleted. Days you logged still count.',undo);break}
+    case 'wearOutfit':{if(db.plan[t]&&db.plan[t].outfit!==id&&!confirm(`Today already has ${db.plan[t].worn?'a logged':'a planned'} outfit. Replace it with this one?`))return;
+      const undo=snapshot(()=>outfitSheet(id));setDay(t,id,true);renderAll();outfitSheet(id);toast('Logged for today',undo);break}
+    case 'wearToday':{const undo=snapshot(()=>{});setDay(t,id,true);todayPick=false;renderAll();toast('Logged for today',undo);break}
+    case 'wearPlanned':{const undo=snapshot(()=>{});db.plan[t].worn=true;save();todayPick=false;renderAll();toast('Logged for today',undo);break}
+    case 'todayChange':todayPick=true;renderToday();break;
+    case 'todayKeep':todayPick=false;renderToday();break;
     case 'planOutfit':{const o=db.outfits.find(x=>x.id===id);
       openSheet(`<h2>Plan "${esc(o.name)}"</h2><div class="form"><div class="f"><label for="pDate">Day</label><input id="pDate" type="date" value="${t}"></div><div class="err" id="pErr"></div></div>
        <div class="btns"><button class="btn" data-act="confirmPlan" data-id="${id}">Plan it</button></div>`);break}
@@ -708,11 +822,11 @@ document.addEventListener('click',e=>{
     case 'markWorn':db.plan[day].worn=true;save();renderAll();daySheet(day);toast('Marked as worn');break;
     case 'unmarkWorn':db.plan[day].worn=false;save();renderAll();daySheet(day);break;
     case 'changeDay':daySheet(day,true);break;
-    case 'clearDay':delete db.plan[day];save();closeSheet();renderAll();break;
+    case 'clearDay':{const was=db.plan[day],undo=snapshot();delete db.plan[day];save();closeSheet();renderAll();toast(was&&was.worn?'Removed. Wears for that day are taken off.':'Removed from '+fmtDate(day),undo);break}
     case 'addWish':wishForm(null);break;
     case 'editWish':wishForm(id);break;
     case 'saveWish':if(a.disabled)return;a.disabled=true;saveWish(id||null).finally(()=>{a.disabled=false});break;
-    case 'delWish':if(!confirm('Remove from wishlist?'))return;db.wishlist=db.wishlist.filter(w=>w.id!==id);db.seen=[...new Set([...(db.seen||[]),id])];save();closeSheet();renderAll();break;
+    case 'delWish':{const undo=snapshot();db.wishlist=db.wishlist.filter(w=>w.id!==id);db.seen=[...new Set([...(db.seen||[]),id])];save();closeSheet();renderAll();toast('Removed from wishlist',undo);break}
     case 'boughtWish':{const w=db.wishlist.find(x=>x.id===id);wishToBuy=id;
       itemForm(null,{name:w.name,brand:w.brand,cat:w.cat,size:w.size,price:w.price,url:w.url,img:w.img,notes:w.notes,bought:t.slice(0,7)});break}
     case 'settings':settingsSheet();break;
@@ -720,15 +834,22 @@ document.addEventListener('click',e=>{
     case 'checkUpd':checkUpdate(true).then(()=>{if($('sheetBg').classList.contains('on'))settingsSheet()});break;
     case 'install':doInstall();break;
     case 'laterInstall':try{localStorage.setItem('wardrobe-welcomed','1')}catch(err){}closeSheet();break;
+    case 'hideInstall':try{localStorage.setItem('wardrobe-install-hidden','1')}catch(err){}refreshInstall();toast('Install any time from Settings');break;
     case 'export':exportBackup();break;
   }
 });
 
 /* ===== navigation ===== */
 function show(v,fromPop){if(!fromPop&&v!==curView)push({v});curView=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));
-  const n=v==='builder'?'outfits':v;document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===n));window.scrollTo(0,0)}
+  document.body.classList.toggle('building',v==='builder');
+  const n=v==='builder'?'outfits':v;document.querySelectorAll('.nav button').forEach(b=>{const on=b.dataset.v===n;b.classList.toggle('on',on);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});window.scrollTo(0,0)}
 document.querySelector('.nav').onclick=e=>{const b=e.target.closest('button');if(b){closeSheet();show(b.dataset.v)}};
-function renderAll(){renderCloset();renderOutfits();renderPlan();renderWish();renderStats()}
+function renderAll(){renderToday();renderCloset();renderOutfits();renderPlan();renderWish();renderStats()}
+// appearance: follows the phone unless Settings picks light or dark
+const THEME_META=[...document.querySelectorAll('meta[name=theme-color]')].map(m=>[m,m.content]);
+function applyTheme(){const th=db.settings.theme;
+  if(th==='light'||th==='dark')document.documentElement.dataset.theme=th;else delete document.documentElement.dataset.theme;
+  THEME_META.forEach(([m,c])=>{m.content=th==='light'?'#F3EFE8':th==='dark'?'#171513':c})}
 
 /* ===== install ===== */
 let installEvt=null;
@@ -736,7 +857,7 @@ const standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator
 const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;refreshInstall()});
 window.addEventListener('appinstalled',()=>{installEvt=null;try{localStorage.setItem('wardrobe-welcomed','1')}catch(err){}refreshInstall();closeSheet();toast('Installed. Open it from your home screen.')});
-function refreshInstall(){$('instBanner').classList.toggle('on',!standalone())}
+function refreshInstall(){let hid=false;try{hid=localStorage.getItem('wardrobe-install-hidden')==='1'}catch(e){}$('instBanner').classList.toggle('on',!standalone()&&!hid)}
 async function doInstall(){
   if(installEvt){installEvt.prompt();const r=await installEvt.userChoice.catch(()=>null);
     if(r&&r.outcome==='accepted'){installEvt=null;try{localStorage.setItem('wardrobe-welcomed','1')}catch(err){}refreshInstall();closeSheet()}return}
@@ -748,8 +869,10 @@ async function doInstall(){
 function welcome(){
   let seen=false;try{seen=localStorage.getItem('wardrobe-welcomed')==='1'}catch(e){}
   if(seen||standalone())return;
+  try{localStorage.setItem('wardrobe-welcomed','1')}catch(e){} // shown once, however it's closed
   openSheet(`<div class="welcome"><img src="icon-192.png" alt=""><h2>Welcome to Wardrobe</h2>
-   <p>Your closet, outfits, cost per wear and wishlist in one app. Install it on your home screen so it opens like a normal app and works offline.</p></div>
+   <ul><li>Put outfits together from your own pieces.</li><li>Each morning, tap what you're wearing.</li><li>Plan days ahead and keep a wishlist.</li></ul>
+   <p>Everything stays on this phone. Install it on your home screen so it opens like a normal app and works offline.</p></div>
    <div class="btns"><button class="btn" data-act="install">Install the app</button></div>
    <div class="btns"><button class="btn sec" data-act="laterInstall">Maybe later</button></div>`);
 }
@@ -793,7 +916,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdat
    Pieces and wishes added with the import tool arrive via data/*.json. Pieces already on the
    phone keep your own edits (price, notes, wears); only the photo and size chart refresh. */
 async function boot(){
-  load();
+  load();applyTheme();
   history.replaceState({v:'closet'},'');
   idb=await idbOpen();
   if(idb){try{const all=await idbAll();for(const [k,b] of Object.entries(all))PH[k]=URL.createObjectURL(b);
