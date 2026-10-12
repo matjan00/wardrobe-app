@@ -911,6 +911,99 @@
     "bottom": 0.9984
    },
    "estimated": true
+  },
+  {
+   "id": "basic-t-shirt-black",
+   "name": "Basic T-shirt, black",
+   "brand": "",
+   "cat": "top",
+   "img": "img/basic-t-shirt-black.webp?v=12967e",
+   "url": "",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 70,
+     "chest": 108,
+     "shoulder": 46
+    }
+   },
+   "color": "black",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": 50.0,
+   "bought": "",
+   "store": "",
+   "photo": {
+    "w": 427,
+    "h": 440,
+    "top": 0.0,
+    "hem": 0.9864,
+    "bottom": 0.9977
+   },
+   "estimated": true
+  },
+  {
+   "id": "basic-t-shirt-dark-green",
+   "name": "Basic T-shirt, dark green",
+   "brand": "",
+   "cat": "top",
+   "img": "img/basic-t-shirt-dark-green.webp?v=24ebe6",
+   "url": "",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 70,
+     "chest": 108,
+     "shoulder": 46
+    }
+   },
+   "color": "green",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": 50.0,
+   "bought": "",
+   "store": "",
+   "photo": {
+    "w": 438,
+    "h": 440,
+    "top": 0.0,
+    "hem": 0.9909,
+    "bottom": 0.9977
+   },
+   "estimated": true
+  },
+  {
+   "id": "basic-t-shirt-white",
+   "name": "Basic T-shirt, white",
+   "brand": "",
+   "cat": "top",
+   "img": "img/basic-t-shirt-white.webp?v=49d267",
+   "url": "",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 70,
+     "chest": 108,
+     "shoulder": 46
+    }
+   },
+   "color": "white",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": 50.0,
+   "bought": "",
+   "store": "",
+   "photo": {
+    "w": 432,
+    "h": 442,
+    "top": 0.0023,
+    "hem": 0.9819,
+    "bottom": 0.9955
+   },
+   "estimated": true
   }
  ]
 }

@@ -1,6 +1,11 @@
 {
- "version": "1.0.9",
+ "version": "1.0.10",
  "notes": [
+  {
+   "version": "1.0.10",
+   "date": "2026-10-12",
+   "text": "Added 3 basic T-shirts: black, dark green, white"
+  },
   {
    "version": "1.0.9",
    "date": "2026-10-12",
