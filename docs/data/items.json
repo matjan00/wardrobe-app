@@ -6,7 +6,7 @@
    "name": "1940s Herringbone Deck Pants, navy",
    "brand": "Timecatcher",
    "cat": "bottom",
-   "img": "img/1940s-usn-herringbone-deck-pants-navy.webp?v=23b1a7",
+   "img": "img/1940s-usn-herringbone-deck-pants-navy.webp?v=243dba",
    "url": "https://timecatcherco.com/collections/pants-trousers/products/1940s-usn-herringbone-deck-pants-navy",
    "owned": true,
    "size": "W30",
@@ -73,7 +73,7 @@
     }
    },
    "photo": {
-    "w": 374,
+    "w": 373,
     "h": 700,
     "top": 0.0,
     "hem": 0.9986,
@@ -87,7 +87,7 @@
    "name": "1930s Duck Canvas Cossack Jacket, khaki",
    "brand": "Timecatcher",
    "cat": "jacket",
-   "img": "img/1930s-duck-canvas-cossack-jacket-washed-khaki.webp?v=a7df35",
+   "img": "img/1930s-duck-canvas-cossack-jacket-washed-khaki.webp?v=7ae4c1",
    "url": "https://timecatcherco.com/collections/new-arrivals/products/1930s-duck-canvas-cossack-jacket-washed-khaki",
    "owned": true,
    "size": "S",
@@ -125,10 +125,10 @@
    },
    "photo": {
     "w": 700,
-    "h": 664,
+    "h": 665,
     "top": 0.0,
-    "hem": 0.9021,
-    "bottom": 0.9985
+    "hem": 0.9053,
+    "bottom": 0.997
    },
    "estimated": false,
    "placeholder": false
@@ -138,7 +138,7 @@
    "name": "Easy Weejuns Larson Penny Loafers, black",
    "brand": "G.H.Bass",
    "cat": "shoes",
-   "img": "img/easy-weejuns-larson-penny-loafer-black-leather.webp?v=ff928e",
+   "img": "img/easy-weejuns-larson-penny-loafer-black-leather.webp?v=75f206",
    "url": "https://www.ghbass-eu.com/en-eu/products/easy-weejuns-larson-penny-loafer-black-leather",
    "owned": true,
    "size": "41",
@@ -175,11 +175,11 @@
     }
    },
    "photo": {
-    "w": 643,
-    "h": 316,
-    "top": 0.0,
-    "hem": 0.9968,
-    "bottom": 0.9968
+    "w": 637,
+    "h": 298,
+    "top": 0.0034,
+    "hem": 0.9933,
+    "bottom": 0.9933
    },
    "estimated": false,
    "placeholder": false
@@ -189,7 +189,7 @@
    "name": "Zara suede penny loafers, dark brown",
    "brand": "Zara",
    "cat": "shoes",
-   "img": "img/zara-suede-penny-loafers-dark-brown.webp?v=4f5442",
+   "img": "img/zara-suede-penny-loafers-dark-brown.webp?v=b02307",
    "url": "https://www.zara.com/pl/en/leather-penny-loafers-p12678720.html",
    "size": "40",
    "sizes": {
@@ -232,9 +232,9 @@
    "bought": "",
    "store": "",
    "photo": {
-    "w": 502,
+    "w": 503,
     "h": 190,
-    "top": 0.0053,
+    "top": 0.0,
     "hem": 0.9947,
     "bottom": 0.9947
    },
@@ -245,7 +245,7 @@
    "name": "1966 Selvedge Denim Jeans",
    "brand": "Timecatcher",
    "cat": "bottom",
-   "img": "img/timecatcher-1966-selvedge-denim-jeans.webp?v=29fb70",
+   "img": "img/timecatcher-1966-selvedge-denim-jeans.webp?v=35ecb4",
    "url": "https://timecatcherco.com/products/1966-model-selvedge-denim-jeans",
    "size": "W30",
    "sizes": {
@@ -318,7 +318,7 @@
    "bought": "",
    "store": "",
    "photo": {
-    "w": 379,
+    "w": 368,
     "h": 700,
     "top": 0.0,
     "hem": 0.9986,
@@ -331,7 +331,7 @@
    "name": "Regular Fit Heavyweight Tubular Jersey T-Shirt, black",
    "brand": "Timecatcher",
    "cat": "top",
-   "img": "img/timecatcher-regular-fit-heavyweight-tubular-jersey-t-shirt-black.webp?v=6231c8",
+   "img": "img/timecatcher-regular-fit-heavyweight-tubular-jersey-t-shirt-black.webp?v=135886",
    "url": "https://timecatcherco.com/products/regular-fit-heavyweight-tubular-jersey-t-shirt-vintage-black",
    "size": "S",
    "sizes": {
@@ -375,9 +375,9 @@
    "store": "Timecatcher (order TC9338)",
    "photo": {
     "w": 700,
-    "h": 670,
+    "h": 672,
     "top": 0.0,
-    "hem": 0.994,
+    "hem": 0.9985,
     "bottom": 0.9985
    },
    "estimated": false
@@ -387,7 +387,7 @@
    "name": "Regular Fit Heavyweight Tubular Jersey T-Shirt, white",
    "brand": "Timecatcher",
    "cat": "top",
-   "img": "img/timecatcher-regular-fit-heavyweight-tubular-jersey-t-shirt-white.webp?v=1480d7",
+   "img": "img/timecatcher-regular-fit-heavyweight-tubular-jersey-t-shirt-white.webp?v=befd14",
    "url": "https://timecatcherco.com/products/regular-fit-heavyweight-tubular-jersey-t-shirt-white",
    "size": "S",
    "sizes": {
@@ -431,9 +431,9 @@
    "store": "Timecatcher (order TC9338)",
    "photo": {
     "w": 700,
-    "h": 671,
+    "h": 674,
     "top": 0.0,
-    "hem": 0.9866,
+    "hem": 0.9985,
     "bottom": 0.9985
    },
    "estimated": false
@@ -443,7 +443,7 @@
    "name": "1990s Heavyweight Cotton Jersey Boxy T-Shirt, black",
    "brand": "Timecatcher",
    "cat": "top",
-   "img": "img/timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-black.webp?v=046d7d",
+   "img": "img/timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-black.webp?v=631843",
    "url": "https://timecatcherco.com/products/1990s-heavyweight-cotton-jersey-boxy-t-shirt-vintage-black",
    "size": "S",
    "sizes": {
@@ -487,9 +487,9 @@
    "store": "Timecatcher (order TC9338)",
    "photo": {
     "w": 700,
-    "h": 577,
+    "h": 580,
     "top": 0.0,
-    "hem": 0.9965,
+    "hem": 0.9983,
     "bottom": 0.9983
    },
    "estimated": false
@@ -499,7 +499,7 @@
    "name": "1990s Heavyweight Cotton Jersey Boxy T-Shirt, white",
    "brand": "Timecatcher",
    "cat": "top",
-   "img": "img/timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-white.webp?v=079cf4",
+   "img": "img/timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-white.webp?v=528408",
    "url": "https://timecatcherco.com/products/1990s-heavyweight-cotton-jersey-boxy-t-shirt-white",
    "size": "S",
    "sizes": {
@@ -555,7 +555,7 @@
    "name": "1990s Heavyweight Cotton Jersey Boxy T-Shirt, olive",
    "brand": "Timecatcher",
    "cat": "top",
-   "img": "img/timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-olive.webp?v=58097f",
+   "img": "img/timecatcher-1990s-heavyweight-cotton-jersey-boxy-t-shirt-olive.webp?v=67638f",
    "url": "https://timecatcherco.com/products/1990s-heavyweight-cotton-jersey-boxy-t-shirt-olive",
    "size": "S",
    "sizes": {
@@ -599,9 +599,9 @@
    "store": "Timecatcher (order TC9338)",
    "photo": {
     "w": 700,
-    "h": 574,
+    "h": 580,
     "top": 0.0,
-    "hem": 0.9983,
+    "hem": 0.9966,
     "bottom": 0.9983
    },
    "estimated": false
@@ -611,7 +611,7 @@
    "name": "Street Lite sneakers, blue",
    "brand": "ECCO",
    "cat": "shoes",
-   "img": "img/ecco-street-lite-m.webp?v=674ffc",
+   "img": "img/ecco-street-lite-m.webp?v=70759f",
    "url": "https://www.booztlet.com/pl/pl/ecco/street-lite-m_29622273/227588908",
    "size": "40",
    "sizes": {
@@ -654,8 +654,8 @@
    "bought": "",
    "store": "Vinted",
    "photo": {
-    "w": 337,
-    "h": 195,
+    "w": 338,
+    "h": 196,
     "top": 0.0,
     "hem": 0.9949,
     "bottom": 0.9949
@@ -668,12 +668,12 @@
    "name": "Slim washed linen shirt, sand",
    "brand": "Massimo Dutti",
    "cat": "top",
-   "img": "img/slim-washed-linen-shirt-sand.webp?v=f39cd1",
+   "img": "img/slim-washed-linen-shirt-sand.webp?v=23f088",
    "url": "",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 70,
+     "length": 74,
      "chest": 108,
      "shoulder": 46
     }
@@ -686,10 +686,10 @@
    "bought": "",
    "store": "Massimo Dutti",
    "photo": {
-    "w": 556,
+    "w": 557,
     "h": 700,
     "top": 0.0,
-    "hem": 0.9971,
+    "hem": 0.9986,
     "bottom": 0.9986
    },
    "estimated": true
@@ -699,12 +699,12 @@
    "name": "Slim washed linen shirt, dark grey",
    "brand": "Massimo Dutti",
    "cat": "top",
-   "img": "img/slim-washed-linen-shirt-dark-grey.webp?v=180d4a",
+   "img": "img/slim-washed-linen-shirt-dark-grey.webp?v=d22d14",
    "url": "",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 70,
+     "length": 74,
      "chest": 108,
      "shoulder": 46
     }
@@ -717,7 +717,7 @@
    "bought": "",
    "store": "Massimo Dutti",
    "photo": {
-    "w": 554,
+    "w": 555,
     "h": 700,
     "top": 0.0,
     "hem": 0.9986,
@@ -730,12 +730,12 @@
    "name": "Slim linen shirt, green",
    "brand": "Massimo Dutti",
    "cat": "top",
-   "img": "img/slim-linen-shirt-green.webp?v=f7b5be",
+   "img": "img/slim-linen-shirt-green.webp?v=2bc275",
    "url": "",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 70,
+     "length": 74,
      "chest": 108,
      "shoulder": 46
     }
@@ -748,7 +748,7 @@
    "bought": "",
    "store": "Massimo Dutti",
    "photo": {
-    "w": 556,
+    "w": 558,
     "h": 700,
     "top": 0.0,
     "hem": 0.9986,
@@ -761,12 +761,12 @@
    "name": "Slim linen shirt, aubergine",
    "brand": "Massimo Dutti",
    "cat": "top",
-   "img": "img/slim-linen-shirt-aubergine.webp?v=2626ff",
+   "img": "img/slim-linen-shirt-aubergine.webp?v=e35409",
    "url": "",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 70,
+     "length": 74,
      "chest": 108,
      "shoulder": 46
     }
@@ -779,7 +779,7 @@
    "bought": "",
    "store": "Massimo Dutti",
    "photo": {
-    "w": 558,
+    "w": 560,
     "h": 700,
     "top": 0.0,
     "hem": 0.9971,
@@ -792,7 +792,7 @@
    "name": "Pleated linen trousers, dark brown",
    "brand": "Zara",
    "cat": "bottom",
-   "img": "img/pleated-linen-trousers-dark-brown.webp?v=7060a5",
+   "img": "img/pleated-linen-trousers-dark-brown.webp?v=a6ab55",
    "url": "https://www.zara.com/pl/pl/spodnie-regular-fit-ze-100-lnu-p04410012.html",
    "size": "S",
    "sizes": {
@@ -824,12 +824,12 @@
    "name": "Baird McNutt Irish linen shirt, blue stripe",
    "brand": "J.Crew",
    "cat": "top",
-   "img": "img/baird-mcnutt-irish-linen-shirt-blue-stripe.webp?v=57ee68",
+   "img": "img/baird-mcnutt-irish-linen-shirt-blue-stripe.webp?v=58b356",
    "url": "https://www.jcrew.com/p/mens/categories/clothing/shirts/linen/CF667?color_name=YD9977",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 70,
+     "length": 76,
      "chest": 108,
      "shoulder": 46
     }
@@ -842,11 +842,11 @@
    "bought": "",
    "store": "Vinted",
    "photo": {
-    "w": 495,
-    "h": 627,
+    "w": 494,
+    "h": 628,
     "top": 0.0,
-    "hem": 0.9968,
-    "bottom": 0.9984
+    "hem": 0.9952,
+    "bottom": 0.9968
    },
    "estimated": true
   },
@@ -855,12 +855,12 @@
    "name": "Turtleneck with cashmere, black",
    "brand": "Reserved",
    "cat": "top",
-   "img": "img/turtleneck-with-cashmere-black.webp?v=646222",
+   "img": "img/turtleneck-with-cashmere-black.webp?v=76a445",
    "url": "https://www.reserved.com/pl/pl/golf-z-welny-i-domieszki-kaszmiru-878ks-99x",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 70,
+     "length": 66,
      "chest": 108,
      "shoulder": 46
     }
@@ -873,11 +873,11 @@
    "bought": "",
    "store": "Reserved",
    "photo": {
-    "w": 493,
-    "h": 580,
+    "w": 477,
+    "h": 571,
     "top": 0.0,
-    "hem": 0.9569,
-    "bottom": 0.9983
+    "hem": 0.9387,
+    "bottom": 0.9982
    },
    "estimated": true
   },
@@ -886,12 +886,12 @@
    "name": "Merino wool turtleneck, dark brown",
    "brand": "Reserved",
    "cat": "top",
-   "img": "img/merino-wool-turtleneck-dark-brown.webp?v=b456e3",
+   "img": "img/merino-wool-turtleneck-dark-brown.webp?v=56300d",
    "url": "https://www.reserved.com/pl/pl/golf-z-welny-merino-863ks-89x",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 70,
+     "length": 66,
      "chest": 108,
      "shoulder": 46
     }
@@ -904,10 +904,10 @@
    "bought": "",
    "store": "Reserved",
    "photo": {
-    "w": 485,
-    "h": 628,
-    "top": 0.0,
-    "hem": 0.9283,
+    "w": 465,
+    "h": 616,
+    "top": 0.0016,
+    "hem": 0.9253,
     "bottom": 0.9984
    },
    "estimated": true
@@ -917,12 +917,12 @@
    "name": "Basic T-shirt, black",
    "brand": "",
    "cat": "top",
-   "img": "img/basic-t-shirt-black.webp?v=12967e",
+   "img": "img/basic-t-shirt-black.webp?v=e774c2",
    "url": "",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 70,
+     "length": 69,
      "chest": 108,
      "shoulder": 46
     }
@@ -935,8 +935,8 @@
    "bought": "",
    "store": "",
    "photo": {
-    "w": 427,
-    "h": 440,
+    "w": 430,
+    "h": 441,
     "top": 0.0,
     "hem": 0.9864,
     "bottom": 0.9977
@@ -948,12 +948,12 @@
    "name": "Basic T-shirt, dark green",
    "brand": "",
    "cat": "top",
-   "img": "img/basic-t-shirt-dark-green.webp?v=24ebe6",
+   "img": "img/basic-t-shirt-dark-green.webp?v=4a0247",
    "url": "",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 70,
+     "length": 69,
      "chest": 108,
      "shoulder": 46
     }
@@ -966,8 +966,8 @@
    "bought": "",
    "store": "",
    "photo": {
-    "w": 438,
-    "h": 440,
+    "w": 440,
+    "h": 441,
     "top": 0.0,
     "hem": 0.9909,
     "bottom": 0.9977
@@ -979,12 +979,12 @@
    "name": "Basic T-shirt, white",
    "brand": "",
    "cat": "top",
-   "img": "img/basic-t-shirt-white.webp?v=49d267",
+   "img": "img/basic-t-shirt-white.webp?v=948c55",
    "url": "",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 70,
+     "length": 69,
      "chest": 108,
      "shoulder": 46
     }
@@ -997,11 +997,11 @@
    "bought": "",
    "store": "",
    "photo": {
-    "w": 432,
-    "h": 442,
+    "w": 430,
+    "h": 438,
     "top": 0.0023,
-    "hem": 0.9819,
-    "bottom": 0.9955
+    "hem": 0.984,
+    "bottom": 0.9954
    },
    "estimated": true
   },
@@ -1010,12 +1010,12 @@
    "name": "Wool flannel single-breasted overcoat, navy",
    "brand": "Ring Jacket",
    "cat": "jacket",
-   "img": "img/ring-jacket-wool-flannel-single-breasted-overcoat-navy.webp?v=a64dcb",
+   "img": "img/ring-jacket-wool-flannel-single-breasted-overcoat-navy.webp?v=08207f",
    "url": "https://oldhouseprovisions.com/products/ring-jacket-wool-flannel-single-breasted-overcoat-navy",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 68,
+     "length": 100,
      "chest": 114,
      "shoulder": 47
     }
@@ -1028,11 +1028,11 @@
    "bought": "",
    "store": "Old House Provisions",
    "photo": {
-    "w": 389,
+    "w": 386,
     "h": 700,
-    "top": 0.0014,
-    "hem": 0.9971,
-    "bottom": 0.9971
+    "top": 0.0,
+    "hem": 0.9986,
+    "bottom": 0.9986
    },
    "estimated": true
   },
@@ -1041,12 +1041,12 @@
    "name": "Double-breasted herringbone coat, grey",
    "brand": "Hugo Boss",
    "cat": "jacket",
-   "img": "img/double-breasted-herringbone-coat-grey.webp?v=f9e229",
+   "img": "img/double-breasted-herringbone-coat-grey.webp?v=2e1a48",
    "url": "",
    "size": "S",
    "sizes": {
     "S": {
-     "length": 68,
+     "length": 102,
      "chest": 114,
      "shoulder": 47
     }
@@ -1059,7 +1059,7 @@
    "bought": "",
    "store": "Vinted",
    "photo": {
-    "w": 330,
+    "w": 358,
     "h": 700,
     "top": 0.0,
     "hem": 0.9943,

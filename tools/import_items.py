@@ -35,6 +35,9 @@ TYPICAL = {
     'bottom': {'length': 104, 'waist': 82, 'front rise': 29, 'inseam': 78},
     'shoes': {'length': 29},
 }
+# the outfit picture draws every piece at true size from its length, so estimate that per kind of garment
+KIND_LENGTH = [(r'overcoat|\bcoat\b|trench|parka', 100), (r'turtleneck|sweater|knit|jumper|cardigan|hoodie|sweatshirt', 66),
+               (r't-shirt|\btee\b|polo|tank', 70), (r'shirt', 75)]
 SHORTS = {'length': 50, 'waist': 82, 'front rise': 28, 'inseam': 20}
 COLOURS = {'black': '#1f1f1f', 'white': '#f2f0ea', 'off-white': '#ece6d6', 'ecru': '#e6dcc6', 'cream': '#ebe2cc',
            'navy': '#1f2a40', 'indigo': '#26324f', 'blue': '#3d5f8f', 'light blue': '#a9c1dc', 'denim': '#3c5476',
@@ -253,7 +256,7 @@ def main(path, wishlist=False):
                     notes.append('photo taken from the page preview, check it is the item and not a model')
         placeholder_used = rgba is None
         if placeholder_used:
-            long_sl = bool(re.search(r'sweater|sweatshirt|hoodie|jumper|knit|long.sleeve|shirt|oxford|flannel|jacket|coat|cardigan|overshirt', title, re.I)) and not re.search(r't-?shirt|tee', title, re.I)
+            long_sl = bool(re.search(r'sweater|sweatshirt|hoodie|jumper|knit|long.sleeve|shirt\b|oxford|flannel|jacket|coat|cardigan|overshirt', title, re.I)) and not re.search(r't-?shirt|\btee\b', title, re.I)
             rgba = placeholder(cat, colour_of(title), is_shorts, long_sl)
             notes.append('placeholder shape; add a photo for the real look')
         rgba.thumbnail((700, 700))
@@ -271,6 +274,9 @@ def main(path, wishlist=False):
             sizes = {size or 'typical': dict(SHORTS if is_shorts else TYPICAL[cat])}
             size = size or 'typical'
             est = True
+            if cat in ('top', 'jacket'):
+                sizes[size]['length'] = next((l for rx, l in KIND_LENGTH if re.search(rx, title, re.I)), sizes[size]['length'])
+            notes.append('measurements are typical guesses, length %s cm' % sizes[size]['length'])
         if size and size not in sizes:
             match = [k for k in sizes if k.lower().replace(' ', '') == size.lower().replace(' ', '')]
             if match:

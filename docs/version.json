@@ -1,6 +1,11 @@
 {
- "version": "1.0.13",
+ "version": "1.0.14",
  "notes": [
+  {
+   "version": "1.0.14",
+   "date": "2026-10-12",
+   "text": "Outfits now show every piece at its true size in a flat lay; cleaner cut-outs without shadows, outlines or hangers"
+  },
   {
    "version": "1.0.13",
    "date": "2026-10-12",

@@ -34,7 +34,7 @@ A private, free, single-user closet that lives on his own phone: no account, no 
 ## Capabilities and Constraints
 
 - Tabs: Closet, Outfits (with builder), Plan (calendar), Wishlist, Insights.
-- Outfit picture: real product cut-outs stacked or in a flat lay. No avatar, mannequin or body figure (tried and rejected). No AI try-on (tried, results looked bad).
+- Outfit picture: real product cut-outs in a flat lay, every piece at true size from its length measurement. Stacked view and tuck-in were tried and dropped. No avatar, mannequin or body figure (tried and rejected). No AI try-on (tried, results looked bad).
 - Single static HTML file in `docs/`, vanilla JS, no build step, hosted on GitHub Pages. Data in localStorage, own photos in IndexedDB, offline via service worker. Every release goes through `node tools/release.cjs "note"` so the phone shows an update notice.
 - Everything must stay free to run.
 - No sync between devices; backups are exported files.

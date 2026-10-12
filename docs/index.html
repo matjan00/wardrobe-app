@@ -62,31 +62,13 @@ select.sort{flex:none;height:44px;border-radius:99px;border:1px solid var(--line
 .empty{color:var(--mute);font-size:14px;text-align:center;padding:36px 12px;grid-column:1/-1;line-height:1.5}
 
 .stage{position:relative;width:100%;aspect-ratio:3/4.4;background:var(--stg);border-radius:20px;overflow:hidden}
-.layer{position:absolute;left:50%;transform:translateX(-50%);transition:all .3s ease;pointer-events:none}
-.layer img{height:100%;width:auto;display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.13))}
-.stand .L-jacket{top:3%;height:40%;z-index:4}
-.stand .L-top{top:6%;height:40%;z-index:2}
-.stand:not(.nojacket) .L-top img{clip-path:inset(38% 22% 0 22%)}
-.stand .L-bottom{top:36%;height:53%;z-index:1}
-.stand.tuck .L-bottom{z-index:3}
-.stand .L-shoes{top:86%;height:11%;z-index:5}
-.stand .L-acc{bottom:4%;left:auto;right:4%;transform:none;height:16%;z-index:6}
-.flat .layer{transform:none}
-.flat .L-jacket{top:3%;left:3%;height:34%;z-index:2}
-.flat .L-top{top:20%;left:45%;height:31%;z-index:3}
-.flat.nojacket .L-top{top:4%;left:18%;height:38%}
-.flat .L-bottom{top:42%;left:8%;height:53%;z-index:1}
-.flat .L-shoes{top:78%;left:52%;height:12%;z-index:4}
-.flat .L-acc{top:56%;left:62%;height:16%;z-index:5}
-.layer.photo img{border-radius:10px;filter:none;width:100%;object-fit:cover}
+.layer{position:absolute;transition:all .3s ease;pointer-events:none}
+.layer img{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.13))}
+.layer.photo img{border-radius:10px;filter:none;object-fit:cover}
 
 .tools{display:flex;gap:8px;margin-top:10px}
 .tool{flex:1;height:44px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:13px;font-weight:500;cursor:pointer}
-.tool.on{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
 .tool:disabled{opacity:.4;cursor:default}
-.seg{flex:1.6;display:flex;border:1px solid var(--line);border-radius:99px;background:var(--card);padding:3px;gap:2px}
-.seg button{flex:1;border:0;border-radius:99px;background:none;font-size:13px;font-weight:500;cursor:pointer;color:var(--mute)}
-.seg button[aria-pressed=true]{background:var(--ink);color:var(--on-ink)}
 
 .looks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .look,.row,.day,.wcard,.tmini{font:inherit;color:inherit;text-align:left;border:0;width:100%;display:block}
@@ -292,10 +274,8 @@ body.building .toast{bottom:calc(80px + env(safe-area-inset-bottom))}
 
  <section class="view" id="v-builder">
   <div class="top"><div><h1 id="bTitle">New outfit</h1><p class="sub">Tap pieces to put them on.</p></div></div>
-  <div class="stage stand" id="bStage"></div>
+  <div class="stage" id="bStage"></div>
   <div class="tools">
-   <div class="seg" role="group" aria-label="Picture style"><button id="bStand" aria-pressed="true">Stacked</button><button id="bFlat" aria-pressed="false">Flat lay</button></div>
-   <button class="tool" id="bTuck" aria-pressed="false">Tuck in</button>
    <button class="tool" id="bRnd">Random</button>
   </div>
   <div class="bar" style="margin-top:12px"><div class="chips" id="bCats"></div></div>
@@ -342,7 +322,7 @@ body.building .toast{bottom:calc(80px + env(safe-area-inset-bottom))}
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button id="toastUndo">Undo</button></div>
 
 <script>
-const APP_VERSION='1.0.13';
+const APP_VERSION='1.0.14';
 /* ===== storage ===== */
 const KEY='wardrobe-db-v2';
 const $=id=>document.getElementById(id);
@@ -394,12 +374,33 @@ const XICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 const NOPIC='<svg class="nopic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 7a2 2 0 1 1 2-2M12 7v1.5L3 16h18l-9-7.5"/></svg>';
 function picHTML(src){const u=srcOf(src);return u?`<div class="pic ${isPhoto(src)?'photo':''}"><img src="${esc(u)}" alt="" loading="lazy"></div>`:`<div class="pic">${NOPIC}</div>`}
 
-/* ===== outfit picture: product photos stacked, no figure ===== */
+/* ===== outfit picture: product photos in a flat lay, no figure =====
+   True size: every piece is drawn at one fixed scale from its real length (the "length"
+   measurement), so an overcoat is long and a cropped jacket short in every outfit, and a new
+   piece needs no tuning. Stage is 300 x 440 units; positions are set as percentages. */
+const TYP_LEN=[[/overcoat|\bcoat\b|trench|parka|mac\b/,100],[/turtleneck|sweater|knit|jumper|cardigan|hoodie|sweatshirt/,66],[/t-shirt|\btee\b|polo|tank/,70]];
+function lengthCm(it){
+  const s=(it.sizes&&it.sizes[it.size])||{},l=+(s.length||s['total length']||s['back length']||0);if(l>0)return l;
+  if(it.cat==='shoes')return 28.5;if(it.cat==='bottom')return 104;
+  const n=(it.name||'').toLowerCase(),m=TYP_LEN.find(([rx])=>rx.test(n));return m?m[1]:it.cat==='jacket'?68:76}
+const PHOTO_AR={top:1,jacket:.8,bottom:.5,shoes:2,acc:1};
+const aspect=it=>isPhoto(it.img)?1:it.photo&&it.photo.w&&it.photo.h?it.photo.w/it.photo.h:PHOTO_AR[it.cat]||1;
+// width and height in stage units; shoe photos are side views, so their width is the shoe length (a little more for pairs)
+function trueBox(it,ppc){const a=aspect(it);if(it.cat==='shoes'){const w=lengthCm(it)*1.15*ppc;return{w,h:w/a}}const h=lengthCm(it)*ppc;return{w:h*a,h}}
 function stageHTML(items,o={}){
-  const g=k=>items[k]&&itemById(items[k]);let h='';
-  for(const k of ['bottom','top','jacket','shoes','acc']){const it=g(k);if(!it)continue;
-    const u=srcOf(it.img);if(!u)continue;h+=`<div class="layer L-${k} ${isPhoto(it.img)?'photo':''}" ${isPhoto(it.img)?'style="aspect-ratio:1"':''}><img src="${esc(u)}" alt="${esc(it.name)}"></div>`}
-  return `<div class="stage ${o.flat?'flat':'stand'} ${o.tuck?'tuck':''} ${g('jacket')?'':'nojacket'}" ${o.id?`id="${o.id}"`:''}>${h}</div>`;
+  const SW=300,SH=440,P=(v,t)=>(v/t*100).toFixed(2)+'%',g=k=>items[k]&&itemById(items[k]);let h='';
+  const put=(k,x,y,b,z)=>{const it=g(k),u=srcOf(it.img);if(u)h+=`<div class="layer L-${k} ${isPhoto(it.img)?'photo':''}" style="left:${P(x,SW)};top:${P(y,SH)};width:${P(b.w,SW)};height:${P(b.h,SH)};z-index:${z}"><img src="${esc(u)}" alt="${esc(it.name)}"></div>`};
+  const box=(k,ppc)=>g(k)&&trueBox(g(k),ppc);
+  const ppc=2,t=box('top',ppc),j=box('jacket',ppc),b=box('bottom',ppc),s=box('shoes',ppc);
+  // jacket top left, top beside it; without a jacket the top sits higher and the trousers start
+  // just under its hem. Then the whole group is centred vertically so short outfits leave no gap.
+  const by=b?(j?SH-b.h-10:Math.min(SH-b.h-10,10+(t?t.h*.8:0))):0,low=Math.max(b?by+b.h:0,j?10+j.h:0,t?(j?40:10)+t.h:0),dy=Math.max(0,(SH-10-low)/2);
+  if(b)put('bottom',20,by+dy,b,1);
+  if(j)put('jacket',10,10+dy,j,2);
+  if(t)put('top',j?SW-t.w-10:(SW-t.w)/2-30,(j?40:10)+dy,t,3);
+  if(s)put('shoes',SW-s.w-12,(b?by+b.h:low)+dy-s.h-14,s,4);
+  const a=g('acc');if(a){const ab=trueBox(a,1),k=Math.min(70/ab.h,90/ab.w);put('acc',SW-ab.w*k-12,246,{w:ab.w*k,h:ab.h*k},6)}
+  return `<div class="stage" ${o.id?`id="${o.id}"`:''}>${h}</div>`;
 }
 
 /* ===== closet ===== */
@@ -437,9 +438,9 @@ function renderToday(){
   el.hidden=false;
   const head=`<div class="today-h"><h2 id="todayH">Today</h2><small>${new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})}</small></div>`;
   if(!db.outfits.length){el.innerHTML=head+`<p class="today-hint">Put an outfit together once, then log what you wear here in one tap.</p><button class="add" data-act="newOutfit">Make an outfit</button>`;return}
-  const name=esc(o?o.name:'Outfit'),pic=e?stageHTML(piecesOf(e),{tuck:o&&o.tuck,flat:o&&o.flat}):'';
+  const name=esc(o?o.name:'Outfit'),pic=e?stageHTML(piecesOf(e)):'';
   const others=db.outfits.filter(x=>!e||x.id!==e.outfit).sort((a,b)=>lastWornOf(b.id).localeCompare(lastWornOf(a.id))||(b.created||'').localeCompare(a.created||''));
-  const strip=others.length?`<div class="strip">${others.map(x=>`<button class="tmini" data-act="wearToday" data-id="${x.id}" aria-label="Wearing ${esc(x.name)} today">${stageHTML(x.items,{tuck:x.tuck,flat:x.flat})}<span>${esc(x.name)}</span></button>`).join('')}</div>`:'';
+  const strip=others.length?`<div class="strip">${others.map(x=>`<button class="tmini" data-act="wearToday" data-id="${x.id}" aria-label="Wearing ${esc(x.name)} today">${stageHTML(x.items)}<span>${esc(x.name)}</span></button>`).join('')}</div>`:'';
   if(e&&e.worn&&!todayPick){el.innerHTML=head+`<div class="today-main worn">${pic}<div class="today-txt"><small>Logged as worn</small><b>${name}</b><div class="acts"><button class="ghost" data-act="todayChange">Change</button></div></div></div>`;return}
   if(e&&!e.worn){el.innerHTML=head+`<div class="today-main">${pic}<div class="today-txt"><small>Planned for today</small><b>${name}</b><div class="acts"><button class="add" data-act="wearPlanned">Wearing this</button></div></div></div>`+(strip&&`<div class="strip-lbl">Wearing something else? Tap it.</div>`+strip);return}
   el.innerHTML=head+`<p class="today-hint">${e?'Tap what you\'re wearing instead.':'What are you wearing? Tap it to log it.'}</p>`+strip+(e?`<button class="linkbtn" data-act="todayKeep">Keep ${name}</button>`:'');
@@ -568,7 +569,7 @@ function renderOutfits(){
   $('tagChips').innerHTML=tags.length?['all',...tags].map(t=>`<button class="chip ${t===oTag?'on':''}" data-tag="${esc(t)}">${t==='all'?'All':esc(t[0].toUpperCase()+t.slice(1))}</button>`).join(''):'';
   const shown=db.outfits.filter(o=>oTag==='all'||tagsOf(o).includes(oTag));
   $('looks').innerHTML=db.outfits.length?shown.map(o=>{const its=outfitItems(o),cost=its.reduce((s,i)=>s+(+i.price||0),0),w=outfitWears(o);
-    return `<button class="look" data-outfit="${o.id}">${stageHTML(o.items,{tuck:o.tuck,flat:o.flat})}<div class="ln">${esc(o.name)}</div><div class="lm">${w?`Worn ${w}×`:'Not worn yet'}${cost?' · '+money(cost):''}</div></button>`}).join('')
+    return `<button class="look" data-outfit="${o.id}">${stageHTML(o.items)}<div class="ln">${esc(o.name)}</div><div class="lm">${w?`Worn ${w}×`:'Not worn yet'}${cost?' · '+money(cost):''}</div></button>`}).join('')
     :`<div class="empty">No outfits yet.<br>Tap New to put one together from your closet.</div>`;
 }
 $('looks').onclick=e=>{const b=e.target.closest('[data-outfit]');if(b)outfitSheet(b.dataset.outfit)};
@@ -579,7 +580,7 @@ function outfitSheet(oid){
   const t=todayISO(),wornToday=!!(db.plan[t]&&db.plan[t].worn&&db.plan[t].outfit===oid);
   const next=Object.entries(db.plan).filter(([d,e])=>e.outfit===oid&&!e.worn&&d>=t).map(([d])=>d).sort()[0];
   openSheet(`<h2>${esc(o.name)}</h2><div class="meta">${o.tags?esc(o.tags)+' · ':''}${its.length} pieces</div>
-   ${stageHTML(o.items,{tuck:o.tuck,flat:o.flat})}
+   ${stageHTML(o.items)}
    <div class="stats3"><div><small>Pieces cost</small><b>${nP?money(cost):'–'}</b>${nP&&nP<its.length?`<em>${nP} of ${its.length} priced</em>`:''}</div><div><small>Worn</small><b>${w}×</b></div><div><small>Next planned</small><b style="font-size:13px">${next?fmtDate(next):'–'}</b></div></div>
    <div class="btns">${wornToday?'<button class="btn" disabled>Worn today</button>':`<button class="btn" data-act="wearOutfit" data-id="${oid}">Wore it today</button>`}<button class="btn sec" data-act="planOutfit" data-id="${oid}">Plan a day</button></div>
    <div class="lbl">Pieces</div>${its.map(i=>`<button class="row" data-item="${i.id}">${picHTML(i.img)}<div><b>${esc(i.name)}</b><small>${CAT1[i.cat]} · ${money(i.price)} · worn ${wearsOf(i.id).n}×</small></div></button>`).join('')}
@@ -590,16 +591,14 @@ function outfitSheet(oid){
 let B=null,bCat='top';
 function openBuilder(oid){
   const o=oid&&db.outfits.find(x=>x.id===oid);
-  B=o?{id:o.id,items:{...o.items},tuck:!!o.tuck,flat:!!o.flat}:{id:null,items:{},tuck:false,flat:false};B.dirty=false;
+  B=o?{id:o.id,items:{...o.items}}:{id:null,items:{}};B.dirty=false;
   if(!o)for(const k of ['top','bottom','shoes']){const l=db.items.filter(i=>i.cat===k);if(l.length)B.items[k]=l[0].id}
   $('bTitle').textContent=o?'Edit outfit':'New outfit';$('bName').value=o?o.name:'';$('bTags').value=o?o.tags||'':'';$('bErr').textContent='';
   bCat=SLOTS.find(k=>db.items.some(i=>i.cat===k))||'top';
   show('builder');renderBuilder();
 }
 function renderBuilder(){
-  $('bStage').outerHTML=stageHTML(B.items,{tuck:B.tuck,flat:B.flat,id:'bStage'});
-  $('bStand').setAttribute('aria-pressed',!B.flat);$('bFlat').setAttribute('aria-pressed',B.flat);
-  $('bTuck').classList.toggle('on',B.tuck&&!B.flat);$('bTuck').setAttribute('aria-pressed',B.tuck&&!B.flat);$('bTuck').disabled=B.flat;
+  $('bStage').outerHTML=stageHTML(B.items,{id:'bStage'});
   $('bName').placeholder=autoName(B.items);
   $('bCats').innerHTML=SLOTS.map(k=>{const p=B.items[k]&&itemById(B.items[k]);return `<button class="chip ${k===bCat?'on':''}" data-bcat="${k}" aria-pressed="${k===bCat}" aria-label="${CATS[k]}${p?', picked':''}">${CATS[k]}${p?'<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>':''}</button>`}).join('');
   const list=db.items.filter(i=>i.cat===bCat);
@@ -610,16 +609,13 @@ function renderBuilder(){
 const bChanged=()=>{B.dirty=true;$('bErr').textContent='';renderBuilder()};
 $('bCats').onclick=e=>{const b=e.target.closest('[data-bcat]');if(b){bCat=b.dataset.bcat;renderBuilder();$('bGrid').scrollLeft=0}};
 $('bGrid').onclick=e=>{const b=e.target.closest('[data-pick]');if(!b)return;const id=b.dataset.pick;if(id)B.items[bCat]=id;else delete B.items[bCat];bChanged()};
-$('bStand').onclick=()=>{if(B.flat){B.flat=false;bChanged()}};
-$('bFlat').onclick=()=>{if(!B.flat){B.flat=true;bChanged()}};
-$('bTuck').onclick=()=>{B.tuck=!B.tuck;bChanged()};
 $('bName').oninput=$('bTags').oninput=()=>{B.dirty=true};
 $('bRnd').onclick=()=>{for(const k of ['top','bottom','shoes','jacket']){const l=db.items.filter(i=>i.cat===k);if(!l.length)continue;
   if(k==='jacket'&&Math.random()<.35){delete B.items.jacket;continue}B.items[k]=l[Math.floor(Math.random()*l.length)].id}bChanged()};
 $('bSave').onclick=()=>{
   const items=Object.fromEntries(Object.entries(B.items).filter(([k,v])=>v&&itemById(v)));
   if(Object.keys(items).length<2){$('bErr').textContent='Pick at least two pieces.';return}
-  const data={items,tuck:B.tuck,flat:B.flat,name:$('bName').value.trim()||autoName(items),tags:$('bTags').value.trim()};
+  const data={items,name:$('bName').value.trim()||autoName(items),tags:$('bTags').value.trim()};
   let oid=B.id;
   if(oid)Object.assign(db.outfits.find(o=>o.id===oid),data);else{oid='o-'+uid();db.outfits.unshift({id:oid,created:new Date().toISOString(),...data})}
   if(!save())return;B.dirty=false;
@@ -643,7 +639,7 @@ function renderPlan(){
   $('cal').innerHTML=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="dow" aria-hidden="true">${d[0]}</div>`).join('')+cells.map(([y,m,d,out])=>{
     const k=isoOf(y,m,d),e=db.plan[k],o=e&&db.outfits.find(x=>x.id===e.outfit);
     const lbl=fmtDate(k)+(k===t?', today':'')+(e?(e.worn?', worn: ':', planned: ')+(o?o.name:'outfit'):'');
-    return `<button class="day ${out?'out':''} ${k===t?'today':''} ${e?'planned':''} ${e&&e.worn?'worn':''}" data-day="${k}" aria-label="${esc(lbl)}"${k===t?' aria-current="date"':''}><span class="dn">${d}</span><div class="mini">${e?stageHTML(piecesOf(e),{tuck:o&&o.tuck,flat:o&&o.flat}):''}</div>${e?'<span class="wd"></span>':''}</button>`}).join('');
+    return `<button class="day ${out?'out':''} ${k===t?'today':''} ${e?'planned':''} ${e&&e.worn?'worn':''}" data-day="${k}" aria-label="${esc(lbl)}"${k===t?' aria-current="date"':''}><span class="dn">${d}</span><div class="mini">${e?stageHTML(piecesOf(e)):''}</div>${e?'<span class="wd"></span>':''}</button>`}).join('');
   const up=Object.entries(db.plan).filter(([d,e])=>d>=t&&!e.worn).sort((a,b)=>a[0].localeCompare(b[0])).slice(0,5);
   $('upcoming').innerHTML=up.length?`<div class="sect"><span>Coming up</span></div>`+up.map(([d,e])=>{const o=db.outfits.find(x=>x.id===e.outfit),f=(e.items||[]).map(itemById).filter(i=>i&&i.img).sort((a,b)=>(a.cat==='jacket'?0:1)-(b.cat==='jacket'?0:1))[0];
     return `<button class="row" data-day="${d}">${picHTML(f&&f.img)}<div><b>${esc(o?o.name:'Outfit')}</b><small>${fmtDate(d)}</small></div></button>`}).join(''):'';
@@ -656,7 +652,7 @@ function daySheet(day,choose){
   const e=db.plan[day],o=e&&db.outfits.find(x=>x.id===e.outfit),past=day<=todayISO();
   if(e&&!choose){
     openSheet(`<h2>${fmtDate(day)}</h2><div class="meta">${e.worn?'Worn':'Planned'}${o?' · '+esc(o.name):''}</div>
-     ${stageHTML(piecesOf(e),{tuck:o&&o.tuck,flat:o&&o.flat})}
+     ${stageHTML(piecesOf(e))}
      <div class="btns">${!e.worn&&past?`<button class="btn" data-act="markWorn" data-day="${day}">Mark as worn</button>`:''}
       ${e.worn?`<button class="btn sec" data-act="unmarkWorn" data-day="${day}">Not worn</button>`:''}
       <button class="btn sec" data-act="changeDay" data-day="${day}">Change outfit</button></div>
@@ -665,7 +661,7 @@ function daySheet(day,choose){
   }
   if(!db.outfits.length){openSheet(`<h2>${fmtDate(day)}</h2><div class="empty">Save an outfit first, then plan it here.</div><div class="btns"><button class="btn" data-act="newOutfit">Create an outfit</button></div>`);return}
   openSheet(`<h2>${fmtDate(day)}</h2><div class="meta">${day<todayISO()?'Which outfit did you wear? It counts as worn.':day===todayISO()?"Pick today's outfit. Mark it as worn once you've worn it.":'Pick an outfit for this day.'}</div>
-   <div class="pick">${db.outfits.map(x=>`<button class="look" data-act="setDay" data-day="${day}" data-id="${x.id}">${stageHTML(x.items,{tuck:x.tuck,flat:x.flat})}<div class="ln">${esc(x.name)}</div></button>`).join('')}</div>`);
+   <div class="pick">${db.outfits.map(x=>`<button class="look" data-act="setDay" data-day="${day}" data-id="${x.id}">${stageHTML(x.items)}<div class="ln">${esc(x.name)}</div></button>`).join('')}</div>`);
 }
 function setDay(day,oid,worn){const o=db.outfits.find(x=>x.id===oid);if(!o)return;
   db.plan[day]={outfit:oid,items:Object.values(o.items).filter(id=>itemById(id)),worn:worn??(day<todayISO())};save()}
@@ -929,8 +925,8 @@ async function boot(){
   const seen=new Set(db.seen||[]);
   if(items)for(const s of items.items.filter(i=>i.owned)){
     const cur=itemById(s.id);
-    if(cur){if(!cur.imgEdited)cur.img=s.img;if(!cur.sizesEdited)cur.sizes=s.sizes;if(!cur.url)cur.url=s.url}
-    else if(!seen.has(s.id)){db.items.push({id:s.id,name:s.name,brand:s.brand,cat:s.cat,img:s.img,url:s.url,size:s.size,sizes:s.sizes,
+    if(cur){if(!cur.imgEdited){cur.img=s.img;cur.photo=s.photo}if(!cur.sizesEdited)cur.sizes=s.sizes;if(!cur.url)cur.url=s.url}
+    else if(!seen.has(s.id)){db.items.push({id:s.id,name:s.name,brand:s.brand,cat:s.cat,img:s.img,photo:s.photo,url:s.url,size:s.size,sizes:s.sizes,
       color:s.color||'',price:s.price??null,bought:s.bought||'',store:s.store||'',notes:s.notes||'',added:s.added||new Date().toISOString(),...(s.wears?{extraWears:s.wears}:{})});seen.add(s.id)}
   }
   if(wish)for(const s of wish.items||[])if(!db.wishlist.some(w=>w.id===s.id)&&!seen.has(s.id)){db.wishlist.push({added:new Date().toISOString(),priority:'nice',...s});seen.add(s.id)}
