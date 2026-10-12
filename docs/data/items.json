@@ -794,9 +794,9 @@
    "cat": "bottom",
    "img": "img/pleated-linen-trousers-dark-brown.webp?v=7060a5",
    "url": "https://www.zara.com/pl/pl/spodnie-regular-fit-ze-100-lnu-p04410012.html",
-   "size": "typical",
+   "size": "S",
    "sizes": {
-    "typical": {
+    "S": {
      "length": 104,
      "waist": 82,
      "front rise": 29,
@@ -807,7 +807,7 @@
    "notes": "100% linen; photo is the closest current Zara model",
    "placeholder": false,
    "owned": true,
-   "price": null,
+   "price": 150.0,
    "bought": "",
    "store": "Zara",
    "photo": {
