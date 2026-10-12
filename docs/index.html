@@ -322,7 +322,7 @@ body.building .toast{bottom:calc(80px + env(safe-area-inset-bottom))}
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button id="toastUndo">Undo</button></div>
 
 <script>
-const APP_VERSION='1.0.15';
+const APP_VERSION='1.0.16';
 /* ===== storage ===== */
 const KEY='wardrobe-db-v2';
 const $=id=>document.getElementById(id);
@@ -375,9 +375,9 @@ const NOPIC='<svg class="nopic" viewBox="0 0 24 24" fill="none" stroke="currentC
 function picHTML(src){const u=srcOf(src);return u?`<div class="pic ${isPhoto(src)?'photo':''}"><img src="${esc(u)}" alt="" loading="lazy"></div>`:`<div class="pic">${NOPIC}</div>`}
 
 /* ===== outfit picture: product photos in a flat lay, no figure =====
-   True size: every piece is drawn at one fixed scale from its real length (the "length"
-   measurement), so an overcoat is long and a cropped jacket short in every outfit, and a new
-   piece needs no tuning. Stage is 300 x 440 units; positions are set as percentages. */
+   True size: every piece is sized from its real length (the "length" measurement), so an
+   overcoat is long and a cropped jacket short next to the rest of the outfit, and a new piece
+   needs no tuning. Stage is 300 x 440 units; positions are set as percentages. */
 const TYP_LEN=[[/overcoat|\bcoat\b|trench|parka|mac\b/,100],[/turtleneck|sweater|knit|jumper|cardigan|hoodie|sweatshirt/,66],[/t-shirt|\btee\b|polo|tank/,70]];
 function lengthCm(it){
   const s=(it.sizes&&it.sizes[it.size])||{},l=+(s.length||s['total length']||s['back length']||0);if(l>0)return l;
@@ -388,18 +388,21 @@ const aspect=it=>isPhoto(it.img)?1:it.photo&&it.photo.w&&it.photo.h?it.photo.w/i
 // width and height in stage units; shoe photos are side views, so their width is the shoe length, drawn a bit larger so they read well next to clothes
 function trueBox(it,ppc){const a=aspect(it);if(it.cat==='shoes'){const w=lengthCm(it)*1.7*ppc;return{w,h:w/a}}const h=lengthCm(it)*ppc;return{w:h*a,h}}
 function stageHTML(items,o={}){
-  const SW=300,SH=440,P=(v,t)=>(v/t*100).toFixed(2)+'%',g=k=>items[k]&&itemById(items[k]);let h='';
-  const put=(k,x,y,b,z)=>{const it=g(k),u=srcOf(it.img);if(u)h+=`<div class="layer L-${k} ${isPhoto(it.img)?'photo':''}" style="left:${P(x,SW)};top:${P(y,SH)};width:${P(b.w,SW)};height:${P(b.h,SH)};z-index:${z}"><img src="${esc(u)}" alt="${esc(it.name)}"></div>`};
-  const box=(k,ppc)=>g(k)&&trueBox(g(k),ppc);
-  const ppc=2,t=box('top',ppc),j=box('jacket',ppc),b=box('bottom',ppc),s=box('shoes',ppc);
-  // jacket top left, top beside it; without a jacket the top sits higher and the trousers start
-  // just under its hem. Then the whole group is centred vertically so short outfits leave no gap.
-  const by=b?(j?SH-b.h-10:Math.min(SH-b.h-10,10+(t?t.h*.8:0))):0,low=Math.max(b?by+b.h:0,j?10+j.h:0,t?(j?40:10)+t.h:0),dy=Math.max(0,(SH-10-low)/2);
-  if(b)put('bottom',20,by+dy,b,1);
-  if(j)put('jacket',10,10+dy,j,2);
-  if(t)put('top',j?SW-t.w-10:(SW-t.w)/2-30,(j?40:10)+dy,t,3);
-  if(s)put('shoes',SW-s.w-12,(b?by+b.h:low)+dy-s.h-14,s,4);
-  const a=g('acc');if(a){const ab=trueBox(a,1),k=Math.min(70/ab.h,90/ab.w);put('acc',SW-ab.w*k-12,246,{w:ab.w*k,h:ab.h*k},6)}
+  // Pieces are placed in centimetres as a compact flat lay (overlapping a little, like on a real
+  // floor): jacket top left with the top tucked beside it, trousers under the jacket, shoes by the
+  // trouser hems. The group is then scaled to fill the frame, so every piece keeps its true size
+  // relative to the others and there is little empty space.
+  const SW=300,SH=440,PAD=8,P=(v,t)=>(v/t*100).toFixed(2)+'%',g=k=>items[k]&&itemById(items[k]);
+  const box=k=>g(k)&&trueBox(g(k),1),t=box('top'),j=box('jacket'),b=box('bottom'),s=box('shoes'),r={};
+  if(j){r.jacket={x:0,y:0,...j,z:2};if(t)r.top={x:j.w*.72,y:6,...t,z:3};if(b)r.bottom={x:j.w*.12,y:Math.max(j.h*.82,t?6+t.h*.7:0),...b,z:1}}
+  else{if(t)r.top={x:0,y:0,...t,z:3};if(b)r.bottom={x:t?t.w*.18:0,y:t?t.h*.82:0,...b,z:1}}
+  if(s){const B=r.bottom;r.shoes=B?{x:B.x+B.w*.62,y:B.y+B.h-s.h*.85,...s,z:4}:{x:0,y:Math.max(0,...Object.values(r).map(q=>q.y+q.h))+2,...s,z:4}}
+  const acc=g('acc');if(acc){const ab=trueBox(acc,1),k=Math.min(22/ab.h,26/ab.w),w=ab.w*k,hh=ab.h*k,R=Object.values(r);
+    r.acc=R.length?{x:Math.max(...R.map(q=>q.x+q.w))-w,y:Math.max(...R.map(q=>q.y+q.h))*.45,w,h:hh,z:6}:{x:0,y:0,w,h:hh,z:6}}
+  const R=Object.values(r);let h='';
+  if(R.length){const x0=Math.min(...R.map(q=>q.x)),y0=Math.min(...R.map(q=>q.y)),W=Math.max(...R.map(q=>q.x+q.w))-x0,H=Math.max(...R.map(q=>q.y+q.h))-y0;
+    const k=Math.min((SW-2*PAD)/W,(SH-2*PAD)/H),ox=(SW-W*k)/2,oy=(SH-H*k)/2;
+    for(const [key,q] of Object.entries(r)){const it=g(key),u=srcOf(it.img);if(u)h+=`<div class="layer L-${key} ${isPhoto(it.img)?'photo':''}" style="left:${P(ox+(q.x-x0)*k,SW)};top:${P(oy+(q.y-y0)*k,SH)};width:${P(q.w*k,SW)};height:${P(q.h*k,SH)};z-index:${q.z}"><img src="${esc(u)}" alt="${esc(it.name)}"></div>`}}
   return `<div class="stage" ${o.id?`id="${o.id}"`:''}>${h}</div>`;
 }
 

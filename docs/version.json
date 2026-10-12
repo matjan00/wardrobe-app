@@ -1,6 +1,11 @@
 {
- "version": "1.0.15",
+ "version": "1.0.16",
  "notes": [
+  {
+   "version": "1.0.16",
+   "date": "2026-10-12",
+   "text": "Outfit pictures are tighter, with less empty space"
+  },
   {
    "version": "1.0.15",
    "date": "2026-10-12",
