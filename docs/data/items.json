@@ -818,6 +818,99 @@
     "bottom": 0.9986
    },
    "estimated": true
+  },
+  {
+   "id": "baird-mcnutt-irish-linen-shirt-blue-stripe",
+   "name": "Baird McNutt Irish linen shirt, blue stripe",
+   "brand": "J.Crew",
+   "cat": "top",
+   "img": "img/baird-mcnutt-irish-linen-shirt-blue-stripe.webp?v=20f58f",
+   "url": "https://www.jcrew.com/p/mens/categories/clothing/shirts/linen/CF667?color_name=YD9977",
+   "size": "typical",
+   "sizes": {
+    "typical": {
+     "length": 70,
+     "chest": 108,
+     "shoulder": 46
+    }
+   },
+   "color": "light blue",
+   "notes": "100% Irish linen (Baird McNutt), white with blue stripes; older model, photo is a similar one",
+   "placeholder": false,
+   "owned": true,
+   "price": null,
+   "bought": "",
+   "store": "",
+   "photo": {
+    "w": 700,
+    "h": 531,
+    "top": 0.0019,
+    "hem": 0.9962,
+    "bottom": 0.9962
+   },
+   "estimated": true
+  },
+  {
+   "id": "turtleneck-with-cashmere-black",
+   "name": "Turtleneck with cashmere, black",
+   "brand": "Reserved",
+   "cat": "top",
+   "img": "img/turtleneck-with-cashmere-black.webp?v=646222",
+   "url": "https://www.reserved.com/pl/pl/golf-z-welny-i-domieszki-kaszmiru-878ks-99x",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 70,
+     "chest": 108,
+     "shoulder": 46
+    }
+   },
+   "color": "black",
+   "notes": "ref 438GQ-99X; photo is the current 878KS-99X",
+   "placeholder": false,
+   "owned": true,
+   "price": 229.99,
+   "bought": "",
+   "store": "Reserved",
+   "photo": {
+    "w": 493,
+    "h": 580,
+    "top": 0.0,
+    "hem": 0.9569,
+    "bottom": 0.9983
+   },
+   "estimated": true
+  },
+  {
+   "id": "merino-wool-turtleneck-dark-brown",
+   "name": "Merino wool turtleneck, dark brown",
+   "brand": "Reserved",
+   "cat": "top",
+   "img": "img/merino-wool-turtleneck-dark-brown.webp?v=b456e3",
+   "url": "https://www.reserved.com/pl/pl/golf-z-welny-merino-863ks-89x",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 70,
+     "chest": 108,
+     "shoulder": 46
+    }
+   },
+   "color": "brown",
+   "notes": "ref 440GQ-89X; photo is the current 863KS-89X",
+   "placeholder": false,
+   "owned": true,
+   "price": 139.99,
+   "bought": "",
+   "store": "Reserved",
+   "photo": {
+    "w": 485,
+    "h": 628,
+    "top": 0.0,
+    "hem": 0.9283,
+    "bottom": 0.9984
+   },
+   "estimated": true
   }
  ]
 }
