@@ -662,6 +662,162 @@
    },
    "estimated": false,
    "wears": 50
+  },
+  {
+   "id": "slim-washed-linen-shirt-sand",
+   "name": "Slim washed linen shirt, sand",
+   "brand": "Massimo Dutti",
+   "cat": "top",
+   "img": "img/slim-washed-linen-shirt-sand.webp?v=f39cd1",
+   "url": "",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 70,
+     "chest": 108,
+     "shoulder": 46
+    }
+   },
+   "color": "sand",
+   "notes": "100% linen, ref 0176/772/718",
+   "placeholder": false,
+   "owned": true,
+   "price": 169.0,
+   "bought": "",
+   "store": "Massimo Dutti",
+   "photo": {
+    "w": 556,
+    "h": 700,
+    "top": 0.0,
+    "hem": 0.9971,
+    "bottom": 0.9986
+   },
+   "estimated": true
+  },
+  {
+   "id": "slim-washed-linen-shirt-dark-grey",
+   "name": "Slim washed linen shirt, dark grey",
+   "brand": "Massimo Dutti",
+   "cat": "top",
+   "img": "img/slim-washed-linen-shirt-dark-grey.webp?v=180d4a",
+   "url": "",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 70,
+     "chest": 108,
+     "shoulder": 46
+    }
+   },
+   "color": "charcoal",
+   "notes": "100% linen, ref 0176/772/829",
+   "placeholder": false,
+   "owned": true,
+   "price": 169.0,
+   "bought": "",
+   "store": "Massimo Dutti",
+   "photo": {
+    "w": 554,
+    "h": 700,
+    "top": 0.0,
+    "hem": 0.9986,
+    "bottom": 0.9986
+   },
+   "estimated": true
+  },
+  {
+   "id": "slim-linen-shirt-green",
+   "name": "Slim linen shirt, green",
+   "brand": "Massimo Dutti",
+   "cat": "top",
+   "img": "img/slim-linen-shirt-green.webp?v=f7b5be",
+   "url": "",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 70,
+     "chest": 108,
+     "shoulder": 46
+    }
+   },
+   "color": "green",
+   "notes": "100% linen, ref 0100/777/529",
+   "placeholder": false,
+   "owned": true,
+   "price": 119.0,
+   "bought": "",
+   "store": "Massimo Dutti",
+   "photo": {
+    "w": 556,
+    "h": 700,
+    "top": 0.0,
+    "hem": 0.9986,
+    "bottom": 0.9986
+   },
+   "estimated": true
+  },
+  {
+   "id": "slim-linen-shirt-aubergine",
+   "name": "Slim linen shirt, aubergine",
+   "brand": "Massimo Dutti",
+   "cat": "top",
+   "img": "img/slim-linen-shirt-aubergine.webp?v=2626ff",
+   "url": "",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 70,
+     "chest": 108,
+     "shoulder": 46
+    }
+   },
+   "color": "aubergine",
+   "notes": "100% linen, ref 0199/777/610",
+   "placeholder": false,
+   "owned": true,
+   "price": 129.0,
+   "bought": "",
+   "store": "Massimo Dutti",
+   "photo": {
+    "w": 558,
+    "h": 700,
+    "top": 0.0,
+    "hem": 0.9971,
+    "bottom": 0.9971
+   },
+   "estimated": true
+  },
+  {
+   "id": "pleated-linen-trousers-dark-brown",
+   "name": "Pleated linen trousers, dark brown",
+   "brand": "Zara",
+   "cat": "bottom",
+   "img": "img/pleated-linen-trousers-dark-brown.webp?v=7060a5",
+   "url": "https://www.zara.com/pl/pl/spodnie-regular-fit-ze-100-lnu-p04410012.html",
+   "size": "typical",
+   "sizes": {
+    "typical": {
+     "length": 104,
+     "waist": 82,
+     "front rise": 29,
+     "inseam": 78
+    }
+   },
+   "color": "brown",
+   "notes": "100% linen; photo is the closest current Zara model",
+   "placeholder": false,
+   "owned": true,
+   "price": null,
+   "bought": "",
+   "store": "Zara",
+   "photo": {
+    "w": 349,
+    "h": 700,
+    "top": 0.0,
+    "hem": 0.9986,
+    "bottom": 0.9986
+   },
+   "estimated": true
   }
  ]
 }
