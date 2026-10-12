@@ -1035,6 +1035,37 @@
     "bottom": 0.9971
    },
    "estimated": true
+  },
+  {
+   "id": "double-breasted-herringbone-coat-grey",
+   "name": "Double-breasted herringbone coat, grey",
+   "brand": "Hugo Boss",
+   "cat": "jacket",
+   "img": "img/double-breasted-herringbone-coat-grey.webp?v=f9e229",
+   "url": "",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 68,
+     "chest": 114,
+     "shoulder": 47
+    }
+   },
+   "color": "grey",
+   "notes": "photo is a similar coat (Macaroni Tomato Porto II)",
+   "placeholder": false,
+   "owned": true,
+   "price": 350.0,
+   "bought": "",
+   "store": "Vinted",
+   "photo": {
+    "w": 330,
+    "h": 700,
+    "top": 0.0,
+    "hem": 0.9943,
+    "bottom": 0.9986
+   },
+   "estimated": true
   }
  ]
 }
