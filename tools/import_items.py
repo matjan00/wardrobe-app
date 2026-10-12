@@ -12,6 +12,7 @@ a shop link OR a description, optionally followed by fields separated with |
 Fields:  size X           the size you own (as the shop writes it)
          photo FILE       a photo in import/photos (laid flat or hung, plain background)
          cat top|bottom|jacket|shoes   if the guess is wrong
+         worn N           times already worn before the app (counts towards cost per wear)
          any 'measure number' pairs (length 70, chest 110, waist 82, inseam 81,
          front rise 30) - used when the shop has no size chart
 """
@@ -52,7 +53,7 @@ def parse_line(line):
     head, fields = parts[0], {}
     meas = {}
     for p in parts[1:]:
-        m = re.match(r'(size|photo|cat|name|brand|link|paid|price|bought|from|store|colou?r|notes?|priority)\s*:?\s+(.+)$', p, re.I)
+        m = re.match(r'(size|photo|cat|name|brand|link|paid|price|bought|from|store|colou?r|notes?|priority|worn)\s*:?\s+(.+)$', p, re.I)
         if m:
             fields[m.group(1).lower()] = m.group(2).strip()
             continue
@@ -289,6 +290,8 @@ def main(path, wishlist=False):
         else:
             rec.update(owned=True, price=money(f.get('paid') or f.get('price')), bought=f.get('bought', ''),
                        store=f.get('from') or f.get('store') or '', photo=measure(rgba, cat), estimated=est)
+            if money(f.get('worn')):
+                rec['wears'] = int(money(f['worn']))
         by_id[iid] = rec
         report.append((n, 'OK' if not notes else 'CHECK', title, '; '.join(notes)))
 

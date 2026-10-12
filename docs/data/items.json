@@ -605,6 +605,63 @@
     "bottom": 0.9983
    },
    "estimated": false
+  },
+  {
+   "id": "ecco-street-lite-m",
+   "name": "Street Lite sneakers, blue",
+   "brand": "ECCO",
+   "cat": "shoes",
+   "img": "img/ecco-street-lite-m.webp?v=674ffc",
+   "url": "https://www.booztlet.com/pl/pl/ecco/street-lite-m_29622273/227588908",
+   "size": "40",
+   "sizes": {
+    "38": {
+     "length": 27.0
+    },
+    "39": {
+     "length": 27.7
+    },
+    "40": {
+     "length": 28.3
+    },
+    "41": {
+     "length": 29.0
+    },
+    "42": {
+     "length": 29.7
+    },
+    "43": {
+     "length": 30.3
+    },
+    "44": {
+     "length": 31.0
+    },
+    "45": {
+     "length": 31.7
+    },
+    "46": {
+     "length": 32.3
+    },
+    "47": {
+     "length": 33.0
+    }
+   },
+   "color": "blue",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": 250.0,
+   "bought": "",
+   "store": "Vinted",
+   "photo": {
+    "w": 337,
+    "h": 195,
+    "top": 0.0,
+    "hem": 0.9949,
+    "bottom": 0.9949
+   },
+   "estimated": false,
+   "wears": 50
   }
  ]
 }

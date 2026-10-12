@@ -11,6 +11,7 @@
 #   paid X       what you paid (just the number)
 #   bought X     when, like 2025-05 (year-month)
 #   from X       where you bought it
+#   worn X       how many times you've worn it already
 #   photo X      a photo in the "photos" folder next to this file: lay the piece flat on a
 #                plain floor, shoot from above, whole piece in frame, daylight
 #
@@ -25,3 +26,4 @@ https://timecatcherco.com/products/regular-fit-heavyweight-tubular-jersey-t-shir
 https://timecatcherco.com/products/1990s-heavyweight-cotton-jersey-boxy-t-shirt-vintage-black | size S | bought 2026-07 | from Timecatcher (order TC9338)
 https://timecatcherco.com/products/1990s-heavyweight-cotton-jersey-boxy-t-shirt-white | size S | bought 2026-07 | from Timecatcher (order TC9338)
 https://timecatcherco.com/products/1990s-heavyweight-cotton-jersey-boxy-t-shirt-olive | size S | bought 2026-07 | from Timecatcher (order TC9338)
+https://www.booztlet.com/pl/pl/ecco/street-lite-m_29622273/227588908 | name Street Lite sneakers, blue | cat shoes | colour blue | size 40 | paid 250 | from Vinted | worn 50

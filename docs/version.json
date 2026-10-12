@@ -1,6 +1,11 @@
 {
- "version": "1.0.6",
+ "version": "1.0.7",
  "notes": [
+  {
+   "version": "1.0.7",
+   "date": "2026-10-12",
+   "text": "Added ECCO Street Lite sneakers, blue"
+  },
   {
    "version": "1.0.6",
    "date": "2026-10-03",
@@ -37,5 +42,5 @@
    "text": "First version: closet, outfits, planner, cost per wear and wishlist"
   }
  ],
- "date": "2026-10-03"
+ "date": "2026-10-12"
 }
