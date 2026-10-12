@@ -1004,6 +1004,37 @@
     "bottom": 0.9955
    },
    "estimated": true
+  },
+  {
+   "id": "ring-jacket-wool-flannel-single-breasted-overcoat-navy",
+   "name": "Wool flannel single-breasted overcoat, navy",
+   "brand": "Ring Jacket",
+   "cat": "jacket",
+   "img": "img/ring-jacket-wool-flannel-single-breasted-overcoat-navy.webp?v=a64dcb",
+   "url": "https://oldhouseprovisions.com/products/ring-jacket-wool-flannel-single-breasted-overcoat-navy",
+   "size": "S",
+   "sizes": {
+    "S": {
+     "length": 68,
+     "chest": 114,
+     "shoulder": 47
+    }
+   },
+   "color": "navy",
+   "notes": "",
+   "placeholder": false,
+   "owned": true,
+   "price": 500.0,
+   "bought": "",
+   "store": "Old House Provisions",
+   "photo": {
+    "w": 389,
+    "h": 700,
+    "top": 0.0014,
+    "hem": 0.9971,
+    "bottom": 0.9971
+   },
+   "estimated": true
   }
  ]
 }
