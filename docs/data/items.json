@@ -824,7 +824,7 @@
    "name": "Baird McNutt Irish linen shirt, blue stripe",
    "brand": "J.Crew",
    "cat": "top",
-   "img": "img/baird-mcnutt-irish-linen-shirt-blue-stripe.webp?v=20f58f",
+   "img": "img/baird-mcnutt-irish-linen-shirt-blue-stripe.webp?v=57ee68",
    "url": "https://www.jcrew.com/p/mens/categories/clothing/shirts/linen/CF667?color_name=YD9977",
    "size": "S",
    "sizes": {
@@ -835,18 +835,18 @@
     }
    },
    "color": "light blue",
-   "notes": "100% Irish linen (Baird McNutt), white with blue stripes; older model, photo is a similar one",
+   "notes": "100% Irish linen (Baird McNutt), white with blue stripes; photo is a similar shirt (Massimo Dutti)",
    "placeholder": false,
    "owned": true,
    "price": 35.0,
    "bought": "",
    "store": "Vinted",
    "photo": {
-    "w": 700,
-    "h": 531,
-    "top": 0.0019,
-    "hem": 0.9962,
-    "bottom": 0.9962
+    "w": 495,
+    "h": 627,
+    "top": 0.0,
+    "hem": 0.9968,
+    "bottom": 0.9984
    },
    "estimated": true
   },
