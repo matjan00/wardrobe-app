@@ -1108,10 +1108,10 @@
    "size": "S",
    "sizes": {
     "S": {
-     "length": 104,
-     "waist": 82,
-     "front rise": 29,
-     "inseam": 78
+     "waist": 80.0,
+     "length": 105.0,
+     "front rise": 31.0,
+     "inseam": 75.0
     }
    },
    "color": "brown",
@@ -1128,7 +1128,7 @@
     "hem": 0.9983,
     "bottom": 0.9983
    },
-   "estimated": true
+   "estimated": false
   }
  ]
 }
