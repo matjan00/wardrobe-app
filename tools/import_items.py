@@ -117,7 +117,8 @@ def generic(url):
                 im = d.get('image')
                 imgs += im if isinstance(im, list) else [im] if im else []
     def meta(prop):
-        m = re.search(r'<meta[^>]+(?:property|name)=["\']%s["\'][^>]+content=["\']([^"\']+)' % prop, page, re.I)
+        m = (re.search(r'<meta[^>]+(?:property|name)=["\']%s["\'][^>]+content=["\']([^"\']+)' % prop, page, re.I) or
+             re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+(?:property|name)=["\']%s["\']' % prop, page, re.I))
         return m.group(1) if m else None
     title = title or meta('og:title')
     if meta('og:image'):
@@ -134,6 +135,8 @@ def best_cutout(images, cat):
     """Try the first few product photos and keep the cleanest flat shot (plain background,
     garment not touching the edges). Shoes prefer an angled shot of the pair."""
     order = list(images[:6])
+    # lookbook / model shots go last: a person in the photo cuts out as a whole outfit
+    order.sort(key=lambda u: 1 if re.search(r'look.?book|lifestyle|model|editorial|campaign', u.split('?')[0], re.I) else 0)
     if cat == 'shoes':
         order.sort(key=lambda u: (0 if 'ANGLE' in u.upper() else 1 if 'SIDE' in u.upper() else 2))
     best = None

@@ -1,6 +1,11 @@
 {
- "version": "1.0.16",
+ "version": "1.0.17",
  "notes": [
+  {
+   "version": "1.0.17",
+   "date": "2026-10-13",
+   "text": "Added Casatlantic Mogador olive trousers and Dorota Szyje Milano wool trousers"
+  },
   {
    "version": "1.0.16",
    "date": "2026-10-12",
@@ -87,5 +92,5 @@
    "text": "First version: closet, outfits, planner, cost per wear and wishlist"
   }
  ],
- "date": "2026-10-12"
+ "date": "2026-10-13"
 }
