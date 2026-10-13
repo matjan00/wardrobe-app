@@ -1,6 +1,11 @@
 {
- "version": "1.0.19",
+ "version": "1.0.20",
  "notes": [
+  {
+   "version": "1.0.20",
+   "date": "2026-10-13",
+   "text": "Cleaner Milano photo, Mogador recoloured to olive drab"
+  },
   {
    "version": "1.0.19",
    "date": "2026-10-13",
@@ -95,11 +100,6 @@
    "version": "1.0.1",
    "date": "2026-10-03",
    "text": "Added Zara suede penny loafers, dark brown"
-  },
-  {
-   "version": "1.0.0",
-   "date": "2026-10-03",
-   "text": "First version: closet, outfits, planner, cost per wear and wishlist"
   }
  ],
  "date": "2026-10-13"

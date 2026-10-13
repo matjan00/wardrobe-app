@@ -13,6 +13,8 @@ Fields:  size X           the size you own (as the shop writes it)
          photo FILE       a photo in import/photos (laid flat or hung, plain background)
          cat top|bottom|jacket|shoes   if the guess is wrong
          worn N           times already worn before the app (counts towards cost per wear)
+         tint X           recolour the photo when the shop's colour differs from yours
+                          (a colour name from the list below, or #rrggbb), keeping folds and shading
          any 'measure number' pairs (length 70, chest 110, waist 82, inseam 81,
          front rise 30) - used when the shop has no size chart
 """
@@ -56,7 +58,7 @@ def parse_line(line):
     head, fields = parts[0], {}
     meas = {}
     for p in parts[1:]:
-        m = re.match(r'(size|photo|cat|name|brand|link|paid|price|bought|from|store|colou?r|notes?|priority|worn)\s*:?\s+(.+)$', p, re.I)
+        m = re.match(r'(size|photo|cat|name|brand|link|paid|price|bought|from|store|colou?r|notes?|priority|worn|tint)\s*:?\s+(.+)$', p, re.I)
         if m:
             fields[m.group(1).lower()] = m.group(2).strip()
             continue
@@ -183,6 +185,19 @@ def placeholder(cat, colour, shorts=False, long_sleeves=False):
     return im.crop(im.getbbox())
 
 
+def tint(rgba, colour):
+    """Recolour a cut-out to `colour` (name or #hex): the garment's average becomes that colour,
+    and every pixel keeps its brightness relative to the average, so folds and texture stay."""
+    hexc = COLOURS.get(colour.lower(), colour).lstrip('#')
+    target = np.array([int(hexc[i:i + 2], 16) for i in (0, 2, 4)], float)
+    a = np.asarray(rgba).astype(float)
+    solid = a[..., 3] > 128
+    lum = a[..., :3] @ [0.299, 0.587, 0.114]
+    rel = lum / max(np.median(lum[solid]), 1)
+    a[..., :3] = np.clip(target * rel[..., None], 0, 255)
+    return Image.fromarray(a.astype('uint8'), 'RGBA')
+
+
 def colour_of(text):
     t = text.lower()
     for name in sorted(COLOURS, key=len, reverse=True):
@@ -262,6 +277,8 @@ def main(path, wishlist=False):
             long_sl = bool(re.search(r'sweater|sweatshirt|hoodie|jumper|knit|long.sleeve|shirt\b|oxford|flannel|jacket|coat|cardigan|overshirt', title, re.I)) and not re.search(r't-?shirt|\btee\b', title, re.I)
             rgba = placeholder(cat, colour_of(title), is_shorts, long_sl)
             notes.append('placeholder shape; add a photo for the real look')
+        if f.get('tint'):
+            rgba = tint(rgba, f['tint'])
         rgba.thumbnail((700, 700))
         rgba.save(os.path.join(IMG, iid + '.webp'), quality=86, method=6)
 

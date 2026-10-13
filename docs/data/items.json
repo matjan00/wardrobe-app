@@ -1072,7 +1072,7 @@
    "name": "Mogador cotton trousers, olive",
    "brand": "Casatlantic",
    "cat": "bottom",
-   "img": "img/casatlantic-mogador-olive.webp?v=c774ea",
+   "img": "img/casatlantic-mogador-olive.webp?v=44bc22",
    "url": "https://www.casatlantic.com/products/mogador-cotton-dark-olive-trousers",
    "size": "30/30",
    "sizes": {
@@ -1103,7 +1103,7 @@
    "name": "Milano pleated wool trousers, brown-grey",
    "brand": "Dorota Szyje",
    "cat": "bottom",
-   "img": "img/dorota-szyje-milano-pleated-wool-trousers-brown-grey.webp?v=3ad2b0",
+   "img": "img/dorota-szyje-milano-pleated-wool-trousers-brown-grey.webp?v=eab9e4",
    "url": "https://dorotaszyje.pl/milano-welniane-spodnie-meskie-brazowo-szare",
    "size": "S",
    "sizes": {
@@ -1122,11 +1122,11 @@
    "bought": "",
    "store": "Dorota Szyje",
    "photo": {
-    "w": 225,
-    "h": 591,
+    "w": 210,
+    "h": 594,
     "top": 0.0,
-    "hem": 0.9983,
-    "bottom": 0.9983
+    "hem": 0.9966,
+    "bottom": 0.9966
    },
    "estimated": false
   }
