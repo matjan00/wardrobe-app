@@ -1105,9 +1105,9 @@
    "cat": "bottom",
    "img": "img/dorota-szyje-milano-pleated-wool-trousers-brown-grey.webp?v=3ad2b0",
    "url": "https://dorotaszyje.pl/milano-welniane-spodnie-meskie-brazowo-szare",
-   "size": "typical",
+   "size": "S",
    "sizes": {
-    "typical": {
+    "S": {
      "length": 104,
      "waist": 82,
      "front rise": 29,
@@ -1118,7 +1118,7 @@
    "notes": "100% Italian wool tweed, high rise, pleat, side adjusters; photo cut from a model shot",
    "placeholder": false,
    "owned": true,
-   "price": null,
+   "price": 480.0,
    "bought": "",
    "store": "Dorota Szyje",
    "photo": {
